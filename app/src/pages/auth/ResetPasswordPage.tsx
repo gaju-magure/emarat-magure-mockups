@@ -38,10 +38,10 @@ export function ResetPasswordPage() {
 
   const password = watch('password');
 
-  const onSubmit = async (data: ResetPasswordFormData) => {
+  const onSubmit = async () => {
     try {
       setError('');
-      await resetPassword(token, data.password);
+      await resetPassword(token);
       setSuccess(true);
     } catch (err) {
       setError('Failed to reset password. The link may have expired.');

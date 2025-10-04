@@ -5,7 +5,6 @@ import {
   ClockIcon,
   ArrowTrendingUpIcon,
   ArrowTrendingDownIcon,
-  CalendarIcon,
 } from '@heroicons/react/24/outline';
 
 export function FootfallTracking() {

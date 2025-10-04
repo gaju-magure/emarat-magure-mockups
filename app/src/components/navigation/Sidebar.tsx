@@ -1,19 +1,11 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { mainNavigation } from '../../config/navigation';
 import {
   ChevronRightIcon,
   ChevronDownIcon,
-  Bars3Icon,
-  XMarkIcon,
-  BellIcon,
-  UserCircleIcon,
-  SunIcon,
-  MoonIcon,
-  ComputerDesktopIcon,
   Cog6ToothIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/react/24/outline';
@@ -28,13 +20,8 @@ interface SidebarProps {
 export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
   const location = useLocation();
   const { user, logout } = useAuth();
-  const { theme, setTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
+  const { language } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  const [showProfileMenu, setShowProfileMenu] = useState(false);
-  const [showThemeMenu, setShowThemeMenu] = useState(false);
-  const [showNotifications, setShowNotifications] = useState(false);
-  const [notificationCount] = useState(5);
 
   const isRTL = language === 'ar';
 
@@ -52,14 +39,6 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
     const IconComponent = HeroIcons[iconName as keyof typeof HeroIcons];
     return IconComponent ? <IconComponent className="h-5 w-5" /> : null;
   };
-
-  const themeIcons = {
-    light: SunIcon,
-    dark: MoonIcon,
-    system: ComputerDesktopIcon,
-  };
-
-  const ThemeIcon = themeIcons[theme];
 
   const handleLogout = () => {
     logout();

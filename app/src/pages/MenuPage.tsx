@@ -10,15 +10,13 @@ export function MenuPage() {
   const { language } = useLanguage();
   const isRTL = language === 'ar';
 
-  const breadcrumbs = [{ label: 'Menu' }];
-
   const getIcon = (iconName: string) => {
     const IconComponent = HeroIcons[iconName as keyof typeof HeroIcons];
     return IconComponent ? <IconComponent className="h-6 w-6" /> : null;
   };
 
   return (
-    <AppLayout breadcrumbs={breadcrumbs}>
+    <AppLayout>
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Menu</h1>

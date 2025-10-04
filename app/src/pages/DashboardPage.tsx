@@ -16,8 +16,6 @@ import {
 export function DashboardPage() {
   const { user } = useAuth();
 
-  const breadcrumbs = [{ label: 'Dashboard' }];
-
   const features = [
     {
       id: 'magvision',
@@ -103,7 +101,7 @@ export function DashboardPage() {
   ];
 
   return (
-    <AppLayout breadcrumbs={breadcrumbs}>
+    <AppLayout>
       <div className="space-y-6">
         {/* Welcome Section */}
         <div>

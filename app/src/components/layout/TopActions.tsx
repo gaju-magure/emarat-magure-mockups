@@ -11,7 +11,7 @@ import {
 
 export function TopActions() {
   const { theme, setTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
+  const { language, setLanguage } = useLanguage();
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [notificationCount] = useState(5);
@@ -31,7 +31,7 @@ export function TopActions() {
 
       {/* Language Toggle */}
       <button
-        onClick={toggleLanguage}
+        onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
         className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary hover:bg-background-tertiary hover:text-text-primary"
         aria-label={`Switch to ${language === 'en' ? 'Arabic' : 'English'}`}
       >

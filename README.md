@@ -26,10 +26,12 @@ Emarat AI is a comprehensive Business-to-Employee (B2E) platform delivering 18 A
 ### 8 Core AI Solutions
 
 #### 1. MagVisionIQ Dashboard
+
 **Category:** Analytics & Computer Vision
 **Users:** Store Managers, Operations Teams
 
 Complete retail operations intelligence platform:
+
 - **Ask MagVisionIQ** - Conversational AI to query store data
 - **Footfall Tracking & Heat Maps** - Customer movement analytics
 - **Sales & Revenue Analytics** - Real-time financial insights
@@ -40,42 +42,49 @@ Complete retail operations intelligence platform:
 - **Reports & Analytics** - Business intelligence
 
 #### 2. Emarat Insights
+
 **Category:** Natural Language Processing
 **Users:** All Employees
 
 Conversational AI that interacts with enterprise data (ERP, POS, CRM) to provide instant business insights and accelerate decision-making.
 
 #### 3. Employee Support Helpdesk
+
 **Category:** Natural Language Processing
 **Users:** All Employees
 
 AI-powered HR helpdesk answering queries about leave balance, payroll, insurance, grievances, and HR policies. Reduces HR support tickets by 50-70%.
 
 #### 4. Time & Attendance
+
 **Category:** Computer Vision
 **Users:** Retail & Field Employees
 
 Facial recognition-based contactless attendance tracking eliminating time theft and improving payroll accuracy.
 
 #### 5. AI-Powered Hiring
+
 **Category:** Machine Learning
 **Users:** HR Managers
 
 Automated candidate pre-screening, resume parsing, and bias-free ranking to reduce time-to-hire by 40-50% while supporting Emiratisation goals.
 
 #### 6. Document Reconciliation
+
 **Category:** AI Agents
 **Users:** Finance Teams
 
 Automated invoice generation and 3-way matching (PO, invoice, receipt) reducing AP processing time by 60-80%.
 
 #### 7. Vendor Onboarding
+
 **Category:** Document AI
 **Users:** Procurement, Finance
 
 Automatic data extraction from vendor documents (trade license, VAT, bank details) with fraud detection and validation.
 
 #### 8. Demand Forecasting
+
 **Category:** Predictive Analytics
 **Users:** Operations, Finance, Store Managers
 
@@ -93,6 +102,7 @@ AI-assisted sales and inventory forecasting improving accuracy by 20-30% and red
 ## Technology Stack
 
 ### Frontend
+
 - **React 18** with TypeScript - Modern, type-safe UI development
 - **Vite** - Lightning-fast build tool and dev server
 - **Tailwind CSS v3** - Utility-first CSS with dark mode support
@@ -102,10 +112,12 @@ AI-assisted sales and inventory forecasting improving accuracy by 20-30% and red
 - **Recharts** - Data visualization and charting
 
 ### State Management
+
 - **React Context API** - Theme, language, and authentication state
 - **React Query** (planned) - Server state management
 
 ### Design System
+
 - **Custom Component Library** - Built on Tailwind CSS
 - **Emarat Brand Colors** - Official brand palette (#003a85, #47a01a)
 - **Emarat Fonts** - Karbon (English), TheSansArabic (Arabic)
@@ -113,6 +125,7 @@ AI-assisted sales and inventory forecasting improving accuracy by 20-30% and red
 - **RTL/LTR** - Bidirectional layout support
 
 ### Backend Integration (Planned)
+
 - **Oracle Fusion** - ERP (HR, Finance, Procurement)
 - **LS Retail** - POS (Sales, Inventory)
 - **Salesforce** - CRM (Customer data)
@@ -171,22 +184,23 @@ emarat-ai/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd emarat-ai/app
    ```
-
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
-
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
-
 4. **Open in browser**
+
    ```
    http://localhost:5174
    ```
@@ -195,14 +209,14 @@ emarat-ai/
 
 The platform includes 6 demo users for testing:
 
-| User | Role | Email | Features Access |
-|------|------|-------|----------------|
-| **Sarah** | Store Manager | sarah@emarat.ae | MagVisionIQ, Forecasting, Compliance |
-| **Fatima** | HR Manager | fatima@emarat.ae | AI Hiring, Employee Helpdesk |
-| **Ali** | Fuel Attendant | ali@emarat.ae | Helpdesk, Time & Attendance |
-| **Rashid** | Finance Manager | rashid@emarat.ae | Reconciliation, Vendor Onboarding |
-| **Layla** | Retail Employee | layla@emarat.ae | Helpdesk, Attendance |
-| **Mohammed** | Procurement | mohammed@emarat.ae | Vendor Onboarding |
+| User               | Role            | Email              | Features Access                      |
+| ------------------ | --------------- | ------------------ | ------------------------------------ |
+| **Sarah**    | Store Manager   | sarah@emarat.ae    | MagVisionIQ, Forecasting, Compliance |
+| **Fatima**   | HR Manager      | fatima@emarat.ae   | AI Hiring, Employee Helpdesk         |
+| **Ali**      | Fuel Attendant  | ali@emarat.ae      | Helpdesk, Time & Attendance          |
+| **Rashid**   | Finance Manager | rashid@emarat.ae   | Reconciliation, Vendor Onboarding    |
+| **Layla**    | Retail Employee | layla@emarat.ae    | Helpdesk, Attendance                 |
+| **Mohammed** | Procurement     | mohammed@emarat.ae | Vendor Onboarding                    |
 
 **Password:** Any password works in demo mode
 
@@ -250,6 +264,7 @@ The platform uses CSS variables for dynamic theming:
 ```
 
 Access via Tailwind classes:
+
 - `bg-primary` - Primary blue
 - `text-success` - Success green
 - `dark:bg-gray-900` - Dark mode background
@@ -257,6 +272,7 @@ Access via Tailwind classes:
 ## Implementation Progress
 
 ### ✅ Completed (Phase 1)
+
 - Theme Foundation & Design System
 - Authentication System (G1)
 - App Shell & Navigation (G2)
@@ -266,6 +282,7 @@ Access via Tailwind classes:
 - Footfall Tracking & Heat Maps (F1.6)
 
 ### 🔄 In Progress
+
 - MagVisionIQ sub-features (78 screens total)
   - Sales & Revenue (F1.2)
   - Inventory Management (F1.3)
@@ -275,6 +292,7 @@ Access via Tailwind classes:
   - Reports & Analytics (F1.8)
 
 ### 📋 Planned (Phase 2)
+
 - User Profile & Settings (G3)
 - Emarat Insights (F2)
 - Employee Support Helpdesk (F3)
@@ -292,12 +310,14 @@ Access via Tailwind classes:
 ## Architecture Decisions
 
 ### Why Vite?
+
 - 10-100x faster than webpack HMR
 - Native ESM support
 - Optimal build performance
 - Better DX with instant server start
 
 ### Why Tailwind CSS?
+
 - Utility-first approach for rapid development
 - Built-in dark mode support
 - Smaller bundle size than CSS-in-JS
@@ -305,6 +325,7 @@ Access via Tailwind classes:
 - Better performance
 
 ### Why React Context over Redux?
+
 - Simpler state management for app size
 - No additional dependencies
 - Better TypeScript integration
@@ -312,6 +333,7 @@ Access via Tailwind classes:
 - Easier to learn for team
 
 ### Why React Router v6?
+
 - Modern data-loading patterns
 - Nested routing for complex layouts
 - Better TypeScript support
@@ -322,13 +344,13 @@ Access via Tailwind classes:
 
 ### Colors
 
-| Name | Hex | Usage |
-|------|-----|-------|
-| Primary Blue | `#003a85` | Logo, headings, primary actions |
+| Name          | Hex         | Usage                                  |
+| ------------- | ----------- | -------------------------------------- |
+| Primary Blue  | `#003a85` | Logo, headings, primary actions        |
 | Success Green | `#47a01a` | Logo, success states, navigation icons |
-| Light Green | `#50aa1b` | Active states, highlights |
-| Dark Gray | `#222222` | Dark mode backgrounds |
-| Charcoal | `#464e4c` | Body text |
+| Light Green   | `#50aa1b` | Active states, highlights              |
+| Dark Gray     | `#222222` | Dark mode backgrounds                  |
+| Charcoal      | `#464e4c` | Body text                              |
 
 ### Typography
 
@@ -401,18 +423,21 @@ VITE_ENVIRONMENT=production
 ## Roadmap
 
 ### Phase 1: Foundation (0-3 Months)
+
 - ✅ Theme system and design foundation
 - ✅ Authentication and navigation
 - 🔄 MagVisionIQ Dashboard (in progress)
 - 📋 Core AI features (5 pilots)
 
 ### Phase 2: Scale (4-6 Months)
+
 - Productionize pilot features
 - Add 5-7 new AI features
 - Backend API integration
 - User testing and feedback
 
 ### Phase 3: Expansion (7-12 Months)
+
 - Roll out remaining features
 - Advanced analytics and reporting
 - Mobile app (React Native)
@@ -453,7 +478,7 @@ chore: Update dependencies
 
 ### Contact
 
-- **Provider:** Magure
+- **Provider:** **  **git push -u origin mainMagure
 - **Client:** Emirates General Petroleum Corporation (Emarat)
 - **Website:** https://www.emarat.ae
 

@@ -1,13 +1,8 @@
 import { AppLayout } from '../../components/layout/AppLayout';
 
 export function VendorsPage() {
-  const breadcrumbs = [
-    { label: 'Dashboard', path: '/dashboard' },
-    { label: 'Vendor Onboarding' },
-  ];
-
   return (
-    <AppLayout breadcrumbs={breadcrumbs}>
+    <AppLayout>
       <div className="space-y-6">
         <div>
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
