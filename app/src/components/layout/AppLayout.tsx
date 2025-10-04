@@ -42,7 +42,7 @@ export function AppLayout({
       {/* Main Content */}
       <main className={`flex-1 transition-all duration-300 ${
         sidebarOpen
-          ? direction === 'rtl' ? 'lg:mr-0' : 'lg:ml-0'
+          ? direction === 'rtl' ? 'lg:mr-80' : 'lg:ml-80'
           : direction === 'rtl' ? 'lg:mr-0' : 'lg:ml-0'
       }`}>
         <div className={`mx-auto w-full ${maxWidthClass} px-4 py-6 sm:px-6 lg:px-8`}>
