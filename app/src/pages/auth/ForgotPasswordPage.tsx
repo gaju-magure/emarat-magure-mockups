@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const forgotPasswordSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -12,6 +13,7 @@ type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>;
 
 export function ForgotPasswordPage() {
   const { requestPasswordReset, isLoading } = useAuth();
+  const { t } = useLanguage();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
 
@@ -48,10 +50,10 @@ export function ForgotPasswordPage() {
               </div>
             </div>
             <h2 className="text-3xl font-semibold text-text-primary">
-              Check Your Email
+              {t('auth.resetLinkSent')}
             </h2>
             <p className="mt-2 text-text-secondary">
-              We've sent password reset instructions to
+              {t('auth.checkEmail')}
             </p>
             <p className="mt-1 font-medium text-text-primary">
               {getValues('email')}
@@ -71,7 +73,7 @@ export function ForgotPasswordPage() {
                   href="/login"
                   className="block w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium text-center rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated"
                 >
-                  Back to Sign In
+                  {t('auth.backToLogin')}
                 </a>
 
                 <button
@@ -113,10 +115,10 @@ export function ForgotPasswordPage() {
             </div>
           </div>
           <h2 className="text-3xl font-semibold text-text-primary">
-            Forgot Password?
+            {t('auth.forgotPasswordTitle')}
           </h2>
           <p className="mt-2 text-text-secondary">
-            No worries, we'll send you reset instructions
+            {t('auth.forgotPasswordSubtitle')}
           </p>
         </div>
 
@@ -134,7 +136,7 @@ export function ForgotPasswordPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-text-primary mb-2"
               >
-                Email Address
+                {t('auth.email')}
               </label>
               <input
                 {...register('email')}
@@ -153,7 +155,7 @@ export function ForgotPasswordPage() {
               disabled={isLoading}
               className="w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Sending...' : 'Send Reset Instructions'}
+              {t('auth.sendResetLink')}
             </button>
 
             <div className="text-center">
@@ -164,7 +166,7 @@ export function ForgotPasswordPage() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
-                Back to Sign In
+                {t('auth.backToLogin')}
               </a>
             </div>
           </form>

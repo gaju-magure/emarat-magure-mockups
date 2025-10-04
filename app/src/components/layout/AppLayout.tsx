@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { Sidebar } from '../navigation/Sidebar';
 import { TopActions } from './TopActions';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 interface AppLayoutProps {
   children: ReactNode;
@@ -14,6 +15,7 @@ export function AppLayout({
 }: AppLayoutProps) {
   // Sidebar open by default on desktop (lg), closed on mobile
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const { direction } = useLanguage();
 
   const maxWidthClass = {
     full: 'max-w-full',
@@ -32,7 +34,11 @@ export function AppLayout({
       />
 
       {/* Main Content */}
-      <main className={`flex-1 transition-all duration-300 ${sidebarOpen ? 'lg:ml-0' : 'lg:ml-0'}`}>
+      <main className={`flex-1 transition-all duration-300 ${
+        sidebarOpen
+          ? direction === 'rtl' ? 'lg:mr-0' : 'lg:ml-0'
+          : direction === 'rtl' ? 'lg:mr-0' : 'lg:ml-0'
+      }`}>
         <div className={`mx-auto w-full ${maxWidthClass} px-4 py-6 sm:px-6 lg:px-8`}>
           {/* Top Actions Bar */}
           <div className="mb-6 flex items-center justify-end">

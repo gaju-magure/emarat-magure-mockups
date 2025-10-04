@@ -1,4 +1,8 @@
+import { useLanguage } from '../../contexts/LanguageContext';
+
 export function SessionExpiredPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-background-secondary px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -12,10 +16,10 @@ export function SessionExpiredPage() {
             </div>
           </div>
           <h2 className="text-3xl font-semibold text-text-primary">
-            Session Expired
+            {t('auth.sessionExpired')}
           </h2>
           <p className="mt-2 text-text-secondary">
-            Your session has expired due to inactivity
+            {t('auth.sessionExpiredMessage')}
           </p>
         </div>
 
@@ -46,11 +50,11 @@ export function SessionExpiredPage() {
 
             {/* Security Tips */}
             <div className="pt-4 border-t border-border-default">
-              <p className="text-xs font-medium text-text-primary mb-2">Security Tips:</p>
+              <p className="text-xs font-medium text-text-primary mb-2">{t('auth.securityTips')}</p>
               <ul className="text-xs text-text-tertiary space-y-1">
-                <li>• Keep your account secure by signing out when not in use</li>
-                <li>• Enable "Remember Me" for longer sessions on trusted devices</li>
-                <li>• Clear browser cache if using a shared computer</li>
+                <li>• {t('auth.tipRegular')}</li>
+                <li>• {t('auth.tipPassword')}</li>
+                <li>• {t('auth.tipActivity')}</li>
               </ul>
             </div>
           </div>

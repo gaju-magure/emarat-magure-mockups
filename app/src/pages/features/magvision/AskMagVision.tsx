@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../../../contexts/LanguageContext';
 import {
   PaperAirplaneIcon,
   SparklesIcon,
@@ -20,6 +21,8 @@ interface ChatSession {
 }
 
 export function AskMagVision() {
+  const { t } = useLanguage();
+
   const initialMessage: Message = {
     id: '1',
     type: 'assistant',
@@ -30,7 +33,7 @@ export function AskMagVision() {
   const [sessions, setSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: 'New Chat',
+      title: t('magvision.newChat'),
       messages: [initialMessage],
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -70,7 +73,7 @@ export function AskMagVision() {
   const createNewSession = () => {
     const newSession: ChatSession = {
       id: Date.now().toString(),
-      title: 'New Chat',
+      title: t('magvision.newChat'),
       messages: [initialMessage],
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -93,7 +96,7 @@ export function AskMagVision() {
   const updateSessionTitle = (sessionId: string, firstUserMessage: string) => {
     setSessions((prev) =>
       prev.map((session) =>
-        session.id === sessionId && session.title === 'New Chat'
+        session.id === sessionId && session.title === t('magvision.newChat')
           ? { ...session, title: firstUserMessage.slice(0, 40) + (firstUserMessage.length > 40 ? '...' : '') }
           : session
       )
@@ -171,8 +174,8 @@ export function AskMagVision() {
               <SparklesIcon className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">Ask MagVisionIQ</h2>
-              <p className="text-xs text-white/90">AI insights</p>
+              <h2 className="text-base font-bold text-white">{t('magvision.askTitle')}</h2>
+              <p className="text-xs text-white/90">{t('magvision.askSubtitle')}</p>
             </div>
           </div>
         </div>
@@ -183,7 +186,7 @@ export function AskMagVision() {
           className="group flex w-full items-center justify-center gap-2 rounded-lg bg-success px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-success/20 transition-all hover:bg-success/90 active:scale-[0.98]"
         >
           <PlusIcon className="h-4 w-4 transition-transform group-hover:rotate-90" />
-          New Chat
+          {t('magvision.newChat')}
         </button>
 
         {/* Sessions List - More Space */}
@@ -252,7 +255,7 @@ export function AskMagVision() {
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-                {activeSession?.title || 'New Chat'}
+                {activeSession?.title || t('magvision.newChat')}
               </h3>
             </div>
             <span className="text-xs text-gray-500 dark:text-gray-400">
@@ -288,7 +291,7 @@ export function AskMagVision() {
           <div className="border-t border-gray-200 bg-white p-3 dark:border-gray-700 dark:bg-gray-900">
             <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-gray-700 dark:text-gray-300">
               <LightBulbIcon className="h-4 w-4 text-yellow-500" />
-              Try asking:
+              {t('magvision.suggestedQuestions')}
             </p>
             <div className="grid gap-2 md:grid-cols-2">
               {suggestedQuestions.map((item, index) => {
@@ -324,7 +327,7 @@ export function AskMagVision() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={handleKeyPress}
-              placeholder="Ask me anything..."
+              placeholder={t('magvision.chatPlaceholder')}
               rows={1}
               className="flex-1 resize-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 transition-all focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary"
             />

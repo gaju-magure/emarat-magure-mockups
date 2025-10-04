@@ -1,4 +1,8 @@
+import { useLanguage } from '../../contexts/LanguageContext';
+
 export function AccountLockedPage() {
+  const { t } = useLanguage();
+
   const handleContactSupport = () => {
     // TODO: Open support ticket or redirect to support
     console.log('Opening support ticket...');
@@ -17,10 +21,10 @@ export function AccountLockedPage() {
             </div>
           </div>
           <h2 className="text-3xl font-semibold text-text-primary">
-            Account Locked
+            {t('auth.accountLocked')}
           </h2>
           <p className="mt-2 text-text-secondary">
-            Your account has been temporarily locked
+            {t('auth.accountLockedMessage')}
           </p>
         </div>
 
@@ -52,20 +56,20 @@ export function AccountLockedPage() {
             {/* What to Do */}
             <div>
               <h3 className="text-sm font-medium text-text-primary mb-2">
-                What should I do?
+                {t('auth.whatToDo')}
               </h3>
               <ul className="text-sm text-text-secondary space-y-2">
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">1.</span>
-                  <span>Wait 30 minutes and try logging in again</span>
+                  <span>{t('auth.tryAgainLater')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">2.</span>
-                  <span>Use "Forgot Password" to reset your password</span>
+                  <span>{t('auth.resetPasswordAction')}</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-primary mt-1">3.</span>
-                  <span>Contact IT Support if you didn't attempt these logins</span>
+                  <span>{t('auth.contactSupport')}</span>
                 </li>
               </ul>
             </div>
@@ -76,21 +80,21 @@ export function AccountLockedPage() {
                 onClick={handleContactSupport}
                 className="w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated"
               >
-                Contact IT Support
+                {t('auth.contactSupport')}
               </button>
 
               <a
                 href="/forgot-password"
                 className="block w-full py-3 px-4 bg-background-secondary hover:bg-background-tertiary text-text-primary font-medium text-center border border-border-default rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated"
               >
-                Reset Password
+                {t('auth.resetPassword')}
               </a>
 
               <a
                 href="/login"
                 className="block text-center text-sm text-primary hover:text-primary-600 transition-colors"
               >
-                Back to Sign In
+                {t('auth.backToLogin')}
               </a>
             </div>
 

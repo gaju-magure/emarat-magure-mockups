@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../../../contexts/LanguageContext';
 import {
   MapIcon,
   UsersIcon,
@@ -8,6 +9,7 @@ import {
 } from '@heroicons/react/24/outline';
 
 export function FootfallTracking() {
+  const { t } = useLanguage();
   const [selectedPeriod, setSelectedPeriod] = useState('today');
   const [selectedZone, setSelectedZone] = useState('all');
 
@@ -22,12 +24,12 @@ export function FootfallTracking() {
   };
 
   const zones = [
-    { id: 'entrance', name: 'Entrance', count: 487, heat: 95 },
-    { id: 'fuel', name: 'Fuel Pumps', count: 342, heat: 70 },
-    { id: 'store', name: 'Store Area', count: 398, heat: 82 },
-    { id: 'checkout', name: 'Checkout', count: 312, heat: 64 },
-    { id: 'atm', name: 'ATM Area', count: 89, heat: 18 },
-    { id: 'restroom', name: 'Restrooms', count: 156, heat: 32 },
+    { id: 'entrance', name: t('magvision.entrance'), count: 487, heat: 95 },
+    { id: 'fuel', name: t('magvision.fuelPumps'), count: 342, heat: 70 },
+    { id: 'store', name: t('magvision.storeArea'), count: 398, heat: 82 },
+    { id: 'checkout', name: t('magvision.checkout'), count: 312, heat: 64 },
+    { id: 'atm', name: t('magvision.atmArea'), count: 89, heat: 18 },
+    { id: 'restroom', name: t('magvision.restrooms'), count: 156, heat: 32 },
   ];
 
   const hourlyData = [
@@ -54,10 +56,10 @@ export function FootfallTracking() {
       <div className="flex items-start justify-between">
         <div>
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Footfall Tracking & Heat Maps
+            {t('magvision.footfallTitle')}
           </h2>
           <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            Real-time customer movement and zone analytics
+            {t('magvision.footfallSubtitle')}
           </p>
         </div>
 
@@ -73,7 +75,7 @@ export function FootfallTracking() {
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
               }`}
             >
-              {period === 'today' ? 'Today' : period === '7days' ? '7 Days' : '30 Days'}
+              {period === 'today' ? t('magvision.today') : period === '7days' ? t('magvision.days7') : t('magvision.days30')}
             </button>
           ))}
         </div>
@@ -83,7 +85,7 @@ export function FootfallTracking() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <StatCard
           icon={UsersIcon}
-          label="Total Visitors"
+          label={t('magvision.totalVisitors')}
           value={todayStats.total}
           change={todayStats.change}
           changeType="increase"
@@ -91,23 +93,23 @@ export function FootfallTracking() {
         />
         <StatCard
           icon={UsersIcon}
-          label="Current Visitors"
+          label={t('magvision.currentVisitors')}
           value={todayStats.current}
-          subtitle="Live count"
+          subtitle={t('magvision.liveCount')}
           color="success"
         />
         <StatCard
           icon={ArrowTrendingUpIcon}
-          label="Peak Hour"
+          label={t('magvision.peakHour')}
           value={todayStats.peak}
-          subtitle={`at ${todayStats.peakTime}`}
+          subtitle={`${t('time.at')} ${todayStats.peakTime}`}
           color="warning"
         />
         <StatCard
           icon={ClockIcon}
-          label="Avg Dwell Time"
+          label={t('magvision.avgDwellTime')}
           value={todayStats.avgDwell}
-          subtitle="Per visitor"
+          subtitle={t('magvision.perVisitor')}
           color="info"
         />
       </div>
@@ -119,16 +121,16 @@ export function FootfallTracking() {
           <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Store Heat Map
+                {t('magvision.storeHeatMap')}
               </h3>
               <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-                <span>Low</span>
+                <span>{t('magvision.low')}</span>
                 <div className="flex h-3 w-24 overflow-hidden rounded-full">
                   <div className="w-1/3 bg-blue-200"></div>
                   <div className="w-1/3 bg-yellow-300"></div>
                   <div className="w-1/3 bg-red-400"></div>
                 </div>
-                <span>High</span>
+                <span>{t('magvision.high')}</span>
               </div>
             </div>
 
@@ -169,7 +171,7 @@ export function FootfallTracking() {
                       <p className="mt-1 text-lg font-bold text-gray-900 dark:text-white">
                         {zone.count}
                       </p>
-                      <p className="text-xs text-gray-500">visits</p>
+                      <p className="text-xs text-gray-500">{t('magvision.visits')}</p>
                     </div>
                   </div>
                 </button>
@@ -181,7 +183,7 @@ export function FootfallTracking() {
         {/* Zone Details */}
         <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
           <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-            Zone Rankings
+            {t('magvision.zoneRankings')}
           </h3>
           <div className="space-y-3">
             {zones
@@ -198,7 +200,7 @@ export function FootfallTracking() {
                     <p className="text-sm font-medium text-gray-900 dark:text-white">
                       {zone.name}
                     </p>
-                    <p className="text-xs text-gray-500">{zone.count} visits</p>
+                    <p className="text-xs text-gray-500">{zone.count} {t('magvision.visits')}</p>
                   </div>
                   <div
                     className={`rounded-full px-2 py-1 text-xs font-semibold ${
@@ -209,7 +211,7 @@ export function FootfallTracking() {
                         : 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300'
                     }`}
                   >
-                    {zone.heat > 66 ? 'Hot' : zone.heat > 33 ? 'Warm' : 'Cool'}
+                    {zone.heat > 66 ? t('magvision.hot') : zone.heat > 33 ? t('magvision.warm') : t('magvision.cool')}
                   </div>
                 </div>
               ))}
@@ -220,7 +222,7 @@ export function FootfallTracking() {
       {/* Hourly Traffic Chart */}
       <div className="rounded-xl border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-900">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
-          Hourly Traffic Pattern
+          {t('magvision.hourlyTraffic')}
         </h3>
         <div className="space-y-2">
           {hourlyData.map((data) => (

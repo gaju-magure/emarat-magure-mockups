@@ -20,7 +20,7 @@ interface SidebarProps {
 export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
   const location = useLocation();
   const { user, logout } = useAuth();
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
 
   const isRTL = language === 'ar';
@@ -73,7 +73,9 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
       <button
         onClick={onToggle || onClose}
         className={`fixed top-6 z-[60] flex h-10 w-10 items-center justify-center rounded-lg bg-background-elevated shadow-lg transition-all duration-300 hover:shadow-xl ${
-          isOpen ? 'left-4 lg:left-[15rem]' : 'left-4'
+          isOpen
+            ? isRTL ? 'right-4 lg:right-[15rem]' : 'left-4 lg:left-[15rem]'
+            : isRTL ? 'right-4' : 'left-4'
         }`}
         style={{
           borderWidth: '1px',
@@ -102,7 +104,7 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
           isOpen ? 'w-72 lg:w-64' : 'w-0'
         }
         fixed left-1/2 top-1/2 z-50 h-[90vh] max-h-[600px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border bg-background-elevated shadow-2xl
-        lg:static lg:left-auto lg:top-auto lg:h-screen lg:max-h-none lg:translate-x-0 lg:translate-y-0 lg:rounded-none lg:border-r lg:shadow-none
+        lg:static ${isRTL ? 'lg:right-auto' : 'lg:left-auto'} lg:top-auto lg:h-screen lg:max-h-none lg:translate-x-0 lg:translate-y-0 lg:rounded-none ${isRTL ? 'lg:border-l' : 'lg:border-r'} lg:shadow-none
         ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 lg:scale-100 lg:opacity-100'}
         `}
         style={{ borderColor: 'var(--color-border-default)' }}
@@ -180,7 +182,7 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
                                 {isExpanded ? (
                                   <ChevronDownIcon className="h-4 w-4 text-text-tertiary" />
                                 ) : (
-                                  <ChevronRightIcon className="h-4 w-4 text-text-tertiary" />
+                                  <ChevronRightIcon className={`h-4 w-4 text-text-tertiary ${isRTL ? 'rotate-180' : ''}`} />
                                 )}
                               </span>
                             </button>
@@ -211,7 +213,10 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
 
                           {/* Children Items */}
                           {showChildren && (
-                            <ul className="ml-6 mt-1 space-y-0.5 border-l-2 pl-3" style={{ borderLeftColor: 'var(--color-border-default)' }}>
+                            <ul
+                              className={`mt-1 space-y-0.5 ${isRTL ? 'mr-6 border-r-2 pr-3' : 'ml-6 border-l-2 pl-3'}`}
+                              style={isRTL ? { borderRightColor: 'var(--color-border-default)' } : { borderLeftColor: 'var(--color-border-default)' }}
+                            >
                               {item.children!.map((child) => {
                                 const isChildActive = isActive(child.path);
                                 return (
@@ -227,7 +232,9 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
                                       <span className="flex h-4 w-4 items-center justify-center text-success">
                                         {getIcon(child.icon)}
                                       </span>
-                                      <span className="text-sm font-semibold text-primary">{child.label}</span>
+                                      <span className="text-sm font-semibold text-primary">
+                                        {isRTL && child.labelAr ? child.labelAr : child.label}
+                                      </span>
                                     </Link>
                                   </li>
                                 );
@@ -252,20 +259,20 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
               <Link
                 to="/settings"
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-success hover:bg-background-tertiary"
-                title="Settings"
+                title={t('common.settings')}
               >
                 <Cog6ToothIcon className="h-5 w-5" />
-                <span className="text-sm font-medium">Settings</span>
+                <span className="text-sm font-medium">{t('common.settings')}</span>
               </Link>
 
               {/* Logout */}
               <button
                 onClick={handleLogout}
                 className="flex items-center gap-2 rounded-md px-3 py-2 text-success hover:bg-background-tertiary"
-                title="Logout"
+                title={t('common.logout')}
               >
                 <ArrowRightOnRectangleIcon className="h-5 w-5" />
-                <span className="text-sm font-medium">Logout</span>
+                <span className="text-sm font-medium">{t('common.logout')}</span>
               </button>
             </div>
           </div>

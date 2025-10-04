@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 export function TwoFactorPage() {
   const { verify2FA, isLoading } = useAuth();
+  const { t } = useLanguage();
   const [code, setCode] = useState(['', '', '', '', '', '']);
   const [error, setError] = useState('');
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -86,10 +88,10 @@ export function TwoFactorPage() {
             </div>
           </div>
           <h2 className="text-3xl font-semibold text-text-primary">
-            Two-Factor Authentication
+            {t('auth.twoFactor')}
           </h2>
           <p className="mt-2 text-text-secondary">
-            Enter the 6-digit code sent to your device
+            {t('auth.twoFactorSubtitle')}
           </p>
           <p className="mt-1 text-sm text-text-tertiary">
             user@emarat.ae
@@ -108,7 +110,7 @@ export function TwoFactorPage() {
             {/* Code Input */}
             <div>
               <label className="block text-sm font-medium text-text-primary mb-4 text-center">
-                Verification Code
+                {t('auth.verificationCode')}
               </label>
               <div className="flex gap-2 justify-center" onPaste={handlePaste}>
                 {code.map((digit, index) => (
@@ -133,7 +135,7 @@ export function TwoFactorPage() {
               disabled={isLoading || code.join('').length !== 6}
               className="w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Verifying...' : 'Verify Code'}
+              {t('auth.verify')}
             </button>
 
             {/* Resend Code */}
@@ -143,7 +145,7 @@ export function TwoFactorPage() {
                 onClick={handleResendCode}
                 className="text-sm text-primary hover:text-primary-600 transition-colors"
               >
-                Didn't receive the code? Resend
+                {t('auth.resendCode')}
               </button>
             </div>
           </div>

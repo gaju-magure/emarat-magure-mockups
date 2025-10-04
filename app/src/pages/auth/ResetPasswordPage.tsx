@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const resetPasswordSchema = z.object({
   password: z.string().min(8, 'Password must be at least 8 characters')
@@ -19,6 +20,7 @@ type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
 
 export function ResetPasswordPage() {
   const { resetPassword, isLoading } = useAuth();
+  const { t } = useLanguage();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -80,10 +82,10 @@ export function ResetPasswordPage() {
               </div>
             </div>
             <h2 className="text-3xl font-semibold text-text-primary">
-              Password Reset Successful
+              {t('auth.resetSuccess')}
             </h2>
             <p className="mt-2 text-text-secondary">
-              Your password has been reset successfully
+              {t('auth.redirecting')}
             </p>
           </div>
 
@@ -113,10 +115,10 @@ export function ResetPasswordPage() {
             </div>
           </div>
           <h2 className="text-3xl font-semibold text-text-primary">
-            Reset Your Password
+            {t('auth.resetPassword')}
           </h2>
           <p className="mt-2 text-text-secondary">
-            Choose a strong password for your account
+            {t('auth.resetPasswordSubtitle')}
           </p>
         </div>
 
@@ -135,7 +137,7 @@ export function ResetPasswordPage() {
                 htmlFor="password"
                 className="block text-sm font-medium text-text-primary mb-2"
               >
-                New Password
+                {t('auth.newPassword')}
               </label>
               <div className="relative">
                 <input
@@ -192,7 +194,7 @@ export function ResetPasswordPage() {
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-text-primary mb-2"
               >
-                Confirm Password
+                {t('auth.confirmPassword')}
               </label>
               <div className="relative">
                 <input
@@ -226,31 +228,31 @@ export function ResetPasswordPage() {
 
             {/* Password Requirements */}
             <div className="bg-background-secondary rounded-lg p-4 border border-border-default">
-              <p className="text-xs font-medium text-text-primary mb-2">Password must contain:</p>
+              <p className="text-xs font-medium text-text-primary mb-2">{t('auth.passwordRequirements')}</p>
               <ul className="text-xs text-text-tertiary space-y-1">
                 <li className="flex items-center gap-2">
                   <span className={password?.length >= 8 ? 'text-success' : ''}>
                     {password?.length >= 8 ? '✓' : '○'}
                   </span>
-                  At least 8 characters
+                  {t('auth.minChars')}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className={/[A-Z]/.test(password || '') ? 'text-success' : ''}>
                     {/[A-Z]/.test(password || '') ? '✓' : '○'}
                   </span>
-                  One uppercase letter
+                  {t('auth.uppercase')}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className={/[a-z]/.test(password || '') ? 'text-success' : ''}>
                     {/[a-z]/.test(password || '') ? '✓' : '○'}
                   </span>
-                  One lowercase letter
+                  {t('auth.lowercase')}
                 </li>
                 <li className="flex items-center gap-2">
                   <span className={/[0-9]/.test(password || '') ? 'text-success' : ''}>
                     {/[0-9]/.test(password || '') ? '✓' : '○'}
                   </span>
-                  One number
+                  {t('auth.number')}
                 </li>
               </ul>
             </div>
@@ -260,7 +262,7 @@ export function ResetPasswordPage() {
               disabled={isLoading}
               className="w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Resetting...' : 'Reset Password'}
+              {t('auth.resetPassword')}
             </button>
           </form>
         </div>

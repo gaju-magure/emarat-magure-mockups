@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { ThemeToggle } from '../../components/molecules/ThemeToggle';
 
 const loginSchema = z.object({
@@ -16,6 +17,7 @@ type LoginFormData = z.infer<typeof loginSchema>;
 export function LoginPage() {
   const navigate = useNavigate();
   const { login, loginWithSSO, isLoading } = useAuth();
+  const { t } = useLanguage();
   const [error, setError] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -89,7 +91,7 @@ export function LoginPage() {
                 htmlFor="email"
                 className="block text-sm font-medium text-text-primary mb-2"
               >
-                Email Address
+                {t('auth.email')}
               </label>
               <input
                 {...register('email')}
@@ -110,13 +112,13 @@ export function LoginPage() {
                   htmlFor="password"
                   className="block text-sm font-medium text-text-primary"
                 >
-                  Password
+                  {t('auth.password')}
                 </label>
                 <a
                   href="/forgot-password"
                   className="text-sm text-primary hover:text-primary-600 transition-colors"
                 >
-                  Forgot password?
+                  {t('auth.forgotPassword')}
                 </a>
               </div>
               <input
@@ -143,7 +145,7 @@ export function LoginPage() {
                 className="w-4 h-4 text-primary bg-background-secondary border-border-default rounded focus:ring-2 focus:ring-primary transition-colors"
               />
               <label htmlFor="remember" className="ml-2 text-sm text-text-secondary">
-                Remember me for 30 days
+                {t('auth.rememberMe')}
               </label>
             </div>
 
@@ -153,7 +155,7 @@ export function LoginPage() {
               disabled={isLoading}
               className="w-full py-3 px-4 bg-primary hover:bg-primary-600 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background-elevated disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Signing in...' : 'Sign In'}
+              {t('auth.signIn')}
             </button>
           </form>
 
@@ -164,7 +166,7 @@ export function LoginPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="px-4 bg-background-elevated text-text-tertiary">
-                Or continue with
+                {t('auth.orContinueWith')}
               </span>
             </div>
           </div>
@@ -183,7 +185,7 @@ export function LoginPage() {
                 <rect x="0" y="12" width="11" height="11" fill="#00A4EF" />
                 <rect x="12" y="12" width="11" height="11" fill="#FFB900" />
               </svg>
-              Sign in with Microsoft
+              {t('auth.microsoft')}
             </button>
 
             <button
@@ -210,7 +212,7 @@ export function LoginPage() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              Sign in with Google
+              {t('auth.google')}
             </button>
           </div>
         </div>
@@ -218,7 +220,7 @@ export function LoginPage() {
         {/* Demo Credentials */}
         <div className="bg-background-elevated rounded-lg shadow-sm border border-border-default p-6">
           <h3 className="text-sm font-semibold text-text-primary mb-3">
-            Demo Credentials (Click to use)
+            {t('auth.demoUsers')}
           </h3>
           <div className="space-y-2 text-xs">
             <div className="grid grid-cols-2 gap-2">
@@ -227,7 +229,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('sarah@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">Store Manager</p>
+                <p className="font-medium text-text-primary">{t('roles.storeManager')}</p>
                 <p className="text-text-tertiary">sarah@emarat.ae</p>
               </button>
               <button
@@ -235,7 +237,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('fatima@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">HR Manager</p>
+                <p className="font-medium text-text-primary">{t('roles.hrManager')}</p>
                 <p className="text-text-tertiary">fatima@emarat.ae</p>
               </button>
               <button
@@ -243,7 +245,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('ali@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">Attendant</p>
+                <p className="font-medium text-text-primary">{t('roles.fuelAttendant')}</p>
                 <p className="text-text-tertiary">ali@emarat.ae</p>
               </button>
               <button
@@ -251,7 +253,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('rashid@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">Finance Manager</p>
+                <p className="font-medium text-text-primary">{t('roles.financeManager')}</p>
                 <p className="text-text-tertiary">rashid@emarat.ae</p>
               </button>
               <button
@@ -259,7 +261,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('layla@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">Retail Employee</p>
+                <p className="font-medium text-text-primary">{t('roles.retailEmployee')}</p>
                 <p className="text-text-tertiary">layla@emarat.ae</p>
               </button>
               <button
@@ -267,7 +269,7 @@ export function LoginPage() {
                 onClick={() => fillDemoCredentials('mohammed@emarat.ae')}
                 className="bg-background-secondary hover:bg-background-tertiary rounded p-2 transition-colors text-left border border-transparent hover:border-primary"
               >
-                <p className="font-medium text-text-primary">Procurement</p>
+                <p className="font-medium text-text-primary">{t('roles.procurement')}</p>
                 <p className="text-text-tertiary">mohammed@emarat.ae</p>
               </button>
             </div>

@@ -11,10 +11,12 @@ import {
 
 export function TopActions() {
   const { theme, setTheme } = useTheme();
-  const { language, setLanguage } = useLanguage();
+  const { language, direction, setLanguage, t } = useLanguage();
   const [showThemeMenu, setShowThemeMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [notificationCount] = useState(5);
+
+  const isRTL = direction === 'rtl';
 
   const themeIcons = {
     light: SunIcon,
@@ -25,7 +27,7 @@ export function TopActions() {
   const ThemeIcon = themeIcons[theme];
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 rtl:flex-row-reverse">
       {/* User Selector (Demo) */}
       <UserSelector />
 
@@ -35,7 +37,7 @@ export function TopActions() {
         className="rounded-lg px-3 py-2 text-sm font-medium text-text-secondary hover:bg-background-tertiary hover:text-text-primary"
         aria-label={`Switch to ${language === 'en' ? 'Arabic' : 'English'}`}
       >
-        {language === 'en' ? 'العربية' : 'English'}
+        {language === 'en' ? 'English' : 'العربية'}
       </button>
 
       {/* Theme Selector */}
@@ -54,7 +56,7 @@ export function TopActions() {
               className="fixed inset-0 z-10"
               onClick={() => setShowThemeMenu(false)}
             />
-            <div className="absolute right-0 top-full z-20 mt-2 w-48 rounded-lg border bg-background-elevated py-1 shadow-lg" style={{ borderColor: 'var(--color-border-default)' }}>
+            <div className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-full z-20 mt-2 w-48 rounded-lg border bg-background-elevated py-1 shadow-lg`} style={{ borderColor: 'var(--color-border-default)' }}>
               <button
                 onClick={() => {
                   setTheme('light');
@@ -65,7 +67,7 @@ export function TopActions() {
                 }`}
               >
                 <SunIcon className="h-5 w-5" />
-                Light
+                {t('common.light')}
               </button>
               <button
                 onClick={() => {
@@ -77,7 +79,7 @@ export function TopActions() {
                 }`}
               >
                 <MoonIcon className="h-5 w-5" />
-                Dark
+                {t('common.dark')}
               </button>
               <button
                 onClick={() => {
@@ -89,7 +91,7 @@ export function TopActions() {
                 }`}
               >
                 <ComputerDesktopIcon className="h-5 w-5" />
-                System
+                {t('common.system')}
               </button>
             </div>
           </>
@@ -117,10 +119,10 @@ export function TopActions() {
               className="fixed inset-0 z-10"
               onClick={() => setShowNotifications(false)}
             />
-            <div className="absolute right-0 top-full z-20 mt-2 w-80 rounded-lg border bg-background-elevated shadow-lg" style={{ borderColor: 'var(--color-border-default)' }}>
+            <div className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-full z-20 mt-2 w-80 rounded-lg border bg-background-elevated shadow-lg`} style={{ borderColor: 'var(--color-border-default)' }}>
               <div className="border-b px-4 py-3" style={{ borderBottomColor: 'var(--color-border-default)' }}>
                 <h3 className="text-sm font-semibold text-text-primary">
-                  Notifications
+                  {t('common.notifications')}
                 </h3>
               </div>
               <div className="max-h-96 overflow-y-auto">
