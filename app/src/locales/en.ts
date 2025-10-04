@@ -85,6 +85,39 @@ export const en = {
     resetPasswordAction: 'Reset your password',
   },
 
+  // Dashboard
+  dashboard: {
+    welcomeBack: 'Welcome back',
+    accessTools: 'Access all your AI-powered tools in one place',
+    yourProfile: 'Your Profile',
+    email: 'Email',
+    role: 'Role',
+    department: 'Department',
+    employeeId: 'Employee ID',
+    aiFeatures: 'AI Features & Tools',
+    requires: 'Requires',
+
+    // Feature titles
+    magvisionTitle: 'MagVisionIQ Dashboard',
+    magvisionDesc: 'Store analytics, sales, inventory & operations',
+    insightsTitle: 'Emarat Insights',
+    insightsDesc: 'AI-powered conversational analytics',
+    helpdeskTitle: 'Employee Helpdesk',
+    helpdeskDesc: 'AI assistant for HR queries & support',
+    attendanceTitle: 'Time & Attendance',
+    attendanceDesc: 'Facial recognition check-in/out system',
+    reconciliationTitle: 'Document Reconciliation',
+    reconciliationDesc: 'AI-powered invoice processing',
+    hiringTitle: 'AI-Powered Hiring',
+    hiringDesc: 'Intelligent recruitment pipeline',
+    vendorsTitle: 'Vendor Onboarding',
+    vendorsDesc: 'Document AI for vendor management',
+    forecastingTitle: 'Demand Forecasting',
+    forecastingDesc: 'Predictive analytics for planning',
+    complianceTitle: 'Safety & Compliance',
+    complianceDesc: 'Computer vision for security monitoring',
+  },
+
   // Navigation
   nav: {
     dashboard: 'Dashboard',
@@ -114,15 +147,6 @@ export const en = {
     staff: 'Staff & Scheduling',
     security: 'Security & Compliance',
     reports: 'Reports',
-  },
-
-  // Dashboard
-  dashboard: {
-    welcome: 'Welcome back',
-    quickActions: 'Quick Actions',
-    recentActivity: 'Recent Activity',
-    overview: 'Overview',
-    viewAll: 'View All',
   },
 
   // MagVision

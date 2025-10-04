@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 import { UserCircleIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const DEMO_USERS = [
@@ -13,7 +14,9 @@ const DEMO_USERS = [
 
 export function UserSelector() {
   const { user, switchUser } = useAuth();
+  const { direction } = useLanguage();
   const [showMenu, setShowMenu] = useState(false);
+  const isRTL = direction === 'rtl';
 
   const handleUserSwitch = (email: string) => {
     switchUser(email);
@@ -38,7 +41,7 @@ export function UserSelector() {
             onClick={() => setShowMenu(false)}
           />
           <div
-            className="absolute right-0 top-full z-20 mt-2 w-72 rounded-lg border bg-background-elevated py-2 shadow-lg"
+            className={`absolute ${isRTL ? 'left-0' : 'right-0'} top-full z-20 mt-2 w-72 rounded-lg border bg-background-elevated py-2 shadow-lg`}
             style={{ borderColor: 'var(--color-border-default)' }}
           >
             <div className="border-b px-4 py-2" style={{ borderBottomColor: 'var(--color-border-default)' }}>

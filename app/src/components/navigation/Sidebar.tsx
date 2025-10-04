@@ -69,12 +69,12 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
         />
       )}
 
-      {/* Floating Toggle Button - Always visible, outside sidebar */}
+      {/* Floating Toggle Button - Clean chevron design */}
       <button
         onClick={onToggle || onClose}
-        className={`fixed top-6 z-[60] flex h-10 w-10 items-center justify-center rounded-lg bg-background-elevated shadow-lg transition-all duration-300 hover:shadow-xl ${
+        className={`fixed top-6 z-[60] flex h-11 w-11 items-center justify-center rounded-xl bg-background-elevated shadow-lg transition-all duration-300 hover:shadow-xl ${
           isOpen
-            ? isRTL ? 'right-4 lg:right-[15rem]' : 'left-4 lg:left-[15rem]'
+            ? isRTL ? 'right-4 lg:right-[20.5rem]' : 'left-4 lg:left-[20.5rem]'
             : isRTL ? 'right-4' : 'left-4'
         }`}
         style={{
@@ -84,27 +84,24 @@ export function Sidebar({ isOpen = true, onClose, onToggle }: SidebarProps) {
         aria-label="Toggle menu"
       >
         <svg
-          className="h-5 w-5 text-text-primary transition-transform duration-300"
+          className={`h-5 w-5 text-text-primary transition-transform duration-300 ${
+            isOpen ? (isRTL ? 'rotate-0' : 'rotate-180') : (isRTL ? 'rotate-180' : 'rotate-0')
+          }`}
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.5"
           viewBox="0 0 24 24"
         >
-          {isOpen ? (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-          ) : (
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          )}
+          <path strokeLinecap="round" strokeLinejoin="round" d={isRTL ? "M15 19l-7-7 7-7" : "M9 5l7 7-7 7"} />
         </svg>
       </button>
 
-      {/* Sidebar - Centered modal on mobile, pushable on desktop */}
+      {/* Sidebar - Floating style on all screens */}
       <aside
         className={`flex flex-col transition-all duration-300 ease-in-out ${
-          isOpen ? 'w-72 lg:w-64' : 'w-0'
+          isOpen ? 'w-80 lg:w-72' : 'w-0'
         }
-        fixed left-1/2 top-1/2 z-50 h-[90vh] max-h-[600px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-2xl border bg-background-elevated shadow-2xl
-        lg:static ${isRTL ? 'lg:right-auto' : 'lg:left-auto'} lg:top-auto lg:h-screen lg:max-h-none lg:translate-x-0 lg:translate-y-0 lg:rounded-none ${isRTL ? 'lg:border-l' : 'lg:border-r'} lg:shadow-none
+        fixed ${isRTL ? 'right-4' : 'left-4'} top-4 z-50 h-[calc(100vh-2rem)] overflow-hidden rounded-2xl border bg-background-elevated shadow-2xl backdrop-blur-xl
         ${isOpen ? 'scale-100 opacity-100' : 'scale-95 opacity-0 lg:scale-100 lg:opacity-100'}
         `}
         style={{ borderColor: 'var(--color-border-default)' }}

@@ -14,12 +14,12 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    // Get saved theme from localStorage or default to 'system'
+    // Get saved theme from localStorage or default to 'light'
     if (typeof window !== 'undefined') {
       const savedTheme = localStorage.getItem('emarat-theme') as Theme;
-      return savedTheme || 'system';
+      return savedTheme || 'light';
     }
-    return 'system';
+    return 'light';
   });
 
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>('light');

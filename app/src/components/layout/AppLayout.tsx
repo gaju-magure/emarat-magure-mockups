@@ -14,7 +14,13 @@ export function AppLayout({
   maxWidth = '7xl',
 }: AppLayoutProps) {
   // Sidebar open by default on desktop (lg), closed on mobile
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    // Check if screen is desktop size (>= 1024px)
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 1024;
+    }
+    return false;
+  });
   const { direction } = useLanguage();
 
   const maxWidthClass = {

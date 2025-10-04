@@ -87,6 +87,39 @@ export const ar: TranslationKeys = {
     resetPasswordAction: 'إعادة تعيين كلمة المرور',
   },
 
+  // Dashboard
+  dashboard: {
+    welcomeBack: 'مرحباً بعودتك',
+    accessTools: 'الوصول إلى جميع أدوات الذكاء الاصطناعي في مكان واحد',
+    yourProfile: 'ملفك الشخصي',
+    email: 'البريد الإلكتروني',
+    role: 'الدور',
+    department: 'القسم',
+    employeeId: 'معرف الموظف',
+    aiFeatures: 'ميزات وأدوات الذكاء الاصطناعي',
+    requires: 'يتطلب',
+
+    // Feature titles
+    magvisionTitle: 'لوحة ماج فيجن IQ',
+    magvisionDesc: 'تحليلات المتجر والمبيعات والمخزون والعمليات',
+    insightsTitle: 'رؤى إمارات',
+    insightsDesc: 'تحليلات محادثة مدعومة بالذكاء الاصطناعي',
+    helpdeskTitle: 'مكتب مساعدة الموظفين',
+    helpdeskDesc: 'مساعد الذكاء الاصطناعي لاستفسارات الموارد البشرية والدعم',
+    attendanceTitle: 'الوقت والحضور',
+    attendanceDesc: 'نظام تسجيل الدخول/الخروج بالتعرف على الوجه',
+    reconciliationTitle: 'تسوية المستندات',
+    reconciliationDesc: 'معالجة الفواتير بالذكاء الاصطناعي',
+    hiringTitle: 'التوظيف بالذكاء الاصطناعي',
+    hiringDesc: 'مسار توظيف ذكي',
+    vendorsTitle: 'تأهيل الموردين',
+    vendorsDesc: 'ذكاء اصطناعي للمستندات لإدارة الموردين',
+    forecastingTitle: 'التنبؤ بالطلب',
+    forecastingDesc: 'تحليلات تنبؤية للتخطيط',
+    complianceTitle: 'السلامة والامتثال',
+    complianceDesc: 'رؤية حاسوبية لمراقبة الأمن',
+  },
+
   // Navigation
   nav: {
     dashboard: 'لوحة المعلومات',
@@ -116,15 +149,6 @@ export const ar: TranslationKeys = {
     staff: 'الموظفون والجدولة',
     security: 'الأمن والامتثال',
     reports: 'التقارير',
-  },
-
-  // Dashboard
-  dashboard: {
-    welcome: 'مرحباً بعودتك',
-    quickActions: 'إجراءات سريعة',
-    recentActivity: 'النشاط الأخير',
-    overview: 'نظرة عامة',
-    viewAll: 'عرض الكل',
   },
 
   // MagVision
