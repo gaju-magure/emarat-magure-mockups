@@ -131,11 +131,11 @@ export const mainNavigation: NavigationGroup[] = [
     labelAr: 'أدوات الذكاء الاصطناعي',
     items: [
       {
-        id: 'chat-with-doc',
-        label: 'Chat with Doc',
-        labelAr: 'الدردشة مع المستند',
+        id: 'chat-with-resource',
+        label: 'Chat with Resource',
+        labelAr: 'الدردشة مع المورد',
         icon: 'DocumentTextIcon',
-        path: '/chat-with-doc',
+        path: '/chat-with-resource',
         // No roles specified - available to all users
       },
     ],

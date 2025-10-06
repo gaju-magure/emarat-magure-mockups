@@ -244,23 +244,23 @@ export const ar: TranslationKeys = {
     validation: 'يرجى التحقق من إدخالك',
   },
 
-  // Chat with Doc
-  chatWithDoc: {
-    title: 'الدردشة مع المستند',
-    subtitle: 'قم بتحميل المستندات والدردشة مع الذكاء الاصطناعي',
+  // Chat with Resource
+  chatWithResource: {
+    title: 'الدردشة مع المورد',
+    subtitle: 'اتصل بمصادر البيانات والدردشة مع الذكاء الاصطناعي',
     uploadDocument: 'تحميل مستند',
     dragDrop: 'اسحب وأفلت مستندًا هنا، أو انقر للتصفح',
     supportedFormats: 'الصيغ المدعومة: PDF، DOCX، TXT، الصور',
     processing: 'جارٍ معالجة المستند...',
     ready: 'المستند جاهز! اسألني أي شيء عنه.',
-    askQuestion: 'اطرح سؤالاً حول مستندك...',
+    askQuestion: 'اطرح سؤالاً حول موردك...',
     newChat: 'محادثة جديدة',
-    noDocument: 'لم يتم تحميل مستند',
-    uploadFirst: 'يرجى تحميل مستند لبدء الدردشة',
-    documentInfo: 'معلومات المستند',
-    fileName: 'اسم الملف',
+    noDocument: 'لا يوجد مورد متصل',
+    uploadFirst: 'يرجى توصيل مورد لبدء الدردشة',
+    documentInfo: 'معلومات المورد',
+    fileName: 'اسم المورد',
     fileSize: 'حجم الملف',
     pageCount: 'عدد الصفحات',
-    chatPlaceholder: 'اسأل أي شيء عن مستندك...',
+    chatPlaceholder: 'اسأل أي شيء عن موردك...',
   },
 };

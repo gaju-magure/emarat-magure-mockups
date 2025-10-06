@@ -99,7 +99,7 @@ const resourceTypes = [
   },
 ];
 
-export function ChatWithDocPage() {
+export function ChatWithResourcePage() {
   const { t, language } = useLanguage();
   const isRTL = language === 'ar';
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -107,7 +107,7 @@ export function ChatWithDocPage() {
   const [sessions, setSessions] = useState<ChatSession[]>([
     {
       id: '1',
-      title: t('chatWithDoc.newChat'),
+      title: t('chatWithResource.newChat'),
       resource: null,
       messages: [],
       createdAt: new Date(),
@@ -175,7 +175,7 @@ export function ChatWithDocPage() {
   const createNewSession = () => {
     const newSession: ChatSession = {
       id: Date.now().toString(),
-      title: t('chatWithDoc.newChat'),
+      title: t('chatWithResource.newChat'),
       resource: null,
       messages: [],
       createdAt: new Date(),
@@ -278,7 +278,7 @@ export function ChatWithDocPage() {
       const welcomeMessage: Message = {
         id: Date.now().toString(),
         type: 'assistant',
-        content: `${t('chatWithDoc.ready')} I've analyzed "${file.name}". What would you like to know about it?`,
+        content: `${t('chatWithResource.ready')} I've analyzed "${file.name}". What would you like to know about it?`,
         timestamp: new Date(),
       };
 
@@ -437,7 +437,7 @@ export function ChatWithDocPage() {
                 <SparklesIcon className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h2 className="text-base font-bold text-white">{t('chatWithDoc.title')}</h2>
+                <h2 className="text-base font-bold text-white">{t('chatWithResource.title')}</h2>
                 <p className="text-xs text-white/90">{isRTL ? 'الدردشة مع الموارد' : 'Chat with Resources'}</p>
               </div>
             </div>
@@ -449,7 +449,7 @@ export function ChatWithDocPage() {
             className="group flex w-full items-center justify-center gap-2 rounded-lg bg-success px-3 py-2.5 text-sm font-semibold text-white shadow-md shadow-success/20 transition-all hover:bg-success/90 active:scale-[0.98]"
           >
             <PlusIcon className="h-4 w-4 transition-transform group-hover:rotate-90" />
-            {t('chatWithDoc.newChat')}
+            {t('chatWithResource.newChat')}
           </button>
 
           {/* Sessions List - More Space */}
@@ -515,7 +515,7 @@ export function ChatWithDocPage() {
         <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900">
           {!resource ? (
             /* Resource Selector */
-            <div className="flex flex-1 flex-col items-center justify-center p-8">
+            <div className="flex flex-1 flex-col items-center justify-start overflow-y-auto p-4 sm:p-8">
               <input
                 ref={fileInputRef}
                 type="file"
@@ -525,13 +525,13 @@ export function ChatWithDocPage() {
               />
 
               <div className="w-full max-w-4xl">
-                <div className="mb-8 text-center">
+                <div className="mb-6 text-center sm:mb-8">
                   <div className="mb-4 flex justify-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-                      <SparklesIcon className="h-8 w-8 text-primary" />
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 sm:h-16 sm:w-16">
+                      <SparklesIcon className="h-6 w-6 text-primary sm:h-8 sm:w-8" />
                     </div>
                   </div>
-                  <h3 className="mb-2 text-2xl font-bold text-gray-900 dark:text-white">
+                  <h3 className="mb-2 text-xl font-bold text-gray-900 dark:text-white sm:text-2xl">
                     {isProcessing ? (isRTL ? 'جارٍ الاتصال...' : 'Connecting...') : (isRTL ? 'اختر نوع المورد' : 'Select Resource Type')}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -548,20 +548,20 @@ export function ChatWithDocPage() {
                     </div>
                   </div>
                 ) : (
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                     {resourceTypes.map((resourceType) => {
                       const Icon = resourceType.icon;
                       return (
                         <button
                           key={resourceType.type}
                           onClick={() => handleResourceTypeSelect(resourceType.type)}
-                          className="group flex flex-col items-center gap-3 rounded-xl border-2 border-gray-200 bg-white p-6 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:border-primary"
+                          className="group flex flex-col items-center gap-2 rounded-xl border-2 border-gray-200 bg-white p-4 text-center transition-all hover:border-primary hover:shadow-lg dark:border-gray-700 dark:bg-gray-800 dark:hover:border-primary sm:gap-3 sm:p-6"
                         >
-                          <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-success/10 transition-colors group-hover:bg-success/20">
-                            <Icon className="h-7 w-7 text-success" />
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success/10 transition-colors group-hover:bg-success/20 sm:h-14 sm:w-14">
+                            <Icon className="h-6 w-6 text-success sm:h-7 sm:w-7" />
                           </div>
                           <div>
-                            <h4 className="mb-1 font-semibold text-gray-900 dark:text-white">
+                            <h4 className="mb-1 text-sm font-semibold text-gray-900 dark:text-white sm:text-base">
                               {isRTL ? resourceType.labelAr : resourceType.label}
                             </h4>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
@@ -689,7 +689,7 @@ export function ChatWithDocPage() {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    placeholder={t('chatWithDoc.chatPlaceholder')}
+                    placeholder={t('chatWithResource.chatPlaceholder')}
                     rows={1}
                     className="flex-1 resize-none rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 placeholder-gray-500 transition-all focus:border-primary focus:bg-white focus:outline-none focus:ring-1 focus:ring-primary/20 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400 dark:focus:border-primary"
                   />

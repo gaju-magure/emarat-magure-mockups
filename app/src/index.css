@@ -124,7 +124,17 @@ button {
   letter-spacing: 0.02em;
 }
 
-/* Hide scrollbar utility */
+/* Hide all scrollbars globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Hide scrollbar utility class (for specific elements if needed) */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -132,25 +142,6 @@ button {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
-}
-
-/* Scrollbar styles (dark mode) */
-.dark::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.dark::-webkit-scrollbar-track {
-  background: #1a1a1a;
-}
-
-.dark::-webkit-scrollbar-thumb {
-  background: #333333;
-  border-radius: 4px;
-}
-
-.dark::-webkit-scrollbar-thumb:hover {
-  background: #444444;
 }
 
 /* RTL-specific utilities */

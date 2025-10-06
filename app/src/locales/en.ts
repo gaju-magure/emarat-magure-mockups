@@ -242,24 +242,24 @@ export const en = {
     validation: 'Please check your input',
   },
 
-  // Chat with Doc
-  chatWithDoc: {
-    title: 'Chat with Doc',
-    subtitle: 'Upload documents and chat with AI',
+  // Chat with Resource
+  chatWithResource: {
+    title: 'Chat with Resource',
+    subtitle: 'Connect to data sources and chat with AI',
     uploadDocument: 'Upload Document',
     dragDrop: 'Drag and drop a document here, or click to browse',
     supportedFormats: 'Supported formats: PDF, DOCX, TXT, images',
     processing: 'Processing document...',
     ready: 'Document ready! Ask me anything about it.',
-    askQuestion: 'Ask a question about your document...',
+    askQuestion: 'Ask a question about your resource...',
     newChat: 'New Chat',
-    noDocument: 'No document uploaded',
-    uploadFirst: 'Please upload a document to start chatting',
-    documentInfo: 'Document Info',
-    fileName: 'File Name',
+    noDocument: 'No resource connected',
+    uploadFirst: 'Please connect a resource to start chatting',
+    documentInfo: 'Resource Info',
+    fileName: 'Resource Name',
     fileSize: 'File Size',
     pageCount: 'Page Count',
-    chatPlaceholder: 'Ask anything about your document...',
+    chatPlaceholder: 'Ask anything about your resource...',
   },
 };
 
