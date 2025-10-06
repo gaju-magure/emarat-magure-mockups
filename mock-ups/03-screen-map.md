@@ -87,6 +87,18 @@
 - [ ] G6.5 - No Internet Connection
 - [ ] G6.6 - Permission Denied
 
+### G7. Chat with Doc (Document AI Assistant)
+- [ ] G7.1 - Chat with Doc Home (Upload or Start Chat)
+- [ ] G7.2 - Document Upload Interface
+- [ ] G7.3 - Document Processing (AI Extraction)
+- [ ] G7.4 - Chat Interface with Document Context
+- [ ] G7.5 - Document Preview Panel
+- [ ] G7.6 - Multi-Document Management
+- [ ] G7.7 - Chat History with Documents
+- [ ] G7.8 - Export Chat & Insights
+
+**Note:** Available to all user types. Allows users to upload documents (PDF, DOCX, images) and chat with AI to extract insights, answer questions, and analyze content.
+
 ---
 
 ## 🏪 FEATURE 1: MagVisionIQ Dashboard (Store Manager)
@@ -167,12 +179,12 @@
 - [ ] F1.5.13 - Overtime Report
 - [ ] F1.5.14 - Absence Tracker
 
-### F1.6 Footfall Tracking & Heat Maps
-- [ ] F1.6.1 - Footfall Dashboard
-- [ ] F1.6.2 - Heat Map View (Store Layout)
-- [ ] F1.6.3 - Footfall by Hour (Chart)
-- [ ] F1.6.4 - Footfall by Day of Week
-- [ ] F1.6.5 - High-Traffic Zones
+### F1.6 Footfall Tracking & Heat Maps ✅ COMPLETED
+- [x] F1.6.1 - Footfall Dashboard ✅
+- [x] F1.6.2 - Heat Map View (Store Layout) ✅
+- [x] F1.6.3 - Footfall by Hour (Chart) ✅
+- [x] F1.6.4 - Zone Rankings (Hot/Warm/Cool) ✅
+- [ ] F1.6.5 - Footfall by Day of Week
 - [ ] F1.6.6 - Dwell Time Analysis
 - [ ] F1.6.7 - Customer Flow Patterns
 - [ ] F1.6.8 - Footfall vs Sales Correlation

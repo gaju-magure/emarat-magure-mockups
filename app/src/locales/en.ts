@@ -241,6 +241,26 @@ export const en = {
     notFound: 'Resource not found',
     validation: 'Please check your input',
   },
+
+  // Chat with Doc
+  chatWithDoc: {
+    title: 'Chat with Doc',
+    subtitle: 'Upload documents and chat with AI',
+    uploadDocument: 'Upload Document',
+    dragDrop: 'Drag and drop a document here, or click to browse',
+    supportedFormats: 'Supported formats: PDF, DOCX, TXT, images',
+    processing: 'Processing document...',
+    ready: 'Document ready! Ask me anything about it.',
+    askQuestion: 'Ask a question about your document...',
+    newChat: 'New Chat',
+    noDocument: 'No document uploaded',
+    uploadFirst: 'Please upload a document to start chatting',
+    documentInfo: 'Document Info',
+    fileName: 'File Name',
+    fileSize: 'File Size',
+    pageCount: 'Page Count',
+    chatPlaceholder: 'Ask anything about your document...',
+  },
 };
 
 export type TranslationKeys = typeof en;

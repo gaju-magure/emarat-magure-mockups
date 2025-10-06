@@ -24,6 +24,7 @@ import { HiringPage } from './pages/features/HiringPage';
 import { VendorsPage } from './pages/features/VendorsPage';
 import { ForecastingPage } from './pages/features/ForecastingPage';
 import { CompliancePage } from './pages/features/CompliancePage';
+import { ChatWithDocPage } from './pages/features/ChatWithDocPage';
 
 function App() {
   return (
@@ -126,6 +127,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <CompliancePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/chat-with-doc"
+                element={
+                  <ProtectedRoute>
+                    <ChatWithDocPage />
                   </ProtectedRoute>
                 }
               />

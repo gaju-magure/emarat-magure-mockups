@@ -125,6 +125,21 @@ export const mainNavigation: NavigationGroup[] = [
       },
     ],
   },
+  {
+    id: 'tools',
+    label: 'AI Tools',
+    labelAr: 'أدوات الذكاء الاصطناعي',
+    items: [
+      {
+        id: 'chat-with-doc',
+        label: 'Chat with Doc',
+        labelAr: 'الدردشة مع المستند',
+        icon: 'DocumentTextIcon',
+        path: '/chat-with-doc',
+        // No roles specified - available to all users
+      },
+    ],
+  },
 ];
 
 // Mobile bottom navigation (most important 5 items)
