@@ -4,7 +4,6 @@ import { AppLayout } from '../../components/layout/AppLayout';
 import {
   PaperAirplaneIcon,
   DocumentTextIcon,
-  ArrowUpTrayIcon,
   SparklesIcon,
   LightBulbIcon,
   PlusIcon,
@@ -118,8 +117,6 @@ export function ChatWithResourcePage() {
   const [input, setInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const [showResourceSelector, setShowResourceSelector] = useState(false);
-  const [selectedResourceType, setSelectedResourceType] = useState<ResourceType | null>(null);
 
   const activeSession = sessions.find((s) => s.id === activeSessionId);
   const messages = activeSession?.messages || [];
@@ -195,9 +192,6 @@ export function ChatWithResourcePage() {
   };
 
   const handleResourceTypeSelect = (type: ResourceType) => {
-    setSelectedResourceType(type);
-    setShowResourceSelector(false);
-
     if (type === 'document') {
       fileInputRef.current?.click();
     } else {
