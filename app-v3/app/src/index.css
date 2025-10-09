@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables for Theme Switching */
+:root {
+  /* Light Mode (Default) */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f8f8;
+  --color-bg-tertiary: #e5e5e5;
+  --color-bg-elevated: #ffffff;
+
+  --color-text-primary: #333333;
+  --color-text-secondary: #464e4c;
+  --color-text-tertiary: #999999;
+  --color-text-disabled: #cccccc;
+  --color-text-inverse: #ffffff;
+
+  --color-border-default: #e5e5e5;
+  --color-border-light: #f0f0f0;
+  --color-border-dark: #cccccc;
+  --color-border-focus: #1e87f0;
+
+  --color-success-bg: #e8f5e0;
+  --color-success-border: #50aa1b;
+  --color-success-text: #2d6b0d;
+
+  --color-warning-bg: #fef3c7;
+  --color-warning-border: #d97706;
+  --color-warning-text: #92400e;
+
+  --color-danger-bg: #fee2e2;
+  --color-danger-border: #dc2626;
+  --color-danger-text: #991b1b;
+
+  --color-info-bg: #dbeafe;
+  --color-info-border: #0369a1;
+  --color-info-text: #075985;
+
+  /* Font smoothing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark Mode */
+.dark {
+  --color-bg-primary: #0a0a0a;
+  --color-bg-secondary: #1a1a1a;
+  --color-bg-tertiary: #2a2a2a;
+  --color-bg-elevated: #1f1f1f;
+
+  --color-text-primary: #f5f5f5;
+  --color-text-secondary: #e0e0e0;
+  --color-text-tertiary: #a0a0a0;
+  --color-text-disabled: #666666;
+  --color-text-inverse: #1a1a1a;
+
+  --color-border-default: #333333;
+  --color-border-light: #2a2a2a;
+  --color-border-dark: #444444;
+  --color-border-focus: #42a5f5;
+
+  --color-success-bg: #1a3319;
+  --color-success-border: #5bb823;
+  --color-success-text: #a3e887;
+
+  --color-warning-bg: #451a03;
+  --color-warning-border: #f59e0b;
+  --color-warning-text: #fcd34d;
+
+  --color-danger-bg: #450a0a;
+  --color-danger-border: #ef4444;
+  --color-danger-text: #fca5a5;
+
+  --color-info-bg: #082f49;
+  --color-info-border: #3b82f6;
+  --color-info-text: #93c5fd;
+}
+
+/* Smooth theme transitions */
+* {
+  transition: background-color 200ms ease-out,
+              border-color 200ms ease-out,
+              color 200ms ease-out;
+}
+
+/* Prevent transition on page load */
+.preload * {
+  transition: none !important;
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Karbon', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+}
+
+/* Headings - medium weights (not too heavy) */
+h1 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+h2, h3 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+h4, h5, h6 {
+  font-weight: 500;
+}
+
+/* Strong and bold elements */
+strong, b {
+  font-weight: 600;
+}
+
+/* Buttons get medium weight */
+button {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Hide all scrollbars globally */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+/* Hide scrollbar utility class (for specific elements if needed) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* RTL-specific utilities */
+@layer utilities {
+  /* Margins */
+  .ms-4 {
+    margin-inline-start: 1rem;
+  }
+
+  .me-4 {
+    margin-inline-end: 1rem;
+  }
+
+  /* Padding */
+  .ps-4 {
+    padding-inline-start: 1rem;
+  }
+
+  .pe-4 {
+    padding-inline-end: 1rem;
+  }
+
+  /* Text alignment */
+  .text-start {
+    text-align: start;
+  }
+
+  .text-end {
+    text-align: end;
+  }
+}
