@@ -1,27 +1,24 @@
 /**
  * MainLayout Component
  *
- * 3-column responsive layout for the main application
- * - Left: Icon navigation sidebar (collapsible)
- * - Center: Main content area
- * - Right: Widgets sidebar (collapsible, hidden on mobile/tablet)
+ * 2-column responsive layout for the main application
+ * - Top: Borderless navbar with controls
+ * - Left: Icon navigation sidebar
+ * - Center: Main content area (full width)
  * - Mobile: Bottom navigation bar
  */
 
-import React, { type ReactNode, useState } from 'react';
+import React, { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
+import { useGreeting } from '@/hooks/useGreeting';
 
 export interface MainLayoutProps {
   /** Main content */
   children: ReactNode;
   /** Left sidebar content */
   leftSidebar?: ReactNode;
-  /** Right sidebar content */
-  rightSidebar?: ReactNode;
   /** Mobile bottom navigation */
   bottomNav?: ReactNode;
-  /** Show/hide right sidebar */
-  showRightSidebar?: boolean;
   /** Additional className */
   className?: string;
 }
@@ -33,7 +30,6 @@ export interface MainLayoutProps {
  * ```tsx
  * <MainLayout
  *   leftSidebar={<LeftSidebar />}
- *   rightSidebar={<RightSidebar />}
  *   bottomNav={<MobileBottomNav />}
  * >
  *   <YourPageContent />
@@ -43,118 +39,82 @@ export interface MainLayoutProps {
 export function MainLayout({
   children,
   leftSidebar,
-  rightSidebar,
   bottomNav,
-  showRightSidebar = true,
   className,
 }: MainLayoutProps) {
-  const [isRightSidebarOpen, setIsRightSidebarOpen] = useState(showRightSidebar);
+  const { period } = useGreeting();
+
+  // Premium gradients based on time period
+  const periodGradients = {
+    morning: 'from-orange-500/20 via-yellow-500/10 to-transparent',
+    afternoon: 'from-blue-500/20 via-sky-500/10 to-transparent',
+    evening: 'from-purple-500/20 via-pink-500/10 to-transparent',
+    night: 'from-indigo-500/20 via-purple-500/10 to-transparent',
+  };
+
+  const currentGradient = periodGradients[period];
 
   return (
-    <div className={cn('min-h-screen bg-background-primary', className)}>
-      {/* Main container - 3 column layout */}
-      <div className="flex h-screen overflow-hidden">
-        {/* Left Sidebar - Icon Navigation */}
-        {leftSidebar && (
-          <aside
-            className={cn(
-              'hidden lg:flex flex-col',
-              'bg-background-elevated border-e border-border-default',
-              'transition-all duration-300 ease-in-out'
-            )}
-          >
-            {leftSidebar}
-          </aside>
+    <div className={cn('min-h-screen bg-background-primary relative overflow-hidden', className)}>
+      {/* Animated Background Gradient */}
+      <div
+        className={cn(
+          'absolute inset-0 bg-gradient-to-br animated-gradient opacity-30 pointer-events-none',
+          currentGradient
         )}
+      />
 
-        {/* Main Content Area */}
-        <main
-          className={cn(
-            'flex-1 overflow-y-auto',
-            'pb-16 lg:pb-0', // Add padding for mobile bottom nav
-          )}
-        >
-          {children}
-        </main>
-
-        {/* Right Sidebar - Widgets (Desktop only) */}
-        {rightSidebar && isRightSidebarOpen && (
-          <aside
-            className={cn(
-              'hidden xl:flex flex-col',
-              'w-80 bg-background-elevated border-s border-border-default',
-              'transition-all duration-300 ease-in-out',
-              'overflow-y-auto'
-            )}
-          >
-            <div className="relative h-full">
-              {/* Close button */}
-              <button
-                onClick={() => setIsRightSidebarOpen(false)}
-                className={cn(
-                  'absolute top-4 end-4 z-10',
-                  'p-2 rounded-lg',
-                  'text-text-secondary hover:text-text-primary',
-                  'hover:bg-background-secondary',
-                  'transition-colors'
-                )}
-                aria-label="Close sidebar"
-              >
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
-              {rightSidebar}
-            </div>
-          </aside>
-        )}
-
-        {/* Right Sidebar Toggle (when closed) */}
-        {rightSidebar && !isRightSidebarOpen && (
-          <button
-            onClick={() => setIsRightSidebarOpen(true)}
-            className={cn(
-              'hidden xl:flex items-center justify-center',
-              'w-12 bg-background-elevated border-s border-border-default',
-              'text-text-secondary hover:text-text-primary hover:bg-background-secondary',
-              'transition-colors'
-            )}
-            aria-label="Open sidebar"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-          </button>
-        )}
+      {/* Floating Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="particle absolute top-20 left-20 w-32 h-32 bg-primary/10 rounded-full blur-3xl" style={{ animationDelay: '0s' }} />
+        <div className="particle absolute top-40 right-32 w-48 h-48 bg-success/10 rounded-full blur-3xl" style={{ animationDelay: '2s' }} />
+        <div className="particle absolute bottom-32 left-40 w-40 h-40 bg-primary/10 rounded-full blur-3xl" style={{ animationDelay: '4s' }} />
       </div>
 
-      {/* Mobile Bottom Navigation */}
-      {bottomNav && (
-        <div className="lg:hidden">
-          {bottomNav}
-        </div>
-      )}
+      {/* Main content container - positioned above background */}
+      <div className="relative z-10 min-h-screen flex">
+        {/* Main Content Area - FULL WIDTH with sidebar inside */}
+        <main
+          className={cn(
+            'flex-1',
+            'glass border border-white/20 lg:rounded-2xl shadow-2xl overflow-hidden',
+          )}
+        >
+          <div className="relative h-full flex">
+            {/* Left Sidebar - Inside main content, floating */}
+            {leftSidebar && (
+              <aside
+                className={cn(
+                  'hidden lg:flex flex-col fixed left-4 top-1/2 -translate-y-1/2 z-40',
+                  'bg-background-primary/80 backdrop-blur-sm rounded-3xl shadow-2xl',
+                  'transition-all duration-300 ease-in-out overflow-visible'
+                )}
+              >
+                {leftSidebar}
+              </aside>
+            )}
+
+            {/* Chat content with left padding for sidebar */}
+            <div className="flex-1 lg:pl-20">
+              {children}
+            </div>
+          </div>
+        </main>
+
+        {/* Mobile Top Navigation - Collapsible on hover */}
+        {bottomNav && (
+          <div className="lg:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 group">
+            {/* Hover indicator */}
+            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-primary/50 rounded-full group-hover:bg-primary transition-colors" />
+
+            {/* Navigation - slides down on hover */}
+            <div className="bg-background-primary/80 backdrop-blur-sm rounded-b-3xl shadow-2xl overflow-hidden -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+              {bottomNav}
+            </div>
+          </div>
+        )}
+      </div>
+      {/* End of main content container */}
     </div>
   );
 }

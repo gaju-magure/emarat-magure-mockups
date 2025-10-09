@@ -96,13 +96,12 @@ export function MobileBottomNav({
   return (
     <nav
       className={cn(
-        'fixed bottom-0 inset-x-0 z-40',
-        'bg-background-elevated border-t border-border-default',
+        'backdrop-blur-xl p-3',
         'safe-area-inset-bottom', // For devices with notches
         className
       )}
     >
-      <div className="flex items-center justify-around h-16 px-2">
+      <div className="flex items-center justify-center gap-4">
         {NAV_ITEMS.map((item) => {
           const isActive = activeRoute === item.href;
           const IconComponent = isActive ? item.iconSolid : item.icon;
@@ -113,35 +112,41 @@ export function MobileBottomNav({
               onClick={() => handleNavigate(item.href)}
               className={cn(
                 'flex flex-col items-center justify-center',
-                'min-w-[64px] h-full px-3 py-2',
-                'transition-colors duration-200',
+                'p-2 rounded-xl',
+                'transition-all duration-200 relative group',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-primary',
-                'rounded-lg'
+                isActive
+                  ? 'bg-primary/10 shadow-lg shadow-primary/20'
+                  : 'hover:bg-primary/10'
               )}
               aria-label={item.label}
               aria-current={isActive ? 'page' : undefined}
             >
               {/* Icon with badge */}
-              <div className="relative mb-1">
-                <IconComponent
-                  className={cn(
-                    'w-6 h-6 transition-colors',
-                    isActive
-                      ? 'text-primary'
-                      : 'text-text-tertiary'
-                  )}
-                />
+              <div className="relative">
+                <div className="w-5 h-5 flex items-center justify-center">
+                  <IconComponent
+                    className={cn(
+                      'w-5 h-5 transition-all duration-200',
+                      isActive
+                        ? 'text-primary'
+                        : 'text-text-tertiary'
+                    )}
+                  />
+                </div>
 
                 {/* Badge */}
                 {item.badge && (
                   <span
                     className={cn(
-                      'absolute -top-1 -end-1',
-                      'min-w-[16px] h-[16px] px-1',
+                      'absolute -top-1.5 -end-1.5',
+                      'min-w-[14px] h-[14px] px-0.5',
                       'flex items-center justify-center',
-                      'bg-danger text-white',
-                      'text-[10px] font-bold rounded-full',
-                      'ring-2 ring-background-elevated'
+                      'bg-gradient-to-br from-danger to-danger/80',
+                      'text-white shadow-lg shadow-danger/30',
+                      'text-[8px] font-bold rounded-full',
+                      'ring-1 ring-background-elevated',
+                      'animate-pulse-glow'
                     )}
                   >
                     {item.badge > 99 ? '99+' : item.badge}
@@ -149,25 +154,6 @@ export function MobileBottomNav({
                 )}
               </div>
 
-              {/* Label */}
-              <span
-                className={cn(
-                  'text-[11px] font-medium',
-                  isActive
-                    ? 'text-primary'
-                    : 'text-text-tertiary'
-                )}
-              >
-                {item.label}
-              </span>
-
-              {/* Active indicator */}
-              {isActive && (
-                <div
-                  className="absolute top-0 inset-x-0 h-0.5 bg-primary rounded-b"
-                  aria-hidden="true"
-                />
-              )}
             </button>
           );
         })}

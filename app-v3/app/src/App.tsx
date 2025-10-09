@@ -12,7 +12,6 @@ import { LanguageProvider } from '@/contexts/LanguageContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { LeftSidebar } from '@/components/layout/LeftSidebar';
-import { RightSidebar } from '@/components/layout/RightSidebar';
 import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 
 // Pages
@@ -74,7 +73,6 @@ function App() {
                   element={
                     <MainLayout
                       leftSidebar={<LeftSidebar />}
-                      rightSidebar={<RightSidebar />}
                       bottomNav={<MobileBottomNav />}
                     >
                       <Routes>

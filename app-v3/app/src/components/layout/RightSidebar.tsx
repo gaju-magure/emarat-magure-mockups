@@ -56,7 +56,7 @@ export function RightSidebar({ className }: RightSidebarProps) {
       </div>
 
       {/* Calendar Widget Placeholder */}
-      <div className="p-4 bg-background-secondary rounded-lg border border-border-default">
+      <div className="p-4 glass rounded-lg border border-white/10">
         <h3 className="text-sm font-semibold text-text-primary mb-3">
           Calendar
         </h3>
@@ -122,7 +122,7 @@ interface StatItemProps {
 
 function StatItem({ label, value, trend, trendUp }: StatItemProps) {
   return (
-    <div className="flex items-center justify-between p-3 bg-background-secondary rounded-lg">
+    <div className="flex items-center justify-between p-3 glass rounded-lg border border-white/10">
       <span className="text-sm text-text-secondary">{label}</span>
       <div className="flex items-center gap-2">
         <span className="text-lg font-semibold text-text-primary">{value}</span>
@@ -156,7 +156,7 @@ function QuickLink({ label, href }: QuickLinkProps) {
       className={cn(
         'block px-3 py-2 rounded-lg',
         'text-sm text-text-secondary hover:text-text-primary',
-        'hover:bg-background-secondary',
+        'hover:bg-white/5 hover-lift',
         'transition-colors'
       )}
     >
@@ -183,7 +183,7 @@ function TeamMember({ name, status, role }: TeamMemberProps) {
   };
 
   return (
-    <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-background-secondary transition-colors">
+    <div className="flex items-center gap-3 p-2 rounded-lg hover:bg-white/5 hover-lift transition-colors">
       {/* Avatar with status */}
       <div className="relative">
         <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary text-sm font-medium">
@@ -192,7 +192,7 @@ function TeamMember({ name, status, role }: TeamMemberProps) {
         <span
           className={cn(
             'absolute bottom-0 end-0 w-2.5 h-2.5 rounded-full',
-            'ring-2 ring-background-elevated',
+            'ring-2 ring-white/20',
             statusColors[status]
           )}
         />
