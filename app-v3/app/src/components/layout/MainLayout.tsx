@@ -55,7 +55,7 @@ export function MainLayout({
   const currentGradient = periodGradients[period];
 
   return (
-    <div className={cn('min-h-screen bg-background-primary relative overflow-hidden', className)}>
+    <div className={cn('h-screen bg-background-primary relative', className)}>
       {/* Animated Background Gradient */}
       <div
         className={cn(
@@ -72,12 +72,12 @@ export function MainLayout({
       </div>
 
       {/* Main content container - positioned above background */}
-      <div className="relative z-10 min-h-screen flex">
+      <div className="relative z-10 h-full flex">
         {/* Main Content Area - FULL WIDTH with sidebar inside */}
         <main
           className={cn(
             'flex-1',
-            'glass border border-white/20 lg:rounded-2xl shadow-2xl overflow-hidden',
+            'glass border border-white/20 lg:rounded-2xl shadow-2xl',
           )}
         >
           <div className="relative h-full flex">
@@ -104,10 +104,8 @@ export function MainLayout({
         {/* Mobile Top Navigation - Collapsible on hover */}
         {bottomNav && (
           <div className="lg:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 group">
-            {/* Hover indicator */}
             <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-primary/50 rounded-full group-hover:bg-primary transition-colors" />
 
-            {/* Navigation - slides down on hover */}
             <div className="bg-background-primary/80 backdrop-blur-sm rounded-b-3xl shadow-2xl overflow-hidden -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
               {bottomNav}
             </div>

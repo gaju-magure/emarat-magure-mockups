@@ -78,6 +78,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
   const [expandedChipId, setExpandedChipId] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   // Emarat branding colors from theme (lighter for better visibility)
   const emaratColors = {
@@ -106,9 +107,11 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
     }
   }, [messages, state]);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom when new messages arrive - using scrollTop instead of scrollIntoView
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = scrollContainerRef.current.scrollHeight;
+    }
   }, [messages]);
 
   // Handle send message
@@ -205,7 +208,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
 
   // Render idle state
   const renderIdleState = () => (
-    <div className="flex-1 flex flex-col items-center justify-center px-6 pb-24 animate-fade-in-scale">
+    <div className="h-full flex flex-col items-center justify-center px-6 animate-fade-in-scale">
       {/* Logo (compact, centered) */}
       {renderLogo()}
 
@@ -451,90 +454,59 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
 
   // Render active chat state
   const renderActiveState = () => (
-    <div className="flex-1 flex flex-col h-full overflow-hidden animate-fade-in-scale pt-20">
-      {/* Compact header with action buttons only - hidden on mobile to save space */}
-      <div className="hidden md:flex items-center justify-between px-6 py-2 border-b border-white/10 flex-shrink-0">
-        {/* Empty space on left for balance */}
-        <div className="w-32"></div>
-
-        {/* Action buttons - centered to avoid overlap */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setState('history')}
-            className="p-2 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors"
-            title="View history"
-          >
-            <ClockIcon className="w-4 h-4 text-text-secondary" />
-          </button>
-          <button
-            onClick={() => {
-              setMessages([]);
-              setState('idle');
-            }}
-            className="px-3 py-1.5 rounded-xl bg-primary/10 hover:bg-primary/20 transition-colors text-xs font-medium text-text-secondary"
-          >
-            New Chat
-          </button>
-        </div>
-
-        {/* Empty space on right to avoid overlap with top menu */}
-        <div className="w-32"></div>
-      </div>
-
-      {/* Messages area - Compact like ChatGPT */}
-      <div className="flex-1 overflow-y-auto px-4 py-2">
-        <div className="max-w-3xl mx-auto space-y-3">
+    <div className="h-full flex flex-col animate-fade-in-scale">
+      {/* Messages area - Centered like ChatGPT */}
+      <div className="flex-1 md:px-6 px-3 md:py-4 py-2">
+        <div className="max-w-3xl mx-auto md:space-y-4 space-y-3">
           {messages.map((message) => (
             <div
               key={message.id}
-              className={cn(
-                'flex gap-2 animate-slide-up',
-                message.role === 'user' ? 'justify-end' : 'justify-start'
-              )}
+              className="flex md:gap-3 gap-2 animate-slide-up"
             >
-              {/* Avatar for assistant */}
-              {message.role === 'assistant' && (
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-success flex items-center justify-center flex-shrink-0 mt-1">
-                  <SparklesIcon className="w-3 h-3 text-white" />
-                </div>
-              )}
-
-              {/* Message bubble - Compact but readable */}
-              <div
-                className={cn(
-                  'max-w-xl px-3 py-2 rounded-xl backdrop-blur-xl border',
-                  message.role === 'user'
-                    ? 'bg-gradient-to-br from-primary/20 to-success/10 border-primary/30 text-text-primary'
-                    : 'glass border-white/10 text-text-primary'
+              {/* Avatar - always on left */}
+              <div className="md:w-7 md:h-7 w-6 h-6 rounded-full bg-gradient-to-br from-primary to-success flex items-center justify-center flex-shrink-0 md:mt-1 mt-0.5">
+                {message.role === 'assistant' ? (
+                  <SparklesIcon className="md:w-3.5 md:h-3.5 w-3 h-3 text-white" />
+                ) : (
+                  <span className="text-white font-semibold md:text-xs text-[10px]">
+                    {user?.name?.charAt(0).toUpperCase()}
+                  </span>
                 )}
-              >
-                <div className="markdown text-sm leading-snug">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {message.content}
-                  </ReactMarkdown>
-                </div>
               </div>
 
-              {/* Avatar for user */}
-              {message.role === 'user' && (
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-success flex items-center justify-center text-white font-semibold text-xs flex-shrink-0 mt-1">
-                  {user?.name?.charAt(0).toUpperCase()}
+              {/* Message content - full width */}
+              <div className="flex-1 min-w-0">
+                <div
+                  className={cn(
+                    'md:px-4 md:py-2.5 px-3 py-2 md:rounded-2xl rounded-xl backdrop-blur-xl border',
+                    message.role === 'user'
+                      ? 'bg-gradient-to-br from-primary/20 to-success/10 border-primary/30 text-text-primary'
+                      : 'glass border-white/10 text-text-primary'
+                  )}
+                >
+                  <div className="markdown md:text-sm text-xs md:leading-relaxed leading-snug">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           ))}
 
-          {/* Typing indicator - COMPACT */}
+          {/* Typing indicator */}
           {isTyping && (
-            <div className="flex gap-2 justify-start animate-slide-up">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-success flex items-center justify-center flex-shrink-0">
-                <SparklesIcon className="w-3 h-3 text-white" />
+            <div className="flex md:gap-3 gap-2 animate-slide-up">
+              <div className="md:w-7 md:h-7 w-6 h-6 rounded-full bg-gradient-to-br from-primary to-success flex items-center justify-center flex-shrink-0">
+                <SparklesIcon className="md:w-3.5 md:h-3.5 w-3 h-3 text-white" />
               </div>
-              <div className="glass border border-white/10 px-4 py-2 rounded-xl">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" />
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" style={{ animationDelay: '0.2s' }} />
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" style={{ animationDelay: '0.4s' }} />
+              <div className="flex-1 min-w-0">
+                <div className="glass border border-white/10 md:px-4 md:py-2.5 px-3 py-2 md:rounded-2xl rounded-xl inline-block">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" />
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" style={{ animationDelay: '0.2s' }} />
+                    <div className="w-1.5 h-1.5 bg-primary rounded-full animate-wave" style={{ animationDelay: '0.4s' }} />
+                  </div>
                 </div>
               </div>
             </div>
@@ -547,18 +519,42 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
   );
 
   return (
-    <div className={cn('h-screen flex flex-col relative overflow-hidden', className)}>
+    <div className={cn('fixed inset-0 flex flex-col', className)}>
       {/* Integrated Header - Logo Left, Controls Right */}
-      <div className="absolute top-0 left-0 right-0 z-30 px-6 py-4 flex items-center justify-between">
-        {/* Big Emarat Logo - Left */}
+      <div className="flex-shrink-0 px-6 py-4 flex items-center justify-between bg-background-primary/80 backdrop-blur-sm z-30">
         <img
           src="/emarat-logo.svg"
           alt="Emarat AI"
           className="h-12 sm:h-14 md:h-16 lg:h-20 w-auto object-contain"
         />
 
-        {/* Control Buttons - Right (compact menu like left navbar) */}
         <div className="flex items-center gap-3 bg-background-primary/80 backdrop-blur-sm rounded-3xl shadow-2xl p-2.5">
+          {/* New Chat and History buttons - only show in active state */}
+          {state === 'active' && (
+            <>
+              <button
+                onClick={() => {
+                  setMessages([]);
+                  setState('idle');
+                }}
+                className="p-2 rounded-xl hover:bg-primary/10 transition-all relative group"
+                title="New chat"
+              >
+                <SparklesIcon className="w-5 h-5 text-text-secondary" />
+              </button>
+              <button
+                onClick={() => setState('history')}
+                className="p-2 rounded-xl hover:bg-primary/10 transition-all relative group"
+                title="View history"
+              >
+                <ClockIcon className="w-5 h-5 text-text-secondary" />
+              </button>
+
+              {/* Divider */}
+              <div className="w-px h-6 bg-primary/30 mx-1" />
+            </>
+          )}
+
           <button className="p-2 rounded-xl hover:bg-primary/10 transition-all relative group">
             <div className="w-5 h-5 flex items-center justify-center">
               <NotificationBell />
@@ -577,12 +573,14 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
         </div>
       </div>
 
-      {/* Main content - state-based */}
-      {state === 'idle' && renderIdleState()}
-      {state === 'active' && renderActiveState()}
+      {/* Main content - SCROLLABLE */}
+      <div ref={scrollContainerRef} className="flex-1 overflow-y-auto">
+        {state === 'idle' && renderIdleState()}
+        {state === 'active' && renderActiveState()}
+      </div>
 
-      {/* Input bar - COMPACT & NO FOCUS BORDER */}
-      <div className="relative z-20 px-6 pb-6">
+      {/* Input bar - FIXED AT BOTTOM */}
+      <div className="flex-shrink-0 px-6 py-6 bg-background-primary/80 backdrop-blur-sm z-20">
         <div className="max-w-3xl mx-auto">
           <div className="relative group">
             {/* Input container - SMALLER & BORDERLESS */}

@@ -76,11 +76,8 @@ function App() {
                       bottomNav={<MobileBottomNav />}
                     >
                       <Routes>
-                        {/* Redirect root to /jarvis */}
-                        <Route path="/" element={<Navigate to="/jarvis" replace />} />
-
                         {/* Jarvis Home */}
-                        <Route path="/jarvis" element={<JarvisHomePage />} />
+                        <Route path="/" element={<JarvisHomePage />} />
 
                         {/* Apps */}
                         <Route path="/apps" element={<AppsPage />} />
