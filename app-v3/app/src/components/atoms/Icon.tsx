@@ -5,7 +5,7 @@
  * Makes it easy to use icons throughout the app
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 
 export interface IconProps {

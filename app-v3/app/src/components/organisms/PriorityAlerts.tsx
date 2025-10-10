@@ -5,7 +5,7 @@
  * Color-coded borders, action buttons, swipeable on mobile
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 import { useAlerts } from '@/hooks/useAlerts';
 import { Card } from '@/components/molecules/Card';

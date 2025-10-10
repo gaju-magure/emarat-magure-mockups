@@ -13,7 +13,7 @@
  * - Premium chat design with personality
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { cn } from '@/utils/classnames';
@@ -25,7 +25,6 @@ import { getRecentInsights } from '@/services/mock/insights.mock';
 import { generateChatResponse } from '@/services/mock/chat.mock';
 import type { ChatMessage } from '@/types/chat.types';
 import type { Insight } from '@/types/insight.types';
-import type { Alert } from '@/types/alert.types';
 import { Logo } from '@/components/atoms/Logo';
 import { ConversationHistory } from '@/components/organisms/ConversationHistory';
 import { useClient } from '@/contexts/ClientContext';
@@ -55,7 +54,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
   const { user } = useAuth();
   const { greeting } = useGreeting();
   const { alerts } = useAlerts(2);
-  const { clientConfig } = useClient();
+  const { client } = useClient();
   const [insights] = useState<Insight[]>(() => getRecentInsights(3));
 
   // State management
@@ -69,7 +68,6 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
     saveConversation,
     loadConversation,
     deleteConversation,
-    isTransitioning,
   } = jarvisState;
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -82,14 +80,13 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
 
   // Emarat branding colors from theme (lighter for better visibility)
   const emaratColors = {
-    primary: clientConfig?.theme?.colors?.primary || '#003A85',
-    success: clientConfig?.theme?.colors?.success || '#00A651',
+    primary: client?.theme?.primary || '#003A85',
+    success: client?.theme?.success || '#00A651',
     glow: 'rgba(0, 166, 81, 0.3)', // Lighter glow
   };
 
   // Calculate user context
-  const urgentAlertsCount = alerts.filter(a => a.priority === 'critical' || a.priority === 'high').length;
-  const unreadInsightsCount = insights.filter(i => !i.seen).length;
+  const urgentAlertsCount = alerts.filter(a => a.type === 'urgent').length;
 
   // Load conversation messages when current conversation changes
   useEffect(() => {
@@ -253,7 +250,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
                     </span>
                   </div>
                   <p className="text-xs text-text-secondary line-clamp-1 pl-7">
-                    {alert.message}
+                    {alert.description}
                   </p>
                   <div className="flex items-center gap-2 pl-7">
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-danger/10 text-danger text-[10px] font-medium">
@@ -275,7 +272,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold text-text-primary mb-1">{alert.title}</h3>
-                        <p className="text-sm text-text-secondary leading-relaxed">{alert.message}</p>
+                        <p className="text-sm text-text-secondary leading-relaxed">{alert.description}</p>
                       </div>
                     </div>
                     <ChevronDownIcon className="w-4 h-4 text-text-tertiary flex-shrink-0 mt-1" />
@@ -299,7 +296,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
 
                   <div className="flex items-center justify-between pt-3 border-t border-danger/20">
                     <span className="text-xs font-semibold text-danger uppercase tracking-wide">
-                      {alert.confidence}% AI Confidence
+                      {alert.metadata?.confidence || 95}% AI Confidence
                     </span>
                     <span className="text-xs text-text-tertiary uppercase tracking-wide">{alert.category}</span>
                   </div>
@@ -312,22 +309,24 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
         {/* Insight Chips - WITH BRIEF SUMMARY & BADGES */}
         {insights.map((insight, idx) => {
           const isExpanded = expandedChipId === `insight-${insight.id}`;
-          const iconMap = { metric: ChartBarIcon, achievement: TrophyIcon, suggestion: LightBulbIcon };
-          const colorMap = {
+          const iconMap: Record<string, any> = { metric: ChartBarIcon, achievement: TrophyIcon, suggestion: LightBulbIcon, alert: ExclamationTriangleIcon };
+          const colorMap: Record<string, any> = {
             metric: { text: 'text-success', bg: 'bg-success/20', border: 'border-success/20', hover: 'hover:border-success/40 hover:bg-success/5', badge: 'bg-success/10 text-success' },
             achievement: { text: 'text-primary', bg: 'bg-primary/20', border: 'border-primary/20', hover: 'hover:border-primary/40 hover:bg-primary/5', badge: 'bg-primary/10 text-primary' },
-            suggestion: { text: 'text-info', bg: 'bg-info/20', border: 'border-info/20', hover: 'hover:border-info/40 hover:bg-info/5', badge: 'bg-info/10 text-info' }
+            suggestion: { text: 'text-info', bg: 'bg-info/20', border: 'border-info/20', hover: 'hover:border-info/40 hover:bg-info/5', badge: 'bg-info/10 text-info' },
+            alert: { text: 'text-danger', bg: 'bg-danger/20', border: 'border-danger/20', hover: 'hover:border-danger/40 hover:bg-danger/5', badge: 'bg-danger/10 text-danger' }
           };
-          const Icon = iconMap[insight.type];
-          const colors = colorMap[insight.type];
+          const Icon = iconMap[insight.type] || SparklesIcon;
+          const colors = colorMap[insight.type] || colorMap.metric;
 
           // Badge data based on type
-          const badgeData = {
+          const badgeData: Record<string, any> = {
             metric: { icon: '↗', label: '+12%' },
             achievement: { icon: '🎯', label: '100 RFPs' },
-            suggestion: { icon: '💡', label: 'AED 65K' }
+            suggestion: { icon: '💡', label: 'AED 65K' },
+            alert: { icon: '⚠️', label: 'Alert' }
           };
-          const badge = badgeData[insight.type];
+          const badge = badgeData[insight.type] || badgeData.metric;
 
           return (
             <div
@@ -355,15 +354,12 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
                     </span>
                   </div>
                   <p className="text-xs text-text-secondary line-clamp-1 pl-7">
-                    {insight.description}
+                    {insight.content}
                   </p>
                   <div className="flex items-center gap-2 pl-7">
                     <span className={cn('inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium', colors.badge)}>
                       <span>{badge.icon}</span>
                       {badge.label}
-                    </span>
-                    <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 text-text-tertiary text-[10px] font-medium uppercase">
-                      {insight.impact}
                     </span>
                   </div>
                 </div>
@@ -377,7 +373,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
                       </div>
                       <div className="flex-1 min-w-0">
                         <h3 className="text-base font-semibold text-text-primary mb-1">{insight.title}</h3>
-                        <p className="text-sm text-text-secondary leading-relaxed">{insight.description}</p>
+                        <p className="text-sm text-text-secondary leading-relaxed">{insight.content}</p>
                       </div>
                     </div>
                     <ChevronDownIcon className="w-4 h-4 text-text-tertiary flex-shrink-0 mt-1" />
@@ -437,7 +433,7 @@ export function JarvisHomePage({ className }: JarvisHomePageProps) {
 
                   <div className="flex items-center justify-between pt-3 border-t border-white/10">
                     <span className={cn('text-xs font-semibold uppercase tracking-wide', colors.text)}>
-                      {insight.impact} Impact
+                      {insight.type}
                     </span>
                     {!insight.seen && (
                       <span className="text-xs text-primary uppercase tracking-wide">● New</span>

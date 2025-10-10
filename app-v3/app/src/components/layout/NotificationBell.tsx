@@ -5,7 +5,7 @@
  * Shows recent notifications and alerts
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/utils/classnames';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Badge } from '@/components/atoms/Badge';

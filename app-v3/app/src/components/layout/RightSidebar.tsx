@@ -5,10 +5,8 @@
  * Visible on desktop (xl breakpoint) only
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { formatNumber } from '@/utils/numbers';
 
 export interface RightSidebarProps {
   /** Additional className */
@@ -24,7 +22,6 @@ export interface RightSidebarProps {
  * ```
  */
 export function RightSidebar({ className }: RightSidebarProps) {
-  const { t } = useLanguage();
 
   return (
     <div className={cn('p-6 space-y-6', className)}>

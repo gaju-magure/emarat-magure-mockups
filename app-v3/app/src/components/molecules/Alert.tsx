@@ -5,7 +5,7 @@
  * Supports multiple types and dismissible option
  */
 
-import React, { useState, type ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 import {
   CheckCircleIcon,

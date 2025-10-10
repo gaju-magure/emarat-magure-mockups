@@ -5,7 +5,7 @@
  * Used at the top of content pages
  */
 
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 import { ChevronLeftIcon } from '@heroicons/react/24/outline';
 

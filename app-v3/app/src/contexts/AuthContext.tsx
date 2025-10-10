@@ -5,7 +5,7 @@
  * Uses mock authentication for demo purposes
  */
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import type { User, LoginCredentials, AuthState } from '@/types/user.types';
 
 interface AuthContextType extends AuthState {

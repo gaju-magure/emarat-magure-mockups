@@ -5,7 +5,7 @@
  * Used in top navigation bar
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/utils/classnames';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { MagnifyingGlassIcon, XMarkIcon } from '@heroicons/react/24/outline';

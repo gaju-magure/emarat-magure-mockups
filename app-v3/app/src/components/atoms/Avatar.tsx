@@ -5,7 +5,7 @@
  * Supports status indicators and multiple sizes
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { cn } from '@/utils/classnames';
 
 export interface AvatarProps {
@@ -65,7 +65,6 @@ export function Avatar({
 
   const initials = name ? getInitials(name) : '?';
   const showImage = src && !imageError;
-  const showInitials = !showImage;
 
   return (
     <div className={cn('relative inline-block', className)}>

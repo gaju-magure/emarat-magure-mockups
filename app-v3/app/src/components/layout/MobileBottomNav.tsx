@@ -6,7 +6,8 @@
  * Includes badge support for notifications
  */
 
-import React from 'react';
+
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/utils/classnames';
 import {
   HomeIcon,
@@ -83,15 +84,13 @@ const NAV_ITEMS: MobileNavItem[] = [
  * ```
  */
 export function MobileBottomNav({
-  activeRoute = '/',
-  onNavigate,
+  activeRoute,
   className,
 }: MobileBottomNavProps) {
-  const handleNavigate = (href: string) => {
-    if (onNavigate) {
-      onNavigate(href);
-    }
-  };
+  const location = useLocation();
+
+  // Use location.pathname if activeRoute not provided
+  const currentRoute = activeRoute || location.pathname;
 
   return (
     <nav
@@ -103,13 +102,13 @@ export function MobileBottomNav({
     >
       <div className="flex items-center justify-center gap-4">
         {NAV_ITEMS.map((item) => {
-          const isActive = activeRoute === item.href;
+          const isActive = currentRoute === item.href;
           const IconComponent = isActive ? item.iconSolid : item.icon;
 
           return (
-            <button
+            <Link
               key={item.id}
-              onClick={() => handleNavigate(item.href)}
+              to={item.href}
               className={cn(
                 'flex flex-col items-center justify-center',
                 'p-2 rounded-xl',
@@ -154,7 +153,16 @@ export function MobileBottomNav({
                 )}
               </div>
 
-            </button>
+              {/* Label */}
+              <span
+                className={cn(
+                  'text-[10px] font-medium mt-0.5',
+                  isActive ? 'text-primary' : 'text-text-tertiary'
+                )}
+              >
+                {item.label}
+              </span>
+            </Link>
           );
         })}
       </div>

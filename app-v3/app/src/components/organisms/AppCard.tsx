@@ -5,7 +5,7 @@
  * Supports different sizes (large, medium, small) and hover effects
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 import { Card } from '@/components/molecules/Card';
 import { Badge } from '@/components/atoms/Badge';

@@ -5,7 +5,7 @@
  * Shows frequently used actions with badge counts
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 import { useQuickActions } from '@/hooks/useQuickActions';
 import { Badge } from '@/components/atoms/Badge';

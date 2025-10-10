@@ -5,7 +5,7 @@
  * Shows current theme icon with smooth transitions
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 import { useTheme } from '@/contexts/ThemeContext';
 import { useLanguage } from '@/contexts/LanguageContext';

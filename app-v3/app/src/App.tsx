@@ -4,8 +4,7 @@
  * Sets up routing and provides application context
  */
 
-import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ClientProvider } from '@/contexts/ClientContext';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -17,6 +16,7 @@ import { MobileBottomNav } from '@/components/layout/MobileBottomNav';
 // Pages
 import { JarvisHomePage } from '@/pages/JarvisHomePage';
 import { AppsPage } from '@/pages/AppsPage';
+import { TasksPage } from '@/pages/TasksPage';
 
 // 404 Page
 function NotFoundPage() {
@@ -79,6 +79,9 @@ function App() {
                         {/* Jarvis Home */}
                         <Route path="/" element={<JarvisHomePage />} />
 
+                        {/* Tasks */}
+                        <Route path="/tasks" element={<TasksPage />} />
+
                         {/* Apps */}
                         <Route path="/apps" element={<AppsPage />} />
                         <Route path="/apps/rfp" element={<PlaceholderPage title="RFP Evaluation" />} />
@@ -89,6 +92,9 @@ function App() {
                         <Route path="/apps/contracts" element={<PlaceholderPage title="Contract Management" />} />
                         <Route path="/apps/budget" element={<PlaceholderPage title="Budget Planning" />} />
                         <Route path="/apps/vendors" element={<PlaceholderPage title="Vendor Management" />} />
+
+                        {/* Governance */}
+                        <Route path="/governance" element={<PlaceholderPage title="Governance & Compliance" />} />
 
                         {/* Settings */}
                         <Route path="/settings" element={<PlaceholderPage title="Settings" />} />

@@ -169,7 +169,7 @@ const DEFAULT_RESPONSE: ChatMessage = {
   content: 'I understand you\'re asking about that, but I need a bit more context. Could you rephrase your question?\n\nHere are some things I can help with:\n- RFP evaluations and vendor management\n- Analytics and spending insights\n- Task prioritization and deadlines\n- Budget forecasting and predictions',
   timestamp: new Date(),
   actions: [
-    { label: 'View Suggested Questions', href: '#', variant: 'ghost' },
+    { id: 'action-1', label: 'View Suggested Questions', href: '#', variant: 'ghost' },
   ],
 };
 

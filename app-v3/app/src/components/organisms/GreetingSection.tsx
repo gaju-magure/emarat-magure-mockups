@@ -5,7 +5,7 @@
  * Shows time-based greeting with contextual subtitle
  */
 
-import React from 'react';
+
 import { cn } from '@/utils/classnames';
 import { useGreeting } from '@/hooks/useGreeting';
 import {

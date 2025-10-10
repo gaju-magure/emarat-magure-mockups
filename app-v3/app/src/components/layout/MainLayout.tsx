@@ -8,7 +8,7 @@
  * - Mobile: Bottom navigation bar
  */
 
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 import { useGreeting } from '@/hooks/useGreeting';
 

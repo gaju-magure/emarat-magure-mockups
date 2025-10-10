@@ -5,7 +5,7 @@
  * Used throughout the app for content grouping
  */
 
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 
 export interface CardProps {

@@ -5,7 +5,7 @@
  * Used in dashboards and analytics views
  */
 
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 import { formatNumber, formatPercent } from '@/utils/numbers';
 import {

@@ -5,7 +5,7 @@
  * Shows metrics, alerts, achievements, and suggestions
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { cn } from '@/utils/classnames';
 import { getRecentInsights } from '@/services/mock/insights.mock';
 import { Card } from '@/components/molecules/Card';

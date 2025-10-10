@@ -6,9 +6,8 @@
  * Provides translation function
  */
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { translations, type Language } from '@/locales';
-import type { TranslationKeys } from '@/locales/en';
 
 interface LanguageContextType {
   /** Current language */
@@ -194,3 +193,6 @@ export function useLanguage(): LanguageContextType {
 
 // Named exports for convenience
 LanguageProvider.displayName = 'LanguageProvider';
+
+// Export Language type for external use
+export type { Language };

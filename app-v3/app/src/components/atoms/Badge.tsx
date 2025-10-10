@@ -5,7 +5,7 @@
  * Used for counts, statuses, and labels
  */
 
-import React, { type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import { cn } from '@/utils/classnames';
 
 export interface BadgeProps {

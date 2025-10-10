@@ -5,7 +5,7 @@
  * Features: Grid layout, search, filtering by category
  */
 
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { cn } from '@/utils/classnames';
 import { AppCard } from '@/components/organisms/AppCard';
 import { Input } from '@/components/atoms/Input';
@@ -123,7 +123,7 @@ export function AppsPage({ className }: AppsPageProps) {
             type="search"
             placeholder="Search apps by name, description, or features..."
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
+            onChange={setSearchQuery}
             icon={<MagnifyingGlassIcon className="w-5 h-5" />}
             aria-label="Search applications"
           />

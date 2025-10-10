@@ -7,11 +7,10 @@
  * - Load or delete conversations
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { cn } from '@/utils/classnames';
 import type { Conversation } from '@/hooks/useJarvisState';
 import { useClient } from '@/contexts/ClientContext';
-import { useTheme } from '@/contexts/ThemeContext';
 import {
   XMarkIcon,
   MagnifyingGlassIcon,
@@ -48,17 +47,13 @@ export function ConversationHistory({
   className,
 }: ConversationHistoryProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const { clientConfig } = useClient();
-  const { theme } = useTheme();
+  const { client } = useClient();
 
   // Emarat theme colors from client config
   const emaratColors = {
-    primary: clientConfig?.theme?.colors?.primary || '#003A85',
-    success: clientConfig?.theme?.colors?.success || '#00A651',
+    primary: client?.theme?.primary || '#003A85',
+    success: client?.theme?.success || '#00A651',
   };
-
-  // Theme-aware background colors
-  const isDark = theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 
   // Filter conversations by search query
   const filteredConversations = conversations.filter(conv =>

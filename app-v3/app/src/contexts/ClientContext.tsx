@@ -5,7 +5,7 @@
  * Applies theme colors to CSS variables for dynamic theming
  */
 
-import React, { createContext, useContext, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useEffect, type ReactNode } from 'react';
 import { ACTIVE_CLIENT, applyThemeColors } from '@/config/client.config';
 import type { ClientConfig } from '@/types/client.types';
 

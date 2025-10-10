@@ -5,7 +5,7 @@
  * Fully accessible with ARIA labels and keyboard navigation
  */
 
-import React, { type ReactNode, type ButtonHTMLAttributes } from 'react';
+import { type ReactNode, type ButtonHTMLAttributes } from 'react';
 import { cn } from '@/utils/classnames';
 
 export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {

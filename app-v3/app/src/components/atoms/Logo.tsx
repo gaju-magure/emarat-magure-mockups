@@ -5,7 +5,6 @@
  * Automatically switches based on theme and client config
  */
 
-import React from 'react';
 import { useClient } from '@/contexts/ClientContext';
 import { useTheme } from '@/contexts/ThemeContext';
 import { cn } from '@/utils/classnames';

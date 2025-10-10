@@ -5,9 +5,9 @@
  * Main navigation for the application (Home, Apps, Tasks, Governance, Profile)
  */
 
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/utils/classnames';
-import { Logo } from '@/components/atoms/Logo';
 import {
   HomeIcon,
   Squares2X2Icon,
@@ -79,17 +79,14 @@ const NAV_ITEMS: NavItem[] = [
  * ```
  */
 export function LeftSidebar({
-  activeRoute = '/',
-  onNavigate,
+  activeRoute,
   className,
 }: LeftSidebarProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const location = useLocation();
 
-  const handleNavigate = (href: string) => {
-    if (onNavigate) {
-      onNavigate(href);
-    }
-  };
+  // Use location.pathname if activeRoute not provided
+  const currentRoute = activeRoute || location.pathname;
 
   return (
     <div
@@ -106,13 +103,13 @@ export function LeftSidebar({
       <nav className="py-3">
         <ul className="space-y-2 px-2">
           {NAV_ITEMS.map((item) => {
-            const isActive = activeRoute === item.href;
+            const isActive = currentRoute === item.href;
             const IconComponent = item.icon;
 
             return (
               <li key={item.id}>
-                <button
-                  onClick={() => handleNavigate(item.href)}
+                <Link
+                  to={item.href}
                   className={cn(
                     'w-full flex items-center gap-3 px-3 py-3 rounded-xl',
                     'text-text-secondary hover:text-text-primary',
@@ -189,7 +186,7 @@ export function LeftSidebar({
                       )}
                     </div>
                   )}
-                </button>
+                </Link>
               </li>
             );
           })}

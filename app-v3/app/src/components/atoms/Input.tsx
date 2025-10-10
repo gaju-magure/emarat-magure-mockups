@@ -5,7 +5,7 @@
  * Fully accessible with ARIA attributes
  */
 
-import React, { type ReactNode, type InputHTMLAttributes, forwardRef } from 'react';
+import { type ReactNode, type InputHTMLAttributes, forwardRef } from 'react';
 import { cn } from '@/utils/classnames';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'onChange'> {

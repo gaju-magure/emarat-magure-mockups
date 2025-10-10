@@ -5,12 +5,10 @@
  * Includes message history, typing indicator, suggested questions, and action buttons
  */
 
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { cn } from '@/utils/classnames';
 import { Button } from '@/components/atoms/Button';
 import { Avatar } from '@/components/atoms/Avatar';
-import { Badge } from '@/components/atoms/Badge';
-import { useAuth } from '@/contexts/AuthContext';
 import {
   generateChatResponse,
   simulateTypingDelay,
@@ -39,7 +37,6 @@ export interface ChatInterfaceProps {
  * ```
  */
 export function ChatInterface({ className }: ChatInterfaceProps) {
-  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([getInitialGreeting()]);
   const [inputValue, setInputValue] = useState('');

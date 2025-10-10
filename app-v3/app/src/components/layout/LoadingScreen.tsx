@@ -5,7 +5,6 @@
  * Used during initial app load or major transitions
  */
 
-import React from 'react';
 import { cn } from '@/utils/classnames';
 import { Logo } from '@/components/atoms/Logo';
 

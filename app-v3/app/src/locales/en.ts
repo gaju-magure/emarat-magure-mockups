@@ -140,6 +140,7 @@ export const en = {
     daysAgo: '{{count}} days ago',
     weeksAgo: '{{count}} weeks ago',
   },
-} as const;
+};
 
+// Type representing the structure of translations (keys only, values are strings)
 export type TranslationKeys = typeof en;

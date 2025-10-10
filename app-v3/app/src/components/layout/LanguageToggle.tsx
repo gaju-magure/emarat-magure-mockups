@@ -5,11 +5,9 @@
  * Automatically switches text direction (LTR/RTL)
  */
 
-import React from 'react';
 import { cn } from '@/utils/classnames';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { LanguageIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
-import type { Language } from '@/contexts/LanguageContext';
+import { useLanguage, type Language } from '@/contexts/LanguageContext';
+import { GlobeAltIcon } from '@heroicons/react/24/outline';
 
 export interface LanguageToggleProps {
   /** Show label */
