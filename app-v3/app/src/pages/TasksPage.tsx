@@ -70,7 +70,7 @@ export function TasksPage() {
   };
 
   return (
-    <div className="min-h-screen p-4 md:p-6 lg:p-8">
+    <div className="min-h-full p-4 md:p-6 lg:p-8">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl md:text-3xl font-bold text-text-primary mb-2">

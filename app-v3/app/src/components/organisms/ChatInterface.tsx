@@ -268,7 +268,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
       )}
 
       {/* Message Content */}
-      <div className={cn('flex-1 space-y-2', isUser && 'flex flex-col items-end')}>
+      <div className={cn('flex-1 min-w-0 space-y-2', isUser && 'flex flex-col items-end')}>
         {/* Bubble */}
         <div
           className={cn(
@@ -280,7 +280,7 @@ function MessageBubble({ message }: MessageBubbleProps) {
         >
           {/* Render markdown-style bold (**text**) */}
           <div
-            className="text-sm whitespace-pre-wrap"
+            className="text-sm whitespace-pre-wrap break-words"
             dangerouslySetInnerHTML={{
               __html: message.content
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')

@@ -72,47 +72,42 @@ export function MainLayout({
       </div>
 
       {/* Main content container - positioned above background */}
-      <div className="relative z-10 h-full flex">
-        {/* Main Content Area - FULL WIDTH with sidebar inside */}
+      <div className="relative z-10 h-full flex p-4">
+        {/* Main Glass Container with integrated sidebar */}
         <main
           className={cn(
-            'flex-1',
-            'glass border border-white/20 lg:rounded-2xl shadow-2xl',
+            'flex-1 flex overflow-hidden',
+            'glass border border-white/20 rounded-2xl shadow-2xl',
           )}
         >
-          <div className="relative h-full flex">
-            {/* Left Sidebar - Inside main content, floating */}
-            {leftSidebar && (
-              <aside
-                className={cn(
-                  'hidden lg:flex flex-col fixed left-4 top-1/2 -translate-y-1/2 z-40',
-                  'bg-background-primary/80 backdrop-blur-sm rounded-3xl shadow-2xl',
-                  'transition-all duration-300 ease-in-out overflow-visible'
-                )}
-              >
-                {leftSidebar}
-              </aside>
-            )}
+          {/* Left Sidebar - Part of glass container, vertically centered */}
+          {leftSidebar && (
+            <aside
+              className={cn(
+                'hidden lg:flex flex-col items-center justify-center',
+                'border-r border-white/10',
+                'transition-all duration-300 ease-in-out'
+              )}
+            >
+              {leftSidebar}
+            </aside>
+          )}
 
-            {/* Chat content with left padding for sidebar */}
-            <div className="flex-1 lg:pl-20">
-              {children}
-            </div>
+          {/* Main Content Area */}
+          <div className="flex-1 overflow-y-auto">
+            {children}
           </div>
         </main>
 
-        {/* Mobile Top Navigation - Collapsible on hover */}
+        {/* Mobile Bottom Navigation */}
         {bottomNav && (
-          <div className="lg:hidden fixed top-4 left-1/2 -translate-x-1/2 z-50 group">
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-primary/50 rounded-full group-hover:bg-primary transition-colors" />
-
-            <div className="bg-background-primary/80 backdrop-blur-sm rounded-b-3xl shadow-2xl overflow-hidden -translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+          <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50">
+            <div className="glass border-t border-white/20">
               {bottomNav}
             </div>
           </div>
         )}
       </div>
-      {/* End of main content container */}
     </div>
   );
 }

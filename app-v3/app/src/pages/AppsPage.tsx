@@ -98,7 +98,7 @@ export function AppsPage({ className }: AppsPageProps) {
   const totalBadges = filteredApps.reduce((sum, app) => sum + (app.badge || 0), 0);
 
   return (
-    <div className={cn('min-h-screen bg-background-primary', className)}>
+    <div className={cn('min-h-full', className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         {/* Header */}
         <header className="space-y-2">
