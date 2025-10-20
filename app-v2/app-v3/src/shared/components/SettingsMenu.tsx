@@ -14,8 +14,8 @@ interface SettingsMenuProps {
 }
 
 export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
-  const { mode, toggleTheme } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
+  const { mode, toggle: toggleTheme } = useTheme();
+  const { language, toggle: toggleLanguage } = useLanguage();
 
   if (!isOpen) return null;
 

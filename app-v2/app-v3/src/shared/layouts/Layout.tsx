@@ -1,12 +1,12 @@
 /**
  * Layout Component
- * Responsive layout with navigation only (no header)
- * Desktop: Sidebar with logo + nav + settings
- * Mobile: Bottom nav + FAB drawer
+ * Three-column layout: CollapsibleNav + Content + AlertsPanel
+ * Desktop: Collapsible nav (64px→256px) + Content + Alerts panel (320px)
+ * Mobile: Bottom nav + Content + Alerts FAB
  */
 
 import { useState } from 'react';
-import { Navigation } from '../components/Navigation';
+import { ThreeColumnLayout } from './ThreeColumnLayout';
 import { InsightsScreen } from '@/screens/InsightsScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
 import { AppsScreen } from '@/screens/AppsScreen';
@@ -17,7 +17,7 @@ interface LayoutProps {
   defaultView?: string;
 }
 
-export function Layout({ defaultView = 'home' }: LayoutProps) {
+export function Layout({ defaultView = 'insights' }: LayoutProps) {
   const [currentView, setCurrentView] = useState(defaultView);
 
   // Render the current screen based on navigation
@@ -34,22 +34,13 @@ export function Layout({ defaultView = 'home' }: LayoutProps) {
       case 'governance':
         return <GovernanceScreen />;
       default:
-        return <HomeScreen />;
+        return <InsightsScreen />;
     }
   };
 
   return (
-    <div className="min-h-screen min-h-dvh bg-background-primary">
-      {/* Main Layout Container - Full viewport height */}
-      <div className="flex h-screen h-dvh">
-        {/* Navigation - Sidebar on desktop, bottom bar + FAB on mobile */}
-        <Navigation currentView={currentView} onNavigate={setCurrentView} />
-
-        {/* Main Content Area - Screen rendered here */}
-        <main className="flex-1 overflow-hidden pb-20 lg:pb-0">
-          {renderScreen()}
-        </main>
-      </div>
-    </div>
+    <ThreeColumnLayout currentView={currentView} onNavigate={setCurrentView}>
+      {renderScreen()}
+    </ThreeColumnLayout>
   );
 }
