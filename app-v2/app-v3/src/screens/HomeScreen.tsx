@@ -5,7 +5,10 @@
 
 import { TrendingUp, TrendingDown, Activity, Zap } from 'lucide-react';
 import { KPICard } from '@/shared/components/KPICard';
-import { KPI } from '@/shared/types/screen-data-models';
+import { PageHeader } from '@/shared/components/PageHeader';
+import { PilotCard } from '@/shared/components/PilotCard';
+import { QuickActionCard } from '@/shared/components/QuickActionCard';
+import { KPI, Pilot, QuickAction } from '@/shared/types/screen-data-models';
 
 const KPI_DATA: KPI[] = [
   {
@@ -38,7 +41,7 @@ const KPI_DATA: KPI[] = [
   },
 ];
 
-const ACTIVE_PILOTS = [
+const ACTIVE_PILOTS: Pilot[] = [
   {
     name: 'Invoice Reconciliation',
     status: 'Live',
@@ -59,19 +62,22 @@ const ACTIVE_PILOTS = [
   },
 ];
 
+const QUICK_ACTIONS: QuickAction[] = [
+  { icon: '🚀', label: 'Launch New App', color: 'accent' },
+  { icon: '📊', label: 'View Analytics', color: 'primary' },
+  { icon: '⚙️', label: 'Settings', color: 'text-tertiary' },
+  { icon: '📝', label: 'Documentation', color: 'text-tertiary' },
+];
+
 export function HomeScreen() {
   return (
     <div className="h-full overflow-y-auto">
       <div className="p-4 md:p-6 lg:p-8 space-y-6">
         {/* Page Header */}
-        <div>
-          <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
-            Dashboard
-          </h1>
-          <p className="text-sm text-text-secondary mt-1">
-            Overview of your AI initiatives and performance
-          </p>
-        </div>
+        <PageHeader
+          title="Dashboard"
+          subtitle="Overview of your AI initiatives and performance"
+        />
 
         {/* KPI Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -96,56 +102,15 @@ export function HomeScreen() {
           </h2>
           <div className="space-y-3">
             {ACTIVE_PILOTS.map((pilot, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between p-4 rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors duration-200"
-              >
-                <div className="flex-1">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-medium text-text-primary">
-                      {pilot.name}
-                    </h3>
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full ${
-                        pilot.status === 'Live'
-                          ? 'bg-success-bg text-success-text border border-success-border'
-                          : 'bg-warning-bg text-warning-text border border-warning-border'
-                      }`}
-                    >
-                      {pilot.status}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-text-secondary">
-                    <span>{pilot.users} users</span>
-                    <span className="text-text-tertiary">•</span>
-                    <span>{pilot.accuracy} accuracy</span>
-                  </div>
-                </div>
-                <button className="text-accent hover:text-accent-hover text-sm font-medium transition-colors">
-                  View →
-                </button>
-              </div>
+              <PilotCard key={idx} pilot={pilot} onView={() => {/* TODO: Navigate to app detail */}} />
             ))}
           </div>
         </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { icon: '🚀', label: 'Launch New App', color: 'accent' },
-            { icon: '📊', label: 'View Analytics', color: 'primary' },
-            { icon: '⚙️', label: 'Settings', color: 'text-tertiary' },
-            { icon: '📝', label: 'Documentation', color: 'text-tertiary' },
-          ].map((action, idx) => (
-            <button
-              key={idx}
-              className="card p-4 hover:shadow-lg transition-all duration-200 group text-left"
-            >
-              <div className="text-3xl mb-2">{action.icon}</div>
-              <div className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors">
-                {action.label}
-              </div>
-            </button>
+          {QUICK_ACTIONS.map((action, idx) => (
+            <QuickActionCard key={idx} action={action} onClick={() => {/* TODO: Handle action */}} />
           ))}
         </div>
       </div>

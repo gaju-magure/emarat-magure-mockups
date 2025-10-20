@@ -41,6 +41,39 @@
   --color-info-bg: #eff6ff;
   --color-info-border: #93c5fd;
   --color-info-text: #1e40af;
+
+  /* Glassmorphism - Light Mode */
+  --glass-opacity-light: 0.7;
+  --glass-opacity-medium: 0.65;
+  --glass-opacity-strong: 0.6;
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 12px;
+  --glass-blur-lg: 16px;
+  --glass-blur-xl: 24px;
+
+  /* Glow Shadows - Light Mode */
+  --glow-sm: 0 0 8px rgba(71, 160, 26, 0.4);
+  --glow-md: 0 0 12px rgba(71, 160, 26, 0.5);
+  --glow-lg: 0 0 16px rgba(71, 160, 26, 0.6);
+  --glow-xl: 0 0 24px rgba(71, 160, 26, 0.7);
+
+  /* Colored Glows - Light Mode */
+  --glow-accent: 0 0 12px rgba(71, 160, 26, 0.5);
+  --glow-primary: 0 0 12px rgba(0, 58, 133, 0.5);
+  --glow-success: 0 0 12px rgba(80, 170, 27, 0.5);
+  --glow-danger: 0 0 12px rgba(220, 38, 38, 0.5);
+  --glow-warning: 0 0 12px rgba(217, 119, 6, 0.5);
+  --glow-info: 0 0 12px rgba(3, 105, 161, 0.5);
+
+  /* Float Elevations (depth + glow) - Light Mode */
+  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 4px rgba(71, 160, 26, 0.2);
+  --float-md: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 6px rgba(71, 160, 26, 0.3);
+  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 8px rgba(71, 160, 26, 0.4);
+  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.25), 0 0 12px rgba(71, 160, 26, 0.5);
+
+  /* Border Glows - Light Mode */
+  --border-glow: rgba(71, 160, 26, 0.3);
+  --border-glow-hover: rgba(71, 160, 26, 0.6);
 }
 
 .dark {
@@ -84,6 +117,39 @@
   --color-info-bg: #172554;
   --color-info-border: #1e40af;
   --color-info-text: #93c5fd;
+
+  /* Glassmorphism - Dark Mode (same opacity, stronger glows) */
+  --glass-opacity-light: 0.7;
+  --glass-opacity-medium: 0.65;
+  --glass-opacity-strong: 0.6;
+  --glass-blur-sm: 8px;
+  --glass-blur-md: 12px;
+  --glass-blur-lg: 16px;
+  --glass-blur-xl: 24px;
+
+  /* Glow Shadows - Dark Mode (stronger for visibility) */
+  --glow-sm: 0 0 10px rgba(91, 184, 35, 0.5);
+  --glow-md: 0 0 14px rgba(91, 184, 35, 0.6);
+  --glow-lg: 0 0 18px rgba(91, 184, 35, 0.7);
+  --glow-xl: 0 0 26px rgba(91, 184, 35, 0.8);
+
+  /* Colored Glows - Dark Mode */
+  --glow-accent: 0 0 14px rgba(91, 184, 35, 0.6);
+  --glow-primary: 0 0 14px rgba(59, 130, 246, 0.6);
+  --glow-success: 0 0 14px rgba(134, 239, 172, 0.6);
+  --glow-danger: 0 0 14px rgba(252, 165, 165, 0.6);
+  --glow-warning: 0 0 14px rgba(252, 211, 77, 0.6);
+  --glow-info: 0 0 14px rgba(147, 197, 253, 0.6);
+
+  /* Float Elevations - Dark Mode */
+  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(91, 184, 35, 0.3);
+  --float-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(91, 184, 35, 0.4);
+  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(91, 184, 35, 0.5);
+  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 14px rgba(91, 184, 35, 0.6);
+
+  /* Border Glows - Dark Mode (stronger) */
+  --border-glow: rgba(91, 184, 35, 0.4);
+  --border-glow-hover: rgba(91, 184, 35, 0.7);
 }
 
 /* RTL Support */

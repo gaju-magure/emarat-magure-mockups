@@ -61,7 +61,7 @@ export function KPICard({
   const badgeClass = badge ? BADGE_VARIANTS[badge.variant] : '';
 
   return (
-    <div className={`card p-4 hover:shadow-lg transition-shadow duration-200 ${borderClass} ${className}`}>
+    <div className={`card-glass p-4 hover:shadow-float-xl transition-all duration-300 ${borderClass} ${className}`}>
       <div className="flex items-start justify-between mb-3">
         <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
           <Icon className="h-5 w-5 text-accent" />

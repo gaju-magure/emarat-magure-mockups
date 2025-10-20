@@ -137,6 +137,39 @@ module.exports = {
 
       transitionDuration: {
         'theme': '200ms',
+        '250': '250ms',
+        '300': '300ms',
+      },
+
+      // Glassmorphism utilities
+      backdropBlur: {
+        'glass-sm': '8px',
+        'glass-md': '12px',
+        'glass-lg': '16px',
+        'glass-xl': '24px',
+      },
+
+      boxShadow: {
+        'glow-sm': 'var(--glow-sm)',
+        'glow-md': 'var(--glow-md)',
+        'glow-lg': 'var(--glow-lg)',
+        'glow-xl': 'var(--glow-xl)',
+        'glow-accent': 'var(--glow-accent)',
+        'glow-primary': 'var(--glow-primary)',
+        'glow-success': 'var(--glow-success)',
+        'glow-danger': 'var(--glow-danger)',
+        'glow-warning': 'var(--glow-warning)',
+        'glow-info': 'var(--glow-info)',
+        'float-sm': 'var(--float-sm)',
+        'float-md': 'var(--float-md)',
+        'float-lg': 'var(--float-lg)',
+        'float-xl': 'var(--float-xl)',
+      },
+
+      dropShadow: {
+        'glow-sm': '0 0 4px rgba(71, 160, 26, 0.5)',
+        'glow-md': '0 0 8px rgba(71, 160, 26, 0.6)',
+        'glow-lg': '0 0 12px rgba(71, 160, 26, 0.7)',
       },
     },
   },

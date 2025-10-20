@@ -6,6 +6,7 @@
 import { useState } from 'react';
 import { Calendar, User, Flag, CheckCircle2, Clock } from 'lucide-react';
 import { FilterTabs } from '@/shared/components/FilterTabs';
+import { PageHeader } from '@/shared/components/PageHeader';
 import { Task } from '@/shared/types/screen-data-models';
 
 const TASKS: Task[] = [
@@ -111,19 +112,15 @@ export function TasksScreen() {
     <div className="h-full overflow-y-auto">
       <div className="p-4 md:p-6 lg:p-8 space-y-6">
         {/* Page Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
-              Tasks
-            </h1>
-            <p className="text-sm text-text-secondary mt-1">
-              Manage and track your AI project tasks
-            </p>
-          </div>
-          <button className="px-4 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-all duration-200">
-            + New Task
-          </button>
-        </div>
+        <PageHeader
+          title="Tasks"
+          subtitle="Manage and track your AI project tasks"
+          action={
+            <button className="px-4 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-all duration-200">
+              + New Task
+            </button>
+          }
+        />
 
         {/* Filter Buttons */}
         <FilterTabs

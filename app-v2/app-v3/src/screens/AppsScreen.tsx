@@ -6,6 +6,8 @@
 import { useState } from 'react';
 import { FileText, BarChart3, TrendingUp, FileSearch, Users, CheckCircle, Clock, AlertCircle } from 'lucide-react';
 import { FilterTabs } from '@/shared/components/FilterTabs';
+import { PageHeader } from '@/shared/components/PageHeader';
+import { AppCard } from '@/shared/components/AppCard';
 import { InvoiceReconciliationDetail } from './app-details/InvoiceReconciliationDetail';
 import { RFPEvaluationDetail } from './app-details/RFPEvaluationDetail';
 import { DemandForecastingDetail } from './app-details/DemandForecastingDetail';
@@ -140,14 +142,10 @@ export function AppsScreen() {
       <div className="h-full overflow-y-auto">
         <div className="p-4 md:p-6 lg:p-8 space-y-6">
         {/* Page Header */}
-        <div>
-          <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
-            AI Apps Gallery
-          </h1>
-          <p className="text-sm text-text-secondary mt-1">
-            Browse and explore all AI applications
-          </p>
-        </div>
+        <PageHeader
+          title="AI Apps Gallery"
+          subtitle="Browse and explore all AI applications"
+        />
 
         {/* Filter Tabs */}
         <FilterTabs
@@ -158,62 +156,14 @@ export function AppsScreen() {
 
         {/* Apps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {APPS.map((app) => {
-            const Icon = app.icon;
-            const statusConfig = STATUS_CONFIG[app.status as keyof typeof STATUS_CONFIG];
-            const StatusIcon = statusConfig.icon;
-
-            return (
-              <div
-                key={app.id}
-                onClick={() => handleAppClick(app.id)}
-                className="card p-6 hover:shadow-lg transition-all duration-200 cursor-pointer group"
-              >
-                {/* App Icon & Status */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Icon className="h-6 w-6 text-accent" />
-                  </div>
-                  <div
-                    className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusConfig.bgClass} ${statusConfig.textClass} border ${statusConfig.borderClass}`}
-                  >
-                    <StatusIcon className="h-3 w-3" />
-                    {app.status}
-                  </div>
-                </div>
-
-                {/* App Info */}
-                <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
-                  {app.name}
-                </h3>
-                <p className="text-sm text-text-secondary mb-4 line-clamp-2">
-                  {app.description}
-                </p>
-
-                {/* Metrics */}
-                <div className="grid grid-cols-3 gap-3 pt-4 border-t border-border">
-                  <div>
-                    <div className="text-xs text-text-tertiary mb-1">Users</div>
-                    <div className="text-sm font-semibold text-text-primary">
-                      {app.users}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-text-tertiary mb-1">Accuracy</div>
-                    <div className="text-sm font-semibold text-text-primary">
-                      {app.accuracy}
-                    </div>
-                  </div>
-                  <div>
-                    <div className="text-xs text-text-tertiary mb-1">Savings</div>
-                    <div className="text-sm font-semibold text-accent">
-                      {app.savings}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {APPS.map((app) => (
+            <AppCard
+              key={app.id}
+              app={app}
+              statusConfig={STATUS_CONFIG[app.status as keyof typeof STATUS_CONFIG]}
+              onClick={handleAppClick}
+            />
+          ))}
         </div>
       </div>
     </div>

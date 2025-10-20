@@ -4,8 +4,13 @@
  */
 
 import { Shield, FileText, Activity, CheckCircle } from 'lucide-react';
+import { PageHeader } from '@/shared/components/PageHeader';
+import { DataTable } from '@/shared/components/DataTable';
+import { ComplianceMetricCard } from '@/shared/components/ComplianceMetricCard';
+import { DocumentCard } from '@/shared/components/DocumentCard';
+import { AuditLog, ComplianceDocument, ComplianceMetric } from '@/shared/types/screen-data-models';
 
-const COMPLIANCE_METRICS = [
+const COMPLIANCE_METRICS: ComplianceMetric[] = [
   {
     label: 'Data Privacy',
     status: 'Compliant',
@@ -32,7 +37,7 @@ const COMPLIANCE_METRICS = [
   },
 ];
 
-const AUDIT_LOGS = [
+const AUDIT_LOGS: AuditLog[] = [
   {
     id: 1,
     action: 'Model deployed to production',
@@ -98,64 +103,34 @@ const ACTION_TYPE_CONFIG: Record<string, { bgClass: string; textClass: string }>
   },
 };
 
+const COMPLIANCE_DOCUMENTS: ComplianceDocument[] = [
+  { name: 'AI Ethics Policy', date: '2025-01-15', status: 'Current' },
+  { name: 'Data Privacy Guidelines', date: '2025-03-10', status: 'Current' },
+  { name: 'Model Audit Checklist', date: '2024-12-05', status: 'Under Review' },
+  { name: 'Security Standards', date: '2025-02-20', status: 'Current' },
+];
+
 export function GovernanceScreen() {
   return (
     <div className="h-full overflow-y-auto">
       <div className="p-4 md:p-6 lg:p-8 space-y-6">
         {/* Page Header */}
-        <div>
-          <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
-            Governance & Compliance
-          </h1>
-          <p className="text-sm text-text-secondary mt-1">
-            Monitor compliance status and audit trails
-          </p>
-        </div>
+        <PageHeader
+          title="Governance & Compliance"
+          subtitle="Monitor compliance status and audit trails"
+        />
 
         {/* Compliance Status Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {COMPLIANCE_METRICS.map((metric, idx) => {
-            const Icon = metric.icon;
-            const isCompliant = metric.status === 'Compliant';
-
-            return (
-              <div
-                key={idx}
-                className={`card p-4 border-l-4 ${
-                  isCompliant ? 'border-l-success' : 'border-l-warning'
-                }`}
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div
-                    className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-                      isCompliant ? 'bg-success/10' : 'bg-warning/10'
-                    }`}
-                  >
-                    <Icon
-                      className={`h-5 w-5 ${
-                        isCompliant ? 'text-success' : 'text-warning'
-                      }`}
-                    />
-                  </div>
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-text-primary">
-                      {metric.score}%
-                    </div>
-                    <div
-                      className={`text-xs font-medium ${
-                        isCompliant ? 'text-success' : 'text-warning'
-                      }`}
-                    >
-                      {metric.status}
-                    </div>
-                  </div>
-                </div>
-                <div className="text-sm font-medium text-text-secondary">
-                  {metric.label}
-                </div>
-              </div>
-            );
-          })}
+          {COMPLIANCE_METRICS.map((metric, idx) => (
+            <ComplianceMetricCard
+              key={idx}
+              label={metric.label}
+              status={metric.status}
+              score={metric.score}
+              icon={metric.icon}
+            />
+          ))}
         </div>
 
         {/* Audit Log Table */}
@@ -169,58 +144,45 @@ export function GovernanceScreen() {
             </button>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="text-left border-b border-border">
-                  <th className="pb-3 text-xs font-medium text-text-tertiary uppercase">
-                    Action
-                  </th>
-                  <th className="pb-3 text-xs font-medium text-text-tertiary uppercase">
-                    App
-                  </th>
-                  <th className="pb-3 text-xs font-medium text-text-tertiary uppercase">
-                    User
-                  </th>
-                  <th className="pb-3 text-xs font-medium text-text-tertiary uppercase">
-                    Timestamp
-                  </th>
-                  <th className="pb-3 text-xs font-medium text-text-tertiary uppercase">
-                    Type
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-border">
-                {AUDIT_LOGS.map((log) => {
+          <DataTable<AuditLog>
+            columns={[
+              {
+                header: 'Action',
+                accessor: 'action',
+                cellClassName: 'text-sm text-text-primary font-medium',
+              },
+              {
+                header: 'App',
+                accessor: 'app',
+                cellClassName: 'text-sm text-text-secondary',
+              },
+              {
+                header: 'User',
+                accessor: 'user',
+                cellClassName: 'text-sm text-text-secondary',
+              },
+              {
+                header: 'Timestamp',
+                accessor: 'timestamp',
+                cellClassName: 'text-sm text-text-tertiary',
+              },
+              {
+                header: 'Type',
+                accessor: (log) => {
                   const typeConfig = ACTION_TYPE_CONFIG[log.type];
-
                   return (
-                    <tr key={log.id} className="hover:bg-background-secondary transition-colors">
-                      <td className="py-4 text-sm text-text-primary font-medium">
-                        {log.action}
-                      </td>
-                      <td className="py-4 text-sm text-text-secondary">
-                        {log.app}
-                      </td>
-                      <td className="py-4 text-sm text-text-secondary">
-                        {log.user}
-                      </td>
-                      <td className="py-4 text-sm text-text-tertiary">
-                        {log.timestamp}
-                      </td>
-                      <td className="py-4">
-                        <span
-                          className={`px-2 py-1 rounded text-xs font-medium ${typeConfig.bgClass} ${typeConfig.textClass}`}
-                        >
-                          {log.type}
-                        </span>
-                      </td>
-                    </tr>
+                    <span
+                      className={`px-2 py-1 rounded text-xs font-medium ${typeConfig.bgClass} ${typeConfig.textClass}`}
+                    >
+                      {log.type}
+                    </span>
                   );
-                })}
-              </tbody>
-            </table>
-          </div>
+                },
+              },
+            ]}
+            data={AUDIT_LOGS}
+            keyExtractor={(log) => log.id}
+          />
         </div>
 
         {/* Compliance Documents */}
@@ -229,37 +191,8 @@ export function GovernanceScreen() {
             Compliance Documents
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {[
-              { name: 'AI Ethics Policy', date: '2025-01-15', status: 'Current' },
-              { name: 'Data Privacy Guidelines', date: '2025-03-10', status: 'Current' },
-              { name: 'Model Audit Checklist', date: '2024-12-05', status: 'Under Review' },
-              { name: 'Security Standards', date: '2025-02-20', status: 'Current' },
-            ].map((doc, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between p-4 rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors cursor-pointer"
-              >
-                <div className="flex items-center gap-3">
-                  <FileText className="h-5 w-5 text-accent" />
-                  <div>
-                    <div className="text-sm font-medium text-text-primary">
-                      {doc.name}
-                    </div>
-                    <div className="text-xs text-text-tertiary">
-                      Updated: {doc.date}
-                    </div>
-                  </div>
-                </div>
-                <span
-                  className={`text-xs px-2 py-1 rounded ${
-                    doc.status === 'Current'
-                      ? 'bg-success-bg text-success-text'
-                      : 'bg-warning-bg text-warning-text'
-                  }`}
-                >
-                  {doc.status}
-                </span>
-              </div>
+            {COMPLIANCE_DOCUMENTS.map((doc, idx) => (
+              <DocumentCard key={idx} document={doc} onClick={() => {/* TODO: Open document */}} />
             ))}
           </div>
         </div>

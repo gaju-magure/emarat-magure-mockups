@@ -4,6 +4,8 @@
  */
 
 import { Send, Sparkles } from 'lucide-react';
+import { ChatMessage } from '@/shared/components/ChatMessage';
+import { ChatMessage as ChatMessageType } from '@/shared/types/screen-data-models';
 
 const QUICK_PROMPTS = [
   { icon: '📊', text: 'Show me today\'s KPIs' },
@@ -12,7 +14,7 @@ const QUICK_PROMPTS = [
   { icon: '📈', text: 'Generate report' },
 ];
 
-const SAMPLE_MESSAGES = [
+const SAMPLE_MESSAGES: ChatMessageType[] = [
   {
     role: 'assistant',
     content: 'Hello! I\'m your AI assistant. How can I help you today?',
@@ -66,33 +68,7 @@ export function InsightsScreen() {
         {/* Sample Conversation */}
         <div className="max-w-3xl mx-auto space-y-4 pt-8">
           {SAMPLE_MESSAGES.map((message, idx) => (
-            <div
-              key={idx}
-              className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-              <div
-                className={`max-w-[80%] rounded-lg p-4 ${
-                  message.role === 'user'
-                    ? 'bg-primary text-white'
-                    : 'bg-background-elevated border border-border'
-                }`}
-              >
-                <p
-                  className={`text-sm whitespace-pre-line ${
-                    message.role === 'user' ? 'text-white' : 'text-text-primary'
-                  }`}
-                >
-                  {message.content}
-                </p>
-                <p
-                  className={`text-xs mt-2 ${
-                    message.role === 'user' ? 'text-white/70' : 'text-text-tertiary'
-                  }`}
-                >
-                  {message.time}
-                </p>
-              </div>
-            </div>
+            <ChatMessage key={idx} message={message} />
           ))}
         </div>
       </div>

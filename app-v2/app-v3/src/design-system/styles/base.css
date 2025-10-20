@@ -113,14 +113,92 @@
     }
   }
 
-  /* Glass morphism utility */
-  .glass {
-    @apply bg-background-elevated/80 backdrop-blur-md border border-border;
+  /* Glass morphism variants */
+  .glass-light {
+    @apply bg-background-elevated backdrop-blur-glass-sm;
   }
 
-  /* Card base */
+  .glass-medium {
+    @apply bg-background-elevated backdrop-blur-glass-md;
+  }
+
+  .glass-strong {
+    @apply bg-background-elevated backdrop-blur-glass-lg;
+  }
+
+  /* Legacy glass (keep for compatibility) */
+  .glass {
+    @apply bg-background-elevated backdrop-blur-glass-md;
+  }
+
+  /* Card base - now with glass */
   .card {
-    @apply bg-background-elevated rounded-lg border border-border p-4 md:p-6;
+    @apply bg-background-elevated rounded-xl p-4 md:p-6;
+    @apply shadow-float-md backdrop-blur-glass-md transition-all duration-300;
+    border: 1px solid var(--border-glow);
+  }
+
+  /* Card variants */
+  .card-glass {
+    @apply bg-background-elevated rounded-xl shadow-float-md;
+    @apply backdrop-blur-glass-md transition-all duration-300;
+    border: 1px solid var(--border-glow);
+  }
+
+  .card-float {
+    @apply card-glass shadow-float-lg;
+  }
+
+  .card-interactive {
+    @apply card-glass cursor-pointer;
+  }
+
+  .card-interactive:hover {
+    @apply shadow-float-xl shadow-glow-md;
+    transform: translateY(-2px);
+  }
+
+  .card-accent {
+    @apply card-glass shadow-glow-accent;
+    border-color: var(--border-glow-hover);
+  }
+
+  /* Glow border utilities */
+  .border-glow {
+    border-color: var(--border-glow);
+  }
+
+  .border-glow-hover:hover {
+    border-color: var(--border-glow-hover);
+    box-shadow: var(--glow-md);
+  }
+
+  /* Button base classes */
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-medium text-white;
+    @apply bg-accent backdrop-blur-sm;
+    @apply shadow-glow-accent;
+    @apply hover:shadow-glow-lg hover:-translate-y-0.5;
+    @apply active:scale-95;
+    @apply transition-all duration-300;
+    border: 1px solid rgba(71, 160, 26, 0.5);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-medium;
+    @apply glass-light border-glow;
+    @apply hover:glass-medium hover:shadow-glow-sm;
+    @apply active:scale-95;
+    @apply transition-all duration-300;
+  }
+
+  .btn-icon {
+    @apply w-10 h-10 rounded-full;
+    @apply glass-light border-glow;
+    @apply flex items-center justify-center;
+    @apply hover:shadow-glow-md hover:scale-110;
+    @apply active:scale-95;
+    @apply transition-all duration-300;
   }
 }
 
@@ -149,5 +227,76 @@
 
   .safe-right {
     padding-right: env(safe-area-inset-right);
+  }
+
+  /* Glow pulse animation */
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: var(--glow-sm);
+    }
+    50% {
+      box-shadow: var(--glow-lg);
+    }
+  }
+
+  .animate-glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  /* Border shimmer animation */
+  @keyframes border-shimmer {
+    0% {
+      border-color: var(--border-glow);
+    }
+    50% {
+      border-color: var(--border-glow-hover);
+    }
+    100% {
+      border-color: var(--border-glow);
+    }
+  }
+
+  .animate-border-shimmer {
+    animation: border-shimmer 3s ease-in-out infinite;
+  }
+
+  /* Float hover animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-4px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Shimmer slide for loading states */
+  @keyframes shimmer-slide {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .loading-shimmer {
+    @apply relative overflow-hidden;
+  }
+
+  .loading-shimmer::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(71, 160, 26, 0.2),
+      transparent
+    );
+    animation: shimmer-slide 2s infinite;
   }
 }
