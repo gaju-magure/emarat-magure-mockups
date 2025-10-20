@@ -1,0 +1,82 @@
+/* Theme CSS Variables - Light and Dark modes */
+
+:root {
+  /* Background Colors - Light Mode */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafb;
+  --color-bg-tertiary: #f3f4f6;
+  --color-bg-elevated: #ffffff;
+
+  /* Text Colors - Light Mode */
+  --color-text-primary: #111827;
+  --color-text-secondary: #6b7280;
+  --color-text-tertiary: #9ca3af;
+  --color-text-disabled: #d1d5db;
+  --color-text-inverse: #ffffff;
+
+  /* Border Colors - Light Mode */
+  --color-border-default: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-border-dark: #d1d5db;
+  --color-border-focus: #003a85;
+
+  /* Semantic Colors - Light Mode */
+  --color-success-bg: #f0fdf4;
+  --color-success-border: #86efac;
+  --color-success-text: #166534;
+
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fcd34d;
+  --color-warning-text: #92400e;
+
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fca5a5;
+  --color-danger-text: #991b1b;
+
+  --color-info-bg: #eff6ff;
+  --color-info-border: #93c5fd;
+  --color-info-text: #1e40af;
+}
+
+.dark {
+  /* Background Colors - Dark Mode */
+  --color-bg-primary: #0f172a;
+  --color-bg-secondary: #1e293b;
+  --color-bg-tertiary: #334155;
+  --color-bg-elevated: #1e293b;
+
+  /* Text Colors - Dark Mode */
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+  --color-text-disabled: #475569;
+  --color-text-inverse: #0f172a;
+
+  /* Border Colors - Dark Mode */
+  --color-border-default: #334155;
+  --color-border-light: #1e293b;
+  --color-border-dark: #475569;
+  --color-border-focus: #3b82f6;
+
+  /* Semantic Colors - Dark Mode */
+  --color-success-bg: #14532d;
+  --color-success-border: #166534;
+  --color-success-text: #86efac;
+
+  --color-warning-bg: #451a03;
+  --color-warning-border: #92400e;
+  --color-warning-text: #fcd34d;
+
+  --color-danger-bg: #450a0a;
+  --color-danger-border: #991b1b;
+  --color-danger-text: #fca5a5;
+
+  --color-info-bg: #172554;
+  --color-info-border: #1e40af;
+  --color-info-text: #93c5fd;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  direction: rtl;
+}

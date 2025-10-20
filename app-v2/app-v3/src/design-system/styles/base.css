@@ -1,0 +1,153 @@
+/* Import theme variables first */
+@import './variables.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Face Declarations */
+@font-face {
+  font-family: 'Karbon';
+  src: url('/assets/fonts/Karbon-Medium.woff2') format('woff2'),
+       url('/assets/fonts/Karbon-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Karbon';
+  src: url('/assets/fonts/Karbon-Regular.woff2') format('woff2'),
+       url('/assets/fonts/Karbon-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TheSansArabic';
+  src: url('/assets/fonts/TheSansArabic-Light.woff2') format('woff2'),
+       url('/assets/fonts/TheSansArabic-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background-primary text-text-primary font-sans;
+    @apply transition-theme duration-theme;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+
+  /* RTL font switching */
+  [dir="rtl"] body {
+    @apply font-arabic;
+  }
+
+  /* Touch-friendly interactive elements */
+  button, a, [role="button"] {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Smooth theme transitions */
+  * {
+    @apply transition-theme duration-theme;
+  }
+
+  /* Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Mobile-first container */
+  .container {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 100%;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+
+  /* Glass morphism utility */
+  .glass {
+    @apply bg-background-elevated/80 backdrop-blur-md border border-border;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-background-elevated rounded-lg border border-border p-4 md:p-6;
+  }
+}
+
+@layer utilities {
+  /* Touch-friendly spacing */
+  .touch-spacing-y {
+    @apply py-3;
+  }
+
+  .touch-spacing-x {
+    @apply px-4;
+  }
+
+  /* Safe area padding for mobile devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+}

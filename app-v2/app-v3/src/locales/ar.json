@@ -1,0 +1,20 @@
+{
+  "nav.insights": "رؤى",
+  "nav.home": "الصفحة الرئيسية",
+  "nav.apps": "التطبيقات",
+  "nav.tasks": "المهام",
+  "nav.governance": "الحوكمة",
+  "header.search": "بحث",
+  "header.notifications": "الإشعارات",
+  "header.profile": "الملف الشخصي",
+  "theme.toggle": "تبديل السمة",
+  "theme.light": "الوضع الفاتح",
+  "theme.dark": "الوضع الداكن",
+  "language.toggle": "تبديل اللغة",
+  "common.loading": "جار التحميل...",
+  "common.error": "خطأ",
+  "common.retry": "إعادة المحاولة",
+  "common.cancel": "إلغاء",
+  "common.save": "حفظ",
+  "common.close": "إغلاق"
+}

@@ -1,0 +1,20 @@
+{
+  "nav.insights": "Insights",
+  "nav.home": "Home",
+  "nav.apps": "Apps",
+  "nav.tasks": "Tasks",
+  "nav.governance": "Governance",
+  "header.search": "Search",
+  "header.notifications": "Notifications",
+  "header.profile": "Profile",
+  "theme.toggle": "Toggle theme",
+  "theme.light": "Light mode",
+  "theme.dark": "Dark mode",
+  "language.toggle": "Switch language",
+  "common.loading": "Loading...",
+  "common.error": "Error",
+  "common.retry": "Retry",
+  "common.cancel": "Cancel",
+  "common.save": "Save",
+  "common.close": "Close"
+}
