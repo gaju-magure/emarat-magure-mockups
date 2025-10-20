@@ -37,9 +37,9 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
         onClick={onClose}
       />
 
-      {/* Compact Popup Menu - Attached to settings button */}
+      {/* Compact Popup Menu - Attached to settings button in TopBar */}
       <div
-        className="fixed top-16 right-3 lg:top-auto lg:bottom-24 lg:left-24 z-50 w-64 bg-background-elevated backdrop-blur-glass-lg shadow-float-xl rounded-xl animate-scale-in"
+        className="fixed top-16 right-3 z-50 w-64 bg-background-elevated backdrop-blur-glass-lg shadow-float-xl rounded-xl animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-3 space-y-2">

@@ -4,7 +4,7 @@
  * Futuristic glassmorphic design with smooth animations
  */
 
-import { Home, Grid3x3, CheckSquare, Shield, Settings, Sparkles } from 'lucide-react';
+import { Home, Grid3x3, CheckSquare, Shield, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/core/hooks/useLanguage';
 import brandConfig from '@/config/brand.config';
 
@@ -17,10 +17,9 @@ interface NavItem {
 interface CollapsibleNavProps {
   currentView?: string;
   onNavigate?: (view: string) => void;
-  onSettingsClick?: () => void;
 }
 
-export function CollapsibleNav({ currentView = 'insights', onNavigate, onSettingsClick }: CollapsibleNavProps) {
+export function CollapsibleNav({ currentView = 'insights', onNavigate }: CollapsibleNavProps) {
   const { t } = useLanguage();
 
   const navItems: NavItem[] = [
@@ -144,27 +143,6 @@ export function CollapsibleNav({ currentView = 'insights', onNavigate, onSetting
             );
           })}
         </div>
-      </div>
-
-      {/* Settings Section */}
-      <div className="relative py-5 border-t border-border-light px-3">
-        <button
-          onClick={onSettingsClick}
-          className="relative w-full flex items-center justify-start group/settings"
-          title={t('nav.settings') || 'Settings'}
-        >
-          {/* Icon with circular background */}
-          <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 text-text-secondary group-hover/settings:text-primary group-hover/settings:bg-background-tertiary/50 group-hover/settings:shadow-float-sm active:scale-95 transition-all duration-200">
-            <Settings className="h-6 w-6 transition-all duration-200 group-hover:rotate-90" />
-          </div>
-
-          {/* Label - appears to the right on hover with proper spacing */}
-          <div className="ml-3 overflow-hidden max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 delay-75">
-            <span className="text-sm font-medium whitespace-nowrap text-text-primary">
-              {t('nav.settings') || 'Settings'}
-            </span>
-          </div>
-        </button>
       </div>
     </nav>
   );
