@@ -1,18 +1,18 @@
 # SCREEN MAP
 
 ## Core Navigation (5 Screens)
-- [ ] **Insights (AI Copilot)** - Default screen, AI chat interface
-- [ ] **Home (Dashboard)** - KPIs, active pilots, quick actions
-- [ ] **Apps (Gallery)** - Browse all AI apps
-- [ ] **Tasks** - Task management
-- [ ] **Governance** - Audit and compliance
+- [x] **Insights (AI Copilot)** - AI chat interface with quick prompts, conversation, input (127 lines)
+- [x] **Home (Dashboard)** - 4 KPI cards, 3 pilots, 4 quick actions (169 lines)
+- [x] **Apps (Gallery)** - 6 app cards, filter tabs, status badges (189 lines)
+- [x] **Tasks** - 5 tasks by department, priority/status badges (205 lines)
+- [x] **Governance** - 4 compliance cards, audit table, documents (270 lines)
 
 ## App Detail Screens (5 Full-Screen Overlays)
-- [ ] **Invoice Reconciliation** - Invoice matching workspace
-- [ ] **RFP Evaluation** - RFP scoring and ranking
-- [ ] **Demand Forecasting** - Forecasting dashboard with charts
-- [ ] **Contract Review** - Contract analysis interface
-- [ ] **Customer Insights** - Customer data analysis
+- [x] **Invoice Reconciliation** - Invoice matching workspace (229 lines)
+- [x] **RFP Evaluation** - RFP scoring and ranking (259 lines)
+- [x] **Demand Forecasting** - Forecasting dashboard with charts (278 lines)
+- [x] **Contract Review** - Contract analysis interface (289 lines)
+- [x] **Customer Insights** - Customer data analysis (296 lines)
 
 ## Shared Layout Components
 - [x] **Header** - Logo, search, theme toggle, lang toggle, notifications, profile
