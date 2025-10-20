@@ -48,13 +48,11 @@
 - `src/locales/en.json` - English translations (navigation, UI elements)
 - `src/locales/ar.json` - Arabic translations with RTL support
 
-#### Documentation (5 files)
+#### Documentation (4 files)
 - `docs/PROGRESS.md` - Lean progress tracker (completed, current, next)
 - `docs/SCREEN_MAP.md` - Comprehensive checklist of all screens/components
 - `docs/COMPLETED.md` - This file - detailed completion records
-- `docs/AGENT_SYSTEM.md` - Four-agent development system documentation
-- `docs/TAILWIND_FIX.md` - Tailwind CSS v3 downgrade documentation
-- `README.md` - Quick start guide and project overview
+- `docs/CONTEXT.md` - Context recovery document for fresh starts
 
 #### Scripts (1 file)
 - `scripts/check-translations.cjs` - Agent 4 automated translation completeness checker
@@ -307,12 +305,141 @@ Dev Server: ✅ Running on port 3001
 Ready for Phase 2: Core Layouts
 ```
 
+---
+
+## Phase 2: Core Layouts + Color Strategy ✅
+
+**Status:** Complete
+**Date:** October 20, 2025
+**Commit:** 695d078
+
+### 📦 New Components (3 files)
+
+- `src/shared/components/Header.tsx` (119 lines) - Mobile-first header with logo, search (mobile/desktop responsive), theme/lang toggles, notifications, profile
+- `src/shared/components/Navigation.tsx` (138 lines) - Responsive navigation (bottom bar mobile with 5 tabs, sidebar desktop)
+- `src/shared/layouts/Layout.tsx` (38 lines) - Unified responsive layout combining Header + Navigation + content
+
+### ✨ Features Implemented
+
+#### 1. Header Component
+- **Logo** - Brand config logo with fallback
+- **Search Bar** - Hidden on mobile (icon only), full bar on desktop
+- **Theme Toggle** - Dark/light mode switcher
+- **Language Toggle** - EN/AR switcher
+- **Notifications** - Bell icon with red badge indicator
+- **User Profile** - Avatar button with blue background
+- **Mobile-first** - All elements 44px+ touch targets
+- **Sticky positioning** - Header stays at top with backdrop blur
+
+#### 2. Navigation Component
+- **Responsive Design:**
+  - Mobile (< 1024px): Fixed bottom bar with 5 icon tabs
+  - Desktop (≥ 1024px): Left sidebar with icon + text labels
+- **Navigation Items:** Insights, Home, Apps, Tasks, Governance
+- **Active States:** Blue background (desktop), green icon (mobile)
+- **Icons:** All lucide-react icons (Lightbulb, Home, Grid3x3, CheckSquare, Shield)
+- **Accessibility:** ARIA labels, aria-current for active page
+
+#### 3. Layout Component
+- **Unified responsive layout** - Automatically adapts to screen size
+- **Flexible content area** - Scrollable main content with proper padding
+- **Z-index management** - Header (z-50), Navigation (z-40)
+- **Mobile spacing** - Bottom padding for bottom nav (pb-16 on mobile)
+
+#### 4. Brand Color Strategy
+- **Blue (#003a85):** Navigation structure, active backgrounds, primary CTAs
+- **Green (#47a01a):** ALL icons, hover states, focus rings, interactive elements
+- **Accent system:** Added CSS variables for theme-aware green
+  - Light mode: #47a01a (darker green)
+  - Dark mode: #5bb823 (brighter green)
+- **AI feature highlighting:** Insights tab has pulsing green indicator
+- **Visual hierarchy:** Green draws eye to interactive elements, blue provides structure
+
+### 🎨 Design System Updates
+
+#### CSS Variables Added
+```css
+/* Light Mode */
+--color-accent: #47a01a;
+--color-accent-hover: #3a8015;
+--color-accent-light: #5bb823;
+
+/* Dark Mode */
+--color-accent: #5bb823;
+--color-accent-hover: #6cd42c;
+--color-accent-light: #47a01a;
+```
+
+#### Tailwind Classes Added
+- `text-accent` - Icon color
+- `hover:text-accent` - Hover state
+- `focus:ring-accent` - Focus ring
+- `bg-accent` - Background (for indicators)
+
+### 📐 Architecture Improvements
+
+#### Color Usage Strategy
+1. **Blue (structure)** - Active navigation, primary buttons, navigation backgrounds
+2. **Green (interaction)** - All icons, hover effects, focus states, AI indicators
+3. **Gray (inactive)** - Disabled states, secondary content
+4. **Semantic (status)** - Success, warning, danger, info messages
+
+#### Component Composition
+- Layout component wraps Header + Navigation + content
+- Header and Navigation are independent, reusable components
+- App.tsx simplified to just use Layout wrapper
+- Single source of truth for current view state
+
+### 📊 Metrics
+
+- **Files Modified:** 5 (App.tsx, variables.css, tailwind.config.cjs, CONTEXT.md, PROGRESS.md)
+- **Files Created:** 3 (Header.tsx, Navigation.tsx, Layout.tsx)
+- **Docs Cleaned:** Removed 3 unnecessary docs (AGENT_SYSTEM.md, AGENT2_CLEANUP.md, TAILWIND_FIX.md)
+- **Lines Added:** 428
+- **Lines Removed:** 933 (net -505 lines)
+- **Bundle Size:** 67.60 KB gzipped (+1.73 KB from Phase 1)
+- **Translation Keys:** 23 (100% EN/AR parity, +5 from Phase 1)
+- **Build Time:** 1.36s
+
+### 🧪 Agent Reviews
+
+#### Agent 1: UI/UX ✅
+- Mobile-first design (375px → 1440px)
+- All touch targets ≥ 44px
+- Responsive breakpoint at 1024px (mobile ↔ desktop)
+- Sticky header with proper z-index
+- Bottom nav doesn't block content (pb-16 padding)
+- Icons use theme-aware green color
+- Smooth transitions on all interactions
+
+#### Agent 4: Translation Checker ✅
+- 23 keys total (18 from Phase 1 + 5 new nav keys)
+- 100% EN/AR parity
+- Navigation keys added: insights, home, apps, tasks, governance
+- All translations verified with `npm run check:translations`
+
+### 🎯 Testing Checklist
+
+- [x] Header displays correctly on mobile (375px)
+- [x] Header displays correctly on desktop (1440px)
+- [x] Search bar hidden on mobile, visible on desktop
+- [x] Navigation shows bottom bar on mobile
+- [x] Navigation shows sidebar on desktop
+- [x] Active navigation item highlighted correctly
+- [x] All icons display in brand green
+- [x] Insights icon has pulsing green indicator
+- [x] Theme toggle works (dark ↔ light)
+- [x] Language toggle works (EN ↔ AR with RTL)
+- [x] Build succeeds with no errors
+- [x] Bundle size acceptable (67.60 KB)
+
 ### 🔄 Next Phase Preview
 
-**Phase 2: Core Layouts** will include:
-1. Header component (logo, search, theme toggle, lang toggle, notifications, profile)
-2. MobileLayout (header + content + bottom nav with 5 tabs)
-3. DesktopLayout (header + left sidebar + content + right sidebar)
-4. Navigation component (responsive, mobile bottom bar / desktop sidebar)
+**Phase 3: Feature Screens** will include:
+1. Insights screen - AI chat interface
+2. Home screen - Dashboard with KPIs
+3. Apps Gallery screen - Browse AI apps
+4. Tasks screen - Task management
+5. Governance screen - Audit and compliance
 
-**Estimated:** 3-4 commits, ~800 lines of code
+**Estimated:** Multiple commits, ~2000+ lines of code
