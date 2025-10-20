@@ -20,6 +20,11 @@
   --color-border-dark: #d1d5db;
   --color-border-focus: #003a85;
 
+  /* Accent Colors (Brand Green) - Light Mode */
+  --color-accent: #47a01a;
+  --color-accent-hover: #3a8015;
+  --color-accent-light: #5bb823;
+
   /* Semantic Colors - Light Mode */
   --color-success-bg: #f0fdf4;
   --color-success-border: #86efac;
@@ -57,6 +62,11 @@
   --color-border-light: #1e293b;
   --color-border-dark: #475569;
   --color-border-focus: #3b82f6;
+
+  /* Accent Colors (Brand Green) - Dark Mode */
+  --color-accent: #5bb823;
+  --color-accent-hover: #6cd42c;
+  --color-accent-light: #47a01a;
 
   /* Semantic Colors - Dark Mode */
   --color-success-bg: #14532d;

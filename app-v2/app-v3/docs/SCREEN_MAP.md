@@ -15,10 +15,9 @@
 - [ ] **Customer Insights** - Customer data analysis
 
 ## Shared Layout Components
-- [ ] **Header** - Logo, search, theme toggle, lang toggle, notifications, profile
-- [ ] **MobileLayout** - Header + content + bottom nav (5 tabs)
-- [ ] **DesktopLayout** - Header + left sidebar + content + right sidebar
-- [ ] **Navigation** - Responsive nav (bottom bar mobile, sidebar desktop)
+- [x] **Header** - Logo, search, theme toggle, lang toggle, notifications, profile
+- [x] **Layout** - Unified responsive layout (mobile: header + bottom nav, desktop: header + sidebar)
+- [x] **Navigation** - Responsive nav (bottom bar mobile, sidebar desktop)
 
 ## Per-Screen Component Breakdown
 

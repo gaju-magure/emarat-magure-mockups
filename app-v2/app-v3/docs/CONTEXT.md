@@ -58,13 +58,34 @@ This document contains all essential information to continue development without
 **Translation Coverage:** 18 keys, 100% EN/AR parity
 **All Agents:** ✅ Operational and tested
 
-### Phase 2: Core Layouts - NEXT
+### Phase 2: Core Layouts ✅ COMPLETE
+
+**Completed Work:**
+- Header component: Logo, search bar (hidden mobile, visible desktop), theme toggle, language toggle, notifications bell with badge, user profile button
+- Navigation component: Responsive (bottom bar mobile with 5 icon tabs, left sidebar desktop with text labels)
+- Layout component: Unified responsive layout combining Header + Navigation + content area
+- Updated App.tsx to use new Layout system
+- Mobile-first design: 375px → 1440px breakpoints
+- Touch targets: All interactive elements ≥ 44px
+- Sticky header with backdrop blur
+- Proper z-index layering (header z-50, nav z-40)
+- **Translation updates:** Added 5 navigation keys (insights, home, apps, tasks, governance)
+- **Color Strategy:** Implemented brand green (#47a01a) for all icons, interactive elements, and AI features. Blue for structure/navigation. Added accent color CSS variables (theme-aware). Insights tab has pulsing green indicator for AI features.
+
+**Files:** 21 source files (+3 from Phase 1)
+**Bundle:** 67.60 KB gzipped (+1.73 KB for layout components)
+**Translation Coverage:** 23 keys, 100% EN/AR parity
+**Color Strategy:** Blue (structure/navigation) + Green (icons/highlights/AI features)
+**Agent Reviews:** ✅ Agent 1 (Mobile-first responsive), ✅ Agent 4 (100% translation parity)
+
+### Phase 3: Feature Screens - NEXT
 
 **To Build:**
-1. Header component (logo, search, theme toggle, lang toggle, notifications, profile)
-2. MobileLayout (header + content + bottom nav with 5 tabs)
-3. DesktopLayout (header + left sidebar + content + right sidebar)
-4. Navigation component (responsive, mobile bottom bar / desktop sidebar)
+1. Insights screen (AI chat interface)
+2. Home screen (Dashboard with KPIs)
+3. Apps Gallery screen (Browse AI apps)
+4. Tasks screen (Task management)
+5. Governance screen (Audit and compliance)
 
 ---
 
@@ -122,9 +143,6 @@ app-v3/
 │   ├── PROGRESS.md             # Lean tracker (completed, current, next)
 │   ├── SCREEN_MAP.md           # Comprehensive checklist (100+ items)
 │   ├── COMPLETED.md            # Detailed phase completion records
-│   ├── AGENT_SYSTEM.md         # Four-agent workflow documentation
-│   ├── AGENT2_CLEANUP.md       # Code review cleanup report
-│   ├── TAILWIND_FIX.md         # Tailwind v3 downgrade documentation
 │   └── CONTEXT.md              # ⭐ THIS FILE - Context recovery
 ├── public/
 │   └── assets/                 # Logo, fonts, favicons (copied from app-v2)
@@ -169,7 +187,7 @@ app-v3/
 ├── tsconfig.node.json
 └── vite.config.ts
 
-Total: 18 source files, 11 directories
+Total: 21 source files, 4 docs, lean & focused
 ```
 
 ---
@@ -201,18 +219,24 @@ These were removed in Agent 2 cleanup. Only add new deps if absolutely necessary
 ## 🎨 DESIGN SYSTEM
 
 ### Brand Colors (Emarat)
-- **Primary Blue:** `#003a85` (with 50-900 scale in Tailwind)
-- **Brand Green:** `#47a01a` (light/dark variants)
+- **Primary Blue:** `#003a85` (structure, active navigation backgrounds)
+- **Accent Green:** `#47a01a` (icons, highlights, AI features, interactive elements)
 - **Semantic Colors:**
   - Success: `#50aa1b`
   - Warning: `#d97706`
   - Danger: `#dc2626`
   - Info: `#0369a1`
 
+### Color Usage Strategy
+- **Blue:** Navigation structure, active states, primary CTAs
+- **Green:** ALL icons, hover states, focus rings, AI indicators
+- **Gray:** Inactive/secondary content
+
 ### CSS Variables (Theme-Aware)
 - `--color-bg-primary`, `--color-bg-secondary`, `--color-bg-tertiary`, `--color-bg-elevated`
 - `--color-text-primary`, `--color-text-secondary`, `--color-text-tertiary`, `--color-text-disabled`, `--color-text-inverse`
 - `--color-border-default`, `--color-border-light`, `--color-border-dark`, `--color-border-focus`
+- `--color-accent`, `--color-accent-hover`, `--color-accent-light` (brand green, adapts to light/dark mode)
 - Semantic: `--color-success-*`, `--color-warning-*`, `--color-danger-*`, `--color-info-*`
 
 ### Fonts
@@ -235,7 +259,7 @@ These were removed in Agent 2 cleanup. Only add new deps if absolutely necessary
 
 ## 🌍 TRANSLATION SYSTEM
 
-### Current Keys (18 total, 100% parity EN/AR)
+### Current Keys (23 total, 100% parity EN/AR)
 ```
 nav.insights, nav.home, nav.apps, nav.tasks, nav.governance
 header.search, header.notifications, header.profile
@@ -436,13 +460,15 @@ npm run build                # Production build
 npm run check:translations   # Agent 4 verification
 ```
 
-**Current Phase:** Phase 1 Complete ✅, Phase 2 Next
+**Current Phase:** Phase 2 Complete ✅ (with color strategy), Phase 3 Next
 
-**Bundle Size:** 65.87 KB gzipped
+**Bundle Size:** 67.60 KB gzipped
 
 **Dependencies:** 5 production, 11 dev
 
-**Translation Keys:** 18 (100% EN/AR parity)
+**Translation Keys:** 23 (100% EN/AR parity)
+
+**Color Strategy:** Blue (structure) + Green (icons/AI)
 
 **Agents Status:** All 4 operational ✅
 
@@ -455,7 +481,7 @@ npm run check:translations   # Agent 4 verification
 Before continuing work, verify:
 - [ ] I'm in `/Users/gajanandsharma/magure/emarat-ai/app-v2/app-v3`
 - [ ] I've read `docs/PROGRESS.md` to know current status
-- [ ] I understand we're on Phase 1 Complete, Phase 2 Next
+- [ ] I understand we're on Phase 2 Complete, Phase 3 Next
 - [ ] I know the four-agent system and will use all agents
 - [ ] I know to run `npm run check:translations` before commits
 - [ ] I understand SOLID principles must be enforced
@@ -469,6 +495,6 @@ Before continuing work, verify:
 ---
 
 **Last Updated:** October 20, 2025
-**Phase:** 1 Complete, 2 Next
-**Bundle:** 65.87 KB gzipped
-**Status:** Production-ready foundation, ready for Phase 2
+**Phase:** 2 Complete (with color strategy), 3 Next
+**Bundle:** 67.60 KB gzipped
+**Status:** Production-ready foundation + responsive layouts + brand color strategy, ready for Phase 3 feature screens

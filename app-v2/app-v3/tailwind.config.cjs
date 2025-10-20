@@ -40,6 +40,13 @@ module.exports = {
           },
         },
 
+        // Accent color (brand green - for icons, highlights, AI features)
+        accent: {
+          DEFAULT: 'var(--color-accent)',
+          hover: 'var(--color-accent-hover)',
+          light: 'var(--color-accent-light)',
+        },
+
         // Background (uses CSS variables for theme switching)
         background: {
           primary: 'var(--color-bg-primary)',
