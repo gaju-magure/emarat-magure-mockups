@@ -1,11 +1,11 @@
 /**
  * Layout Component
- * Responsive layout with header and navigation
- * Automatically adapts: mobile (bottom nav) or desktop (sidebar nav)
+ * Responsive layout with navigation only (no header)
+ * Desktop: Sidebar with logo + nav + settings
+ * Mobile: Bottom nav + FAB drawer
  */
 
 import { useState } from 'react';
-import { Header } from '../components/Header';
 import { Navigation } from '../components/Navigation';
 import { InsightsScreen } from '@/screens/InsightsScreen';
 import { HomeScreen } from '@/screens/HomeScreen';
@@ -40,16 +40,13 @@ export function Layout({ defaultView = 'home' }: LayoutProps) {
 
   return (
     <div className="min-h-screen min-h-dvh bg-background-primary">
-      {/* Header */}
-      <Header />
-
-      {/* Main Layout Container */}
-      <div className="flex h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)]">
-        {/* Navigation - Sidebar on desktop, bottom bar on mobile */}
+      {/* Main Layout Container - Full viewport height */}
+      <div className="flex h-screen h-dvh">
+        {/* Navigation - Sidebar on desktop, bottom bar + FAB on mobile */}
         <Navigation currentView={currentView} onNavigate={setCurrentView} />
 
         {/* Main Content Area - Screen rendered here */}
-        <main className="flex-1 overflow-hidden pb-16 lg:pb-0">
+        <main className="flex-1 overflow-hidden pb-20 lg:pb-0">
           {renderScreen()}
         </main>
       </div>

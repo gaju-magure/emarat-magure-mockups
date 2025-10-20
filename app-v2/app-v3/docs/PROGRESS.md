@@ -18,68 +18,93 @@
 ## Current State
 - **Detail Screens:** 5 screens, 1,040 lines
 - **Main Screens:** 5 screens, 792 lines (-21% from start)
-- **Shared Components:** 25 components, 1,609 lines
-- **Total Codebase:** ~3,441 lines (screens + components)
+- **Shared Components:** 26 components (added SettingsMenu, removed Header)
+  - Navigation (headerless redesign)
+  - SettingsMenu (compact 3-option popup)
+  - ProfileDrawer (deprecated - replaced by SettingsMenu)
+  - 25 glassmorphic UI components
+- **Total Codebase:** ~3,500 lines (screens + components)
 - **TypeScript:** 0 errors, 100% type coverage
 - **SOLID Violations:** 0
 - **Duplicate Code:** 0 major patterns remaining
-- **Build Status:** Production-ready, brutally efficient
+- **Build Status:** Production-ready, glassmorphic UI complete
+- **Color Strategy:** Blue primary, green for AI only, neutral borders/shadows
 
 ## Current Phase: UI Refinement (Futuristic Glassmorphic Design)
-**Status:** Phase 1 Complete, Ready for Phase 2
+**Status:** Phase 5 Complete - Core UI Transformation Done
 **Goal:** Transform entire app into floating, glassmorphic, futuristic UI
 **Plan Document:** `docs/UI-REFINEMENT-PLAN.md` (700+ lines)
 
 ### Vision
 - Glassmorphism with backdrop blur
-- Glowing borders (no hard edges)
+- Neutral borders (no green overload)
 - Floating cards with depth shadows
-- Neon accent glows
+- Blue for brand, green only for AI
 - Borderless, rounded, everything floats
 
-### Phases (5-6 hours collaborative work)
+### Completed Phases
 1. ✅ **Foundation** - Design tokens & utilities (COMPLETE)
    - 32 CSS variables for glass/glow effects (light + dark modes)
    - Tailwind utilities: backdropBlur, boxShadow, dropShadow
-   - Component classes: .card-glass, .btn-primary, .btn-secondary, .btn-icon
-   - 4 animation keyframes: glow-pulse, border-shimmer, float, shimmer-slide
+   - Component classes: .card-glass, .btn-primary, .btn-accent, .btn-secondary, .btn-icon
+   - 6 animation keyframes: glow-pulse, border-shimmer, float, shimmer-slide, scale-in, fade-in
    - Build verified: No errors
-2. ✅ **Header & Navigation** - Floating chrome (COMPLETE)
-   - Header: Floating glass bar with margins, glow borders, glass search input
-   - Header buttons: .btn-icon with hover glow and scale effects
-   - Notification badge: Pulsing red glow (animate-glow-pulse)
-   - Profile button: Blue glow on hover
-   - Mobile Nav: Floating bottom bar with rounded corners, glass backdrop, glow border
-   - Mobile tabs: Active state with drop-shadow-glow and scale
-   - Desktop Sidebar: Glass background with glow border
-   - Desktop nav items: Glass effect on hover, glow on active state
-   - AI feature indicator: Pulsing green dot with glow
-3. ✅ **Card System** - All major card components (COMPLETE)
-   - KPICard: .card-glass with hover float-xl
-   - AppCard: .card-interactive with icon glow, translateY on hover
-   - PilotCard: Glass with glow border, accent text on accuracy
-   - QuickActionCard: Interactive with emoji scale, text glow
+
+2. ✅ **Header & Navigation Redesign** - Headerless layout (COMPLETE)
+   - **REMOVED:** Entire Header component for maximum screen space
+   - **Desktop:** Full sidebar with logo at top, nav in middle, settings at bottom
+   - **Mobile:** Clean 5-tab bottom nav + settings button (top-right corner)
+   - Mobile Nav: Floating bottom bar with rounded corners, glass backdrop, neutral border
+   - Mobile tabs: Active state with blue glow and scale
+   - Desktop Sidebar: Glass background with logo, navigation items, settings button
+   - Desktop nav items: Glass effect on hover, blue glow on active state
+   - AI feature indicator: Pulsing green dot with glow (Insights only)
+
+3. ✅ **Color Balance Fix** - Blue/Green strategy (COMPLETE)
+   - **Blue (#003a85):** Primary brand color for all main actions, buttons, navigation
+   - **Green (#47a01a):** ONLY for AI features (Insights icon, AI chat, AI indicators)
+   - Changed `.btn-primary` from green to blue
+   - Created `.btn-accent` for AI-specific green buttons
+   - Updated all KPI/Stats icons from green to blue
+   - Removed green from navigation active states → blue
+   - Neutral borders: Changed from green to gray/transparent
+   - Neutral shadows: Removed green tint from float shadows
+   - Border glow: Light mode (black 0.1), Dark mode (white 0.1)
+   - Hover glow: Blue for brand consistency
+
+4. ✅ **Settings Menu** - Compact popup (COMPLETE)
+   - Created SettingsMenu component (3 options only)
+   - Theme toggle (Dark/Light mode) - Yellow icon
+   - Language toggle (EN/AR) - Blue icon
+   - Profile - Blue icon
+   - Compact popup (264px wide) with scale-in animation
+   - Positioned attached to settings button
+   - Mobile: Appears below settings button (top-right)
+   - Desktop: Appears above settings button (bottom of sidebar)
+   - Click outside to close, buttons work without closing popup
+   - Replaced ProfileDrawer (full panel was too much)
+
+5. ✅ **Card System** - All major card components (COMPLETE)
+   - KPICard: Blue icons (changed from green)
+   - StatsGrid: Blue icons (changed from green)
+   - AppCard: .card-interactive with neutral glow
+   - PilotCard: Glass with neutral border
+   - QuickActionCard: Interactive with emoji scale
    - ComplianceMetricCard: Multi-color glow (success/warning)
-   - DocumentCard: Glass with icon scale, text color transition
+   - DocumentCard: Glass with icon scale
    - ChatMessage: User (primary glow) / Assistant (glass-light)
-   - InsightCard: Multi-color glow (success/warning/danger/info)
+   - InsightCard: Multi-color glow (semantic colors)
    - ContentCard: .card-glass wrapper
    - FlaggedClauseCard: Risk-based glows (danger/warning/info)
    - AppDetailHeader: Glass header with .btn-icon back button
-   - PageHeader: Consistent spacing added
-   - ThemeToggle: .btn-icon with accent icons
-   - LanguageToggle: Glass button with glow
+   - PageHeader: Consistent spacing
+   - ThemeToggle: Moved to SettingsMenu
+   - LanguageToggle: Moved to SettingsMenu
    - StatusBadge: Multi-color glows based on status
-   - Total: 17 major components transformed
-4. ✅ **Interactive Elements** - Buttons, inputs, form elements (COMPLETE)
-   - FilterTabs: Glass tabs with active state glow, hover scale
-   - InsightsScreen AI icon: Pulsing glass circle with glow
-   - Quick prompts: Glass cards with emoji scale, text color transition
-   - Chat input: Glass input field with glow focus state
-   - Send button: Accent with glow, scale on hover
-   - "+ New Task" button: .btn-primary class
-   - All buttons now use glassmorphic styling
-5. ⏭️ **Data Visualization & Screens** - Tables, remaining screens (NEXT)
-6. Animations & Polish
+   - FilterTabs: Neutral borders and glows
+   - Total: 18 major components with neutral styling
+
+6. ⏭️ **Data Visualization & Screens** - Tables, remaining screens (NEXT)
+7. Animations & Polish
 
 **Approach:** Section-by-section collaborative refinement with live preview

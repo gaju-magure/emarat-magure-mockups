@@ -65,15 +65,15 @@
   --glow-warning: 0 0 12px rgba(217, 119, 6, 0.5);
   --glow-info: 0 0 12px rgba(3, 105, 161, 0.5);
 
-  /* Float Elevations (depth + glow) - Light Mode */
-  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 4px rgba(71, 160, 26, 0.2);
-  --float-md: 0 4px 12px rgba(0, 0, 0, 0.15), 0 0 6px rgba(71, 160, 26, 0.3);
-  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.2), 0 0 8px rgba(71, 160, 26, 0.4);
-  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.25), 0 0 12px rgba(71, 160, 26, 0.5);
+  /* Float Elevations (depth + subtle glow) - Light Mode */
+  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --float-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.25);
 
-  /* Border Glows - Light Mode */
-  --border-glow: rgba(71, 160, 26, 0.3);
-  --border-glow-hover: rgba(71, 160, 26, 0.6);
+  /* Border Glows - Light Mode (Neutral) */
+  --border-glow: rgba(0, 0, 0, 0.1);
+  --border-glow-hover: rgba(0, 58, 133, 0.3);
 }
 
 .dark {
@@ -142,14 +142,14 @@
   --glow-info: 0 0 14px rgba(147, 197, 253, 0.6);
 
   /* Float Elevations - Dark Mode */
-  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(91, 184, 35, 0.3);
-  --float-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(91, 184, 35, 0.4);
-  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.5), 0 0 10px rgba(91, 184, 35, 0.5);
-  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.6), 0 0 14px rgba(91, 184, 35, 0.6);
+  --float-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --float-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --float-lg: 0 8px 16px rgba(0, 0, 0, 0.5);
+  --float-xl: 0 12px 24px rgba(0, 0, 0, 0.6);
 
-  /* Border Glows - Dark Mode (stronger) */
-  --border-glow: rgba(91, 184, 35, 0.4);
-  --border-glow-hover: rgba(91, 184, 35, 0.7);
+  /* Border Glows - Dark Mode (Neutral) */
+  --border-glow: rgba(255, 255, 255, 0.1);
+  --border-glow-hover: rgba(59, 130, 246, 0.4);
 }
 
 /* RTL Support */
