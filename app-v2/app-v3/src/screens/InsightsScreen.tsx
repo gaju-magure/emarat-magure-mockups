@@ -39,8 +39,8 @@ export function InsightsScreen() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {/* Welcome Message */}
         <div className="text-center py-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-            <Sparkles className="h-8 w-8 text-accent" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full glass-light border border-glow shadow-glow-accent animate-glow-pulse mb-4">
+            <Sparkles className="h-8 w-8 text-accent drop-shadow-glow-md" />
           </div>
           <h2 className="text-xl font-semibold text-text-primary mb-2">
             AI Insights Assistant
@@ -55,10 +55,10 @@ export function InsightsScreen() {
           {QUICK_PROMPTS.map((prompt, idx) => (
             <button
               key={idx}
-              className="flex items-center gap-3 p-4 rounded-lg border border-border bg-background-elevated hover:bg-background-secondary transition-all duration-200 text-left group"
+              className="flex items-center gap-3 p-4 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:-translate-y-1 transition-all duration-300 text-left group"
             >
-              <span className="text-2xl">{prompt.icon}</span>
-              <span className="text-sm text-text-secondary group-hover:text-text-primary">
+              <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{prompt.icon}</span>
+              <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors duration-300">
                 {prompt.text}
               </span>
             </button>
@@ -74,17 +74,18 @@ export function InsightsScreen() {
       </div>
 
       {/* Chat Input - Fixed at bottom */}
-      <div className="border-t border-border bg-background-elevated p-4">
+      <div className="border-t border-glow bg-background-elevated backdrop-blur-glass-md shadow-float-sm p-4">
         <div className="max-w-3xl mx-auto">
           <div className="relative">
             <input
               type="text"
               placeholder="Ask me anything..."
-              className="w-full h-12 pl-4 pr-12 bg-background-secondary border border-border rounded-lg text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent transition-all duration-200"
+              className="w-full h-12 pl-4 pr-12 glass-light border border-glow rounded-lg text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:shadow-glow-md focus:border-glow-hover transition-all duration-300"
             />
             <button
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-md bg-accent hover:bg-accent-hover text-white flex items-center justify-center transition-all duration-200 active:scale-95"
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-lg bg-accent text-white shadow-glow-accent hover:shadow-glow-lg hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-300"
               aria-label="Send message"
+              title="Send message to AI"
             >
               <Send className="h-4 w-4" />
             </button>

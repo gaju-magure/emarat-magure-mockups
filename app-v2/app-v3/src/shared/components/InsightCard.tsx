@@ -11,23 +11,23 @@ import { InsightCardProps, InsightColorClasses } from '@/shared/types/app-detail
 
 const INSIGHT_COLOR_CLASSES: Record<string, InsightColorClasses> = {
   success: {
-    container: 'bg-success-bg border-success-border',
-    icon: 'text-success',
+    container: 'bg-success-bg border-success-border shadow-glow-success',
+    icon: 'text-success drop-shadow-glow-sm',
     title: 'text-success-text',
   },
   warning: {
-    container: 'bg-warning-bg border-warning-border',
-    icon: 'text-warning',
+    container: 'bg-warning-bg border-warning-border shadow-glow-warning',
+    icon: 'text-warning drop-shadow-glow-sm',
     title: 'text-warning-text',
   },
   danger: {
-    container: 'bg-danger-bg border-danger-border',
-    icon: 'text-danger',
+    container: 'bg-danger-bg border-danger-border shadow-glow-danger',
+    icon: 'text-danger drop-shadow-glow-sm',
     title: 'text-danger-text',
   },
   info: {
-    container: 'bg-info-bg border-info-border',
-    icon: 'text-info',
+    container: 'bg-info-bg border-info-border shadow-glow-info',
+    icon: 'text-info drop-shadow-glow-sm',
     title: 'text-info-text',
   },
 };
@@ -37,7 +37,7 @@ export function InsightCard({ insight }: InsightCardProps) {
   const colors = INSIGHT_COLOR_CLASSES[insight.type];
 
   return (
-    <div className={`p-4 rounded-lg border ${colors.container}`}>
+    <div className={`p-4 rounded-lg border backdrop-blur-glass-sm transition-all duration-300 hover:shadow-float-md ${colors.container}`}>
       <div className="flex items-start gap-3">
         <Icon className={`h-5 w-5 mt-0.5 ${colors.icon}`} />
         <div>

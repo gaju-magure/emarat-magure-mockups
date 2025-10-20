@@ -113,8 +113,8 @@ export function RFPEvaluationDetail({ onClose }: RFPEvaluationDetailProps) {
     {
       header: 'Rank',
       accessor: (_proposal, index) => (
-        <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-          <span className="text-lg font-bold text-accent">
+        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+          <span className="text-lg font-bold text-primary">
             #{index + 1}
           </span>
         </div>

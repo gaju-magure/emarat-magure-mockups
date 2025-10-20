@@ -30,12 +30,17 @@ export function FlaggedClauseCard({
 }: FlaggedClauseCardProps) {
   // Icon color based on risk level
   const iconColorClass =
-    risk === 'High' ? 'text-danger' :
-    risk === 'Medium' ? 'text-warning' :
-    'text-info';
+    risk === 'High' ? 'text-danger drop-shadow-glow-sm' :
+    risk === 'Medium' ? 'text-warning drop-shadow-glow-sm' :
+    'text-info drop-shadow-glow-sm';
+
+  const cardShadowClass =
+    risk === 'High' ? 'shadow-glow-danger' :
+    risk === 'Medium' ? 'shadow-glow-warning' :
+    'shadow-glow-info';
 
   return (
-    <div className="p-4 rounded-lg border border-border bg-background-secondary">
+    <div className={`p-4 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-float-md transition-all duration-300 ${cardShadowClass}`}>
       <div className="flex items-start justify-between mb-2">
         <div className="flex items-center gap-2">
           <AlertTriangle className={`h-5 w-5 ${iconColorClass}`} />

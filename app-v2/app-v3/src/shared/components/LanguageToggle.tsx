@@ -14,18 +14,17 @@ export function LanguageToggle() {
       onClick={toggle}
       className="
         relative inline-flex items-center justify-center gap-1.5
-        h-10 px-3 rounded-md
-        bg-background-secondary hover:bg-background-tertiary
-        border border-border
+        h-10 px-3 rounded-lg
+        glass-light border border-glow
         text-text-primary
-        transition-all duration-200
-        focus:outline-none focus:ring-2 focus:ring-border-focus focus:ring-offset-2
+        hover:shadow-glow-sm hover:scale-105
         active:scale-95
+        transition-all duration-300
         font-medium text-sm
       "
       aria-label={t('language.toggle')}
     >
-      <Languages className="h-4 w-4" />
+      <Languages className="h-4 w-4 text-text-primary" />
       <span className="uppercase">{language === 'en' ? 'AR' : 'EN'}</span>
     </button>
   );

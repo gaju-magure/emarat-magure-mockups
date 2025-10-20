@@ -34,10 +34,10 @@ export function ChatMessage({
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} ${className}`}
     >
       <div
-        className={`max-w-[80%] rounded-lg p-4 ${
+        className={`max-w-[80%] rounded-lg p-4 transition-all duration-300 ${
           isUser
-            ? 'bg-primary text-white'
-            : 'bg-background-elevated border border-border'
+            ? 'bg-primary text-white shadow-glow-primary'
+            : 'glass-light border border-glow shadow-float-sm hover:shadow-float-md'
         }`}
       >
         <p

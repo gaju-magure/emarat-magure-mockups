@@ -36,12 +36,12 @@ export function DocumentCard({
   return (
     <div
       onClick={onClick}
-      className={`flex items-center justify-between p-4 rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors cursor-pointer ${className}`}
+      className={`flex items-center justify-between p-4 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:border-glow-hover transition-all duration-300 cursor-pointer group ${className}`}
     >
       <div className="flex items-center gap-3">
-        <FileText className="h-5 w-5 text-accent" />
+        <FileText className="h-5 w-5 text-text-primary group-hover:scale-110 transition-transform duration-300" />
         <div>
-          <div className="text-sm font-medium text-text-primary">
+          <div className="text-sm font-medium text-text-primary transition-colors duration-300">
             {document.name}
           </div>
           <div className="text-xs text-text-tertiary">
@@ -50,10 +50,10 @@ export function DocumentCard({
         </div>
       </div>
       <span
-        className={`text-xs px-2 py-1 rounded ${
+        className={`text-xs px-2 py-1 rounded shadow-glow-sm ${
           isCurrent
-            ? 'bg-success-bg text-success-text'
-            : 'bg-warning-bg text-warning-text'
+            ? 'bg-success-bg text-success-text border border-success-border'
+            : 'bg-warning-bg text-warning-text border border-warning-border'
         }`}
       >
         {document.status}

@@ -37,7 +37,7 @@ export function MetricsGrid({ metrics, className = '' }: MetricsGridProps) {
             {metric.label}
           </div>
           <div className={`text-sm font-semibold ${
-            metric.highlight ? 'text-accent' : 'text-text-primary'
+            metric.highlight ? 'text-primary' : 'text-text-primary'
           }`}>
             {metric.value}
           </div>

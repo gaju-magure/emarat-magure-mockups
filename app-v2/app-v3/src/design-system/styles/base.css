@@ -176,6 +176,16 @@
   /* Button base classes */
   .btn-primary {
     @apply px-6 py-3 rounded-xl font-medium text-white;
+    @apply bg-primary backdrop-blur-sm;
+    @apply shadow-glow-primary;
+    @apply hover:shadow-glow-lg hover:-translate-y-0.5;
+    @apply active:scale-95;
+    @apply transition-all duration-300;
+    border: 1px solid rgba(0, 58, 133, 0.5);
+  }
+
+  .btn-accent {
+    @apply px-6 py-3 rounded-xl font-medium text-white;
     @apply bg-accent backdrop-blur-sm;
     @apply shadow-glow-accent;
     @apply hover:shadow-glow-lg hover:-translate-y-0.5;

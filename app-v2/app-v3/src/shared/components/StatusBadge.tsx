@@ -8,17 +8,17 @@ import { StatusBadgeProps, StatusConfig } from '@/shared/types/app-details';
 
 const STATUS_CONFIGS: Record<string, StatusConfig> = {
   Live: {
-    bgClass: 'bg-success-bg',
+    bgClass: 'bg-success-bg shadow-glow-success',
     textClass: 'text-success-text',
     borderClass: 'border-success-border',
   },
   'In Development': {
-    bgClass: 'bg-warning-bg',
+    bgClass: 'bg-warning-bg shadow-glow-warning',
     textClass: 'text-warning-text',
     borderClass: 'border-warning-border',
   },
   Planned: {
-    bgClass: 'bg-info-bg',
+    bgClass: 'bg-info-bg shadow-glow-info',
     textClass: 'text-info-text',
     borderClass: 'border-info-border',
   },
@@ -29,7 +29,7 @@ export function StatusBadge({ status }: StatusBadgeProps) {
 
   return (
     <span
-      className={`px-3 py-1 rounded-full text-xs font-medium border ${config.bgClass} ${config.textClass} ${config.borderClass}`}
+      className={`px-3 py-1 rounded-full text-xs font-medium border backdrop-blur-glass-sm ${config.bgClass} ${config.textClass} ${config.borderClass}`}
     >
       {status}
     </span>

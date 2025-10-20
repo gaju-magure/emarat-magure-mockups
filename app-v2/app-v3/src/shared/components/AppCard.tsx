@@ -56,15 +56,15 @@ export function AppCard({
   return (
     <div
       onClick={() => onClick(app.id)}
-      className={`card p-6 hover:shadow-lg transition-all duration-200 cursor-pointer group ${className}`}
+      className={`card-interactive p-6 hover:shadow-float-xl hover:-translate-y-1 transition-all duration-300 group ${className}`}
     >
       {/* App Icon & Status */}
       <div className="flex items-start justify-between mb-4">
-        <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
-          <Icon className="h-6 w-6 text-accent" />
+        <div className="w-12 h-12 rounded-lg glass-light border border-glow flex items-center justify-center group-hover:shadow-glow-md transition-all duration-300">
+          <Icon className="h-6 w-6 text-text-primary" />
         </div>
         <div
-          className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusConfig.bgClass} ${statusConfig.textClass} border ${statusConfig.borderClass}`}
+          className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium ${statusConfig.bgClass} ${statusConfig.textClass} border ${statusConfig.borderClass} shadow-glow-sm`}
         >
           <StatusIcon className="h-3 w-3" />
           {app.status}
@@ -72,7 +72,7 @@ export function AppCard({
       </div>
 
       {/* App Info */}
-      <h3 className="text-lg font-semibold text-text-primary mb-2 group-hover:text-accent transition-colors">
+      <h3 className="text-lg font-semibold text-text-primary mb-2 transition-all duration-300">
         {app.name}
       </h3>
       <p className="text-sm text-text-secondary mb-4 line-clamp-2">

@@ -14,9 +14,9 @@ export function Header() {
   const { t } = useLanguage();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background-elevated backdrop-blur-sm">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 w-full px-4 py-3">
+      <div className="container mx-auto">
+        <div className="flex h-16 items-center justify-between gap-4 px-4 rounded-xl bg-background-elevated backdrop-blur-glass-md shadow-float-md border border-glow transition-all duration-300">
           {/* Logo Section */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <img
@@ -32,19 +32,19 @@ export function Header() {
           {/* Search Bar - Hidden on mobile, shown on tablet+ */}
           <div className="hidden md:flex flex-1 max-w-md">
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-accent" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-tertiary" />
               <input
                 type="search"
                 placeholder={t('header.search')}
                 className="
                   w-full h-10 pl-10 pr-4
-                  bg-background-secondary
-                  border border-border
-                  rounded-md
+                  glass-light
+                  border border-glow
+                  rounded-lg
                   text-sm text-text-primary
                   placeholder:text-text-tertiary
-                  focus:outline-none focus:ring-2 focus:ring-accent
-                  transition-all duration-200
+                  focus:outline-none focus:shadow-glow-md focus:border-glow-hover
+                  transition-all duration-300
                 "
               />
             </div>
@@ -54,20 +54,10 @@ export function Header() {
           <div className="flex items-center gap-2">
             {/* Mobile Search Icon */}
             <button
-              className="
-                md:hidden
-                inline-flex items-center justify-center
-                h-10 w-10 rounded-md
-                bg-background-secondary hover:bg-background-tertiary
-                border border-border
-                text-accent hover:text-accent-hover
-                transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-accent
-                active:scale-95
-              "
+              className="btn-icon md:hidden"
               aria-label={t('header.search')}
             >
-              <Search className="h-5 w-5" />
+              <Search className="h-5 w-5 text-text-primary" />
             </button>
 
             {/* Theme Toggle */}
@@ -78,22 +68,12 @@ export function Header() {
 
             {/* Notifications */}
             <button
-              className="
-                relative
-                inline-flex items-center justify-center
-                h-10 w-10 rounded-md
-                bg-background-secondary hover:bg-background-tertiary
-                border border-border
-                text-accent hover:text-accent-hover
-                transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-accent
-                active:scale-95
-              "
+              className="btn-icon relative"
               aria-label={t('header.notifications')}
             >
-              <Bell className="h-5 w-5" />
+              <Bell className="h-5 w-5 text-text-primary" />
               {/* Notification Badge */}
-              <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-danger border border-background-elevated" />
+              <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-danger shadow-glow-danger animate-glow-pulse" />
             </button>
 
             {/* User Profile */}
@@ -102,10 +82,10 @@ export function Header() {
                 inline-flex items-center justify-center
                 h-10 w-10 rounded-full
                 bg-primary text-white
-                hover:bg-primary-600
-                transition-all duration-200
-                focus:outline-none focus:ring-2 focus:ring-border-focus focus:ring-offset-2
+                shadow-glow-primary
+                hover:shadow-glow-lg hover:scale-110
                 active:scale-95
+                transition-all duration-300
               "
               aria-label={t('header.profile')}
             >

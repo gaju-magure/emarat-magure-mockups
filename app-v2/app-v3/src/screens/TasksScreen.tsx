@@ -116,7 +116,7 @@ export function TasksScreen() {
           title="Tasks"
           subtitle="Manage and track your AI project tasks"
           action={
-            <button className="px-4 py-2 rounded-lg bg-accent hover:bg-accent-hover text-white text-sm font-medium transition-all duration-200">
+            <button className="btn-primary">
               + New Task
             </button>
           }

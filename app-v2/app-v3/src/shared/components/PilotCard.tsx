@@ -37,15 +37,15 @@ export function PilotCard({
 
   return (
     <div
-      className={`flex items-center justify-between p-4 rounded-lg bg-background-secondary hover:bg-background-tertiary transition-colors duration-200 ${className}`}
+      className={`flex items-center justify-between p-4 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:border-glow-hover transition-all duration-300 group ${className}`}
     >
       {/* Pilot Info */}
       <div className="flex-1">
         <div className="flex items-center gap-3">
-          <h3 className="font-medium text-text-primary">
+          <h3 className="font-medium text-text-primary transition-colors duration-300">
             {pilot.name}
           </h3>
-          <span className={`text-xs px-2 py-1 rounded-full ${statusClasses}`}>
+          <span className={`text-xs px-2 py-1 rounded-full shadow-glow-sm ${statusClasses}`}>
             {pilot.status}
           </span>
         </div>
@@ -60,7 +60,7 @@ export function PilotCard({
       {onView && (
         <button
           onClick={onView}
-          className="text-accent hover:text-accent-hover text-sm font-medium transition-colors"
+          className="text-text-secondary hover:text-text-primary text-sm font-medium transition-all duration-300 hover:translate-x-1"
         >
           View →
         </button>

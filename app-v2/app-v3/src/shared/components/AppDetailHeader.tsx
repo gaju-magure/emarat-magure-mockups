@@ -10,13 +10,13 @@ import { StatusBadge } from './StatusBadge';
 
 export function AppDetailHeader({ title, subtitle, status, onClose }: AppDetailHeaderProps) {
   return (
-    <div className="sticky top-0 z-10 bg-background-elevated border-b border-border">
+    <div className="sticky top-0 z-10 bg-background-elevated backdrop-blur-glass-md border-b border-glow shadow-float-sm">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={onClose}
-              className="w-10 h-10 rounded-lg bg-background-secondary hover:bg-background-tertiary flex items-center justify-center transition-colors"
+              className="btn-icon"
               aria-label="Back to gallery"
             >
               <ArrowLeft className="h-5 w-5 text-text-primary" />

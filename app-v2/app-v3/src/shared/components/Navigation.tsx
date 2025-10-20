@@ -64,8 +64,8 @@ export function Navigation({ currentView = 'home', onNavigate }: NavigationProps
   return (
     <>
       {/* Mobile Bottom Navigation */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-background-elevated backdrop-blur-sm safe-bottom">
-        <div className="grid grid-cols-5 h-16">
+      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 px-4 pb-4 safe-bottom">
+        <div className="grid grid-cols-5 h-16 rounded-xl bg-background-elevated backdrop-blur-glass-md shadow-float-lg border border-glow transition-all duration-300">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             const isAiFeature = item.id === 'insights';
@@ -76,22 +76,23 @@ export function Navigation({ currentView = 'home', onNavigate }: NavigationProps
                 className={`
                   relative
                   flex flex-col items-center justify-center gap-1
-                  transition-all duration-200
+                  rounded-lg
+                  transition-all duration-300
                   ${isActive
-                    ? 'text-accent'
+                    ? 'text-primary drop-shadow-glow-md scale-105'
                     : isAiFeature
-                    ? 'text-accent-light hover:text-accent'
-                    : 'text-text-tertiary hover:text-accent'
+                    ? 'text-accent hover:text-accent-hover hover:drop-shadow-glow-sm hover:scale-105'
+                    : 'text-text-tertiary hover:text-text-primary hover:scale-105'
                   }
                 `}
                 aria-label={item.label}
                 aria-current={isActive ? 'page' : undefined}
               >
                 {isAiFeature && !isActive && (
-                  <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                  <span className="absolute top-2 right-4 h-1.5 w-1.5 rounded-full bg-accent shadow-glow-accent animate-glow-pulse" />
                 )}
                 {item.icon}
-                <span className={`text-xs font-medium ${isActive ? 'text-primary' : ''}`}>{item.label}</span>
+                <span className={`text-xs font-medium`}>{item.label}</span>
               </button>
             );
           })}
@@ -99,8 +100,8 @@ export function Navigation({ currentView = 'home', onNavigate }: NavigationProps
       </nav>
 
       {/* Desktop Sidebar Navigation */}
-      <nav className="hidden lg:flex flex-col w-64 border-r border-border bg-background-elevated">
-        <div className="flex flex-col gap-1 p-4">
+      <nav className="hidden lg:flex flex-col w-64 border-r border-glow bg-background-elevated backdrop-blur-glass-sm">
+        <div className="flex flex-col gap-2 p-4">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             const isAiFeature = item.id === 'insights';
@@ -110,20 +111,20 @@ export function Navigation({ currentView = 'home', onNavigate }: NavigationProps
                 onClick={() => handleClick(item.id)}
                 className={`
                   relative
-                  flex items-center gap-3 px-4 py-3 rounded-md
+                  flex items-center gap-3 px-4 py-3 rounded-lg
                   text-sm font-medium
-                  transition-all duration-200
+                  transition-all duration-300
                   ${isActive
-                    ? 'bg-primary text-white'
-                    : 'text-text-secondary hover:text-accent hover:bg-background-secondary'
+                    ? 'glass-medium text-text-primary shadow-glow-primary border border-glow-hover'
+                    : 'text-text-secondary hover:text-text-primary hover:glass-light hover:shadow-glow-sm hover:border hover:border-glow'
                   }
                 `}
                 aria-label={item.label}
                 aria-current={isActive ? 'page' : undefined}
               >
-                <span className={`relative ${isActive ? '' : 'text-accent'}`}>
+                <span className={`relative ${isAiFeature ? 'text-accent' : ''}`}>
                   {isAiFeature && !isActive && (
-                    <span className="absolute -top-1 -right-1 h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                    <span className="absolute -top-1 -right-1 h-1.5 w-1.5 rounded-full bg-accent shadow-glow-accent animate-glow-pulse" />
                   )}
                   {item.icon}
                 </span>

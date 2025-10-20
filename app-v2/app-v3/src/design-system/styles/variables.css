@@ -51,11 +51,11 @@
   --glass-blur-lg: 16px;
   --glass-blur-xl: 24px;
 
-  /* Glow Shadows - Light Mode */
-  --glow-sm: 0 0 8px rgba(71, 160, 26, 0.4);
-  --glow-md: 0 0 12px rgba(71, 160, 26, 0.5);
-  --glow-lg: 0 0 16px rgba(71, 160, 26, 0.6);
-  --glow-xl: 0 0 24px rgba(71, 160, 26, 0.7);
+  /* Glow Shadows - Light Mode (neutral/subtle) */
+  --glow-sm: 0 0 8px rgba(0, 0, 0, 0.15);
+  --glow-md: 0 0 12px rgba(0, 0, 0, 0.2);
+  --glow-lg: 0 0 16px rgba(0, 0, 0, 0.25);
+  --glow-xl: 0 0 24px rgba(0, 0, 0, 0.3);
 
   /* Colored Glows - Light Mode */
   --glow-accent: 0 0 12px rgba(71, 160, 26, 0.5);

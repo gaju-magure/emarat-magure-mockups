@@ -35,7 +35,7 @@ export function PageHeader({
   if (action) {
     // Layout with action button (e.g., TasksScreen)
     return (
-      <div className={`flex items-center justify-between ${className}`}>
+      <div className={`flex items-center justify-between mb-6 ${className}`}>
         <div>
           <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
             {title}
@@ -51,7 +51,7 @@ export function PageHeader({
 
   // Simple layout without action
   return (
-    <div className={className}>
+    <div className={`mb-6 ${className}`}>
       <h1 className="text-2xl md:text-3xl font-semibold text-text-primary">
         {title}
       </h1>

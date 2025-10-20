@@ -14,23 +14,14 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      className="
-        relative inline-flex items-center justify-center
-        h-10 w-10 rounded-md
-        bg-background-secondary hover:bg-background-tertiary
-        border border-border
-        text-text-primary
-        transition-all duration-200
-        focus:outline-none focus:ring-2 focus:ring-border-focus focus:ring-offset-2
-        active:scale-95
-      "
+      className="btn-icon"
       aria-label={t('theme.toggle')}
       title={mode === 'dark' ? t('theme.light') : t('theme.dark')}
     >
       {mode === 'dark' ? (
-        <Sun className="h-5 w-5" />
+        <Sun className="h-5 w-5 text-text-primary" />
       ) : (
-        <Moon className="h-5 w-5" />
+        <Moon className="h-5 w-5 text-text-primary" />
       )}
     </button>
   );

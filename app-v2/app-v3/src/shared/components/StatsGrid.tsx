@@ -24,8 +24,8 @@ export function StatsGrid({ stats }: StatsGridProps) {
         return (
           <div key={idx} className="card p-4">
             <div className="flex items-start justify-between mb-3">
-              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                <Icon className="h-5 w-5 text-accent" />
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                <Icon className="h-5 w-5 text-primary" />
               </div>
               <span className={`text-xs font-medium px-2 py-1 rounded ${changeColorClass}`}>
                 {stat.change}

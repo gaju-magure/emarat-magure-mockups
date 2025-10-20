@@ -35,7 +35,7 @@ export function ContentCard({
   const actionElement = titleAction || action;
 
   return (
-    <div className={`card p-6 ${className}`}>
+    <div className={`card-glass p-6 ${className}`}>
       <div className={`mb-4 ${actionElement ? 'flex items-center justify-between' : ''}`}>
         <div>
           <h2 className="text-lg font-semibold text-text-primary">

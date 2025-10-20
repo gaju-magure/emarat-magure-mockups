@@ -32,10 +32,12 @@ export function QuickActionCard({
   return (
     <button
       onClick={onClick}
-      className={`card p-4 hover:shadow-lg transition-all duration-200 group text-left ${className}`}
+      className={`card-interactive p-4 hover:shadow-float-lg hover:-translate-y-1 transition-all duration-300 group text-left ${className}`}
     >
-      <div className="text-3xl mb-2">{action.icon}</div>
-      <div className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors">
+      <div className="text-3xl mb-2 group-hover:scale-110 transition-transform duration-300">
+        {action.icon}
+      </div>
+      <div className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-all duration-300">
         {action.label}
       </div>
     </button>

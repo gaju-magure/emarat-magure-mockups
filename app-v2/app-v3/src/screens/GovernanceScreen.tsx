@@ -139,7 +139,7 @@ export function GovernanceScreen() {
             <h2 className="text-lg font-semibold text-text-primary">
               Recent Audit Logs
             </h2>
-            <button className="text-accent hover:text-accent-hover text-sm font-medium transition-colors">
+            <button className="text-primary hover:text-primary/80 text-sm font-medium transition-colors">
               View All →
             </button>
           </div>

@@ -40,18 +40,18 @@ export function ComplianceMetricCard({
 
   return (
     <div
-      className={`card p-4 border-l-4 ${
-        isCompliant ? 'border-l-success' : 'border-l-warning'
+      className={`card-glass p-4 border-l-4 hover:shadow-float-md transition-all duration-300 ${
+        isCompliant ? 'border-l-success shadow-glow-success' : 'border-l-warning shadow-glow-warning'
       } ${className}`}
     >
       <div className="flex items-start justify-between mb-3">
         <div
-          className={`w-10 h-10 rounded-lg flex items-center justify-center ${
-            isCompliant ? 'bg-success/10' : 'bg-warning/10'
+          className={`w-10 h-10 rounded-lg glass-light border border-glow flex items-center justify-center ${
+            isCompliant ? 'shadow-glow-success' : 'shadow-glow-warning'
           }`}
         >
           <Icon
-            className={`h-5 w-5 ${
+            className={`h-5 w-5 drop-shadow-glow-sm ${
               isCompliant ? 'text-success' : 'text-warning'
             }`}
           />

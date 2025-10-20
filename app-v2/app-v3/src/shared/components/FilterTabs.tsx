@@ -39,10 +39,10 @@ export function FilterTabs({
           <button
             key={item}
             onClick={() => onChange(item)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-300 ${
               isActive
-                ? 'bg-primary text-white'
-                : 'bg-background-secondary text-text-secondary hover:bg-background-tertiary hover:text-text-primary'
+                ? 'glass-medium text-text-primary shadow-glow-md border border-glow-hover'
+                : 'glass-light text-text-secondary border border-glow hover:glass-medium hover:text-text-primary hover:shadow-glow-sm hover:scale-105'
             }`}
           >
             {item}
