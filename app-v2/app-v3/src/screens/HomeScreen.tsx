@@ -4,8 +4,10 @@
  */
 
 import { TrendingUp, TrendingDown, Activity, Zap } from 'lucide-react';
+import { KPICard } from '@/shared/components/KPICard';
+import { KPI } from '@/shared/types/screen-data-models';
 
-const KPI_DATA = [
+const KPI_DATA: KPI[] = [
   {
     label: 'Active AI Apps',
     value: '12',
@@ -73,34 +75,18 @@ export function HomeScreen() {
 
         {/* KPI Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {KPI_DATA.map((kpi, idx) => {
-            const Icon = kpi.icon;
-            return (
-              <div
-                key={idx}
-                className="card p-4 hover:shadow-lg transition-shadow duration-200"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center">
-                    <Icon className="h-5 w-5 text-accent" />
-                  </div>
-                  <span
-                    className={`text-xs font-medium px-2 py-1 rounded ${
-                      kpi.trend === 'up'
-                        ? 'bg-success-bg text-success-text'
-                        : 'bg-info-bg text-info-text'
-                    }`}
-                  >
-                    {kpi.change}
-                  </span>
-                </div>
-                <div className="text-2xl font-bold text-text-primary mb-1">
-                  {kpi.value}
-                </div>
-                <div className="text-sm text-text-secondary">{kpi.label}</div>
-              </div>
-            );
-          })}
+          {KPI_DATA.map((kpi, idx) => (
+            <KPICard
+              key={idx}
+              label={kpi.label}
+              value={kpi.value}
+              icon={kpi.icon}
+              badge={{
+                text: kpi.change,
+                variant: kpi.trend === 'up' ? 'success' : 'info'
+              }}
+            />
+          ))}
         </div>
 
         {/* Active Pilots */}

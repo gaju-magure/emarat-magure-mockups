@@ -3,7 +3,7 @@
  * Audit logs, compliance status, and documents
  */
 
-import { Shield, FileText, Activity, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Shield, FileText, Activity, CheckCircle } from 'lucide-react';
 
 const COMPLIANCE_METRICS = [
   {

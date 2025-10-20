@@ -3,9 +3,12 @@
  * Task management with filters and grouping by department
  */
 
+import { useState } from 'react';
 import { Calendar, User, Flag, CheckCircle2, Clock } from 'lucide-react';
+import { FilterTabs } from '@/shared/components/FilterTabs';
+import { Task } from '@/shared/types/screen-data-models';
 
-const TASKS = [
+const TASKS: Task[] = [
   {
     id: 1,
     title: 'Review Invoice Reconciliation Model',
@@ -93,6 +96,8 @@ const STATUS_CONFIG = {
 };
 
 export function TasksScreen() {
+  const [activeFilter, setActiveFilter] = useState('All Tasks');
+
   // Group tasks by department
   const tasksByDepartment = TASKS.reduce((acc, task) => {
     if (!acc[task.department]) {
@@ -121,20 +126,11 @@ export function TasksScreen() {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {['All Tasks', 'In Progress', 'Pending', 'Overdue', 'Completed'].map((filter) => (
-            <button
-              key={filter}
-              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                filter === 'All Tasks'
-                  ? 'bg-primary text-white'
-                  : 'bg-background-secondary text-text-secondary hover:bg-background-tertiary hover:text-text-primary'
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
-        </div>
+        <FilterTabs
+          items={['All Tasks', 'In Progress', 'Pending', 'Overdue', 'Completed']}
+          activeItem={activeFilter}
+          onChange={setActiveFilter}
+        />
 
         {/* Tasks Grouped by Department */}
         <div className="space-y-6">

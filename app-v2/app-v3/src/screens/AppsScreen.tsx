@@ -5,15 +5,17 @@
 
 import { useState } from 'react';
 import { FileText, BarChart3, TrendingUp, FileSearch, Users, CheckCircle, Clock, AlertCircle } from 'lucide-react';
+import { FilterTabs } from '@/shared/components/FilterTabs';
 import { InvoiceReconciliationDetail } from './app-details/InvoiceReconciliationDetail';
 import { RFPEvaluationDetail } from './app-details/RFPEvaluationDetail';
 import { DemandForecastingDetail } from './app-details/DemandForecastingDetail';
 import { ContractReviewDetail } from './app-details/ContractReviewDetail';
 import { CustomerInsightsDetail } from './app-details/CustomerInsightsDetail';
+import { App } from '@/shared/types/screen-data-models';
 
 const APP_CATEGORIES = ['All', 'Live', 'In Development', 'Planned'];
 
-const APPS = [
+const APPS: App[] = [
   {
     id: 1,
     name: 'Invoice Reconciliation',
@@ -102,6 +104,7 @@ const STATUS_CONFIG = {
 
 export function AppsScreen() {
   const [selectedAppId, setSelectedAppId] = useState<number | null>(null);
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const handleAppClick = (appId: number) => {
     // Only open detail screens for apps 1-5 (apps with detail screens)
@@ -147,20 +150,11 @@ export function AppsScreen() {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2">
-          {APP_CATEGORIES.map((category) => (
-            <button
-              key={category}
-              className={`px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 ${
-                category === 'All'
-                  ? 'bg-primary text-white'
-                  : 'bg-background-secondary text-text-secondary hover:bg-background-tertiary hover:text-text-primary'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
+        <FilterTabs
+          items={APP_CATEGORIES}
+          activeItem={activeFilter}
+          onChange={setActiveFilter}
+        />
 
         {/* Apps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

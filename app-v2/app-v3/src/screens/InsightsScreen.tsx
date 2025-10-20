@@ -4,7 +4,6 @@
  */
 
 import { Send, Sparkles } from 'lucide-react';
-import { useLanguage } from '@/core/hooks/useLanguage';
 
 const QUICK_PROMPTS = [
   { icon: '📊', text: 'Show me today\'s KPIs' },
@@ -32,8 +31,6 @@ const SAMPLE_MESSAGES = [
 ];
 
 export function InsightsScreen() {
-  const { t } = useLanguage();
-
   return (
     <div className="h-full flex flex-col bg-background-primary">
       {/* Chat Messages Area */}
