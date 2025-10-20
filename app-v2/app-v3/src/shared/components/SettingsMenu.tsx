@@ -39,20 +39,20 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
 
       {/* Compact Popup Menu - Attached to settings button */}
       <div
-        className="fixed top-16 right-4 lg:top-auto lg:bottom-20 lg:left-72 z-50 w-64 bg-background-elevated backdrop-blur-glass-lg border border-glow rounded-xl shadow-float-xl animate-scale-in"
+        className="fixed top-16 right-3 lg:top-auto lg:bottom-24 lg:left-24 z-50 w-64 bg-background-elevated backdrop-blur-glass-lg shadow-float-xl rounded-xl animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-3 space-y-2">
           {/* Theme Toggle */}
           <button
             onClick={handleToggleTheme}
-            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:-translate-y-0.5 active:scale-95 transition-all duration-300 group"
+            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-background-tertiary/50 hover:shadow-float-sm active:scale-95 transition-all duration-200 group"
           >
             <div className="w-9 h-9 rounded-lg bg-warning/10 flex items-center justify-center group-hover:bg-warning/20 transition-colors">
               {mode === 'dark' ? (
-                <Sun className="h-4 w-4 text-warning" />
+                <Sun className="h-5 w-5 text-warning" />
               ) : (
-                <Moon className="h-4 w-4 text-warning" />
+                <Moon className="h-5 w-5 text-warning" />
               )}
             </div>
             <span className="text-sm font-medium text-text-primary">
@@ -63,10 +63,10 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
           {/* Language Toggle */}
           <button
             onClick={handleToggleLanguage}
-            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:-translate-y-0.5 active:scale-95 transition-all duration-300 group"
+            className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-background-tertiary/50 hover:shadow-float-sm active:scale-95 transition-all duration-200 group"
           >
             <div className="w-9 h-9 rounded-lg bg-info/10 flex items-center justify-center group-hover:bg-info/20 transition-colors">
-              <Languages className="h-4 w-4 text-info" />
+              <Languages className="h-5 w-5 text-info" />
             </div>
             <span className="text-sm font-medium text-text-primary">
               {language === 'en' ? 'العربية' : 'English'}
@@ -74,9 +74,9 @@ export function SettingsMenu({ isOpen, onClose }: SettingsMenuProps) {
           </button>
 
           {/* Profile */}
-          <button className="w-full flex items-center gap-3 px-3 py-3 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:-translate-y-0.5 active:scale-95 transition-all duration-300 group">
+          <button className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-background-tertiary/50 hover:shadow-float-sm active:scale-95 transition-all duration-200 group">
             <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-              <User className="h-4 w-4 text-primary" />
+              <User className="h-5 w-5 text-primary" />
             </div>
             <span className="text-sm font-medium text-text-primary">
               Profile

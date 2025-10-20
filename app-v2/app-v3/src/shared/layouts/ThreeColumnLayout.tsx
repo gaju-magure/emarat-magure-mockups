@@ -55,16 +55,16 @@ export function ThreeColumnLayout({ children, currentView = 'insights', onNaviga
         {/* Bottom Navigation */}
         <Navigation currentView={currentView} onNavigate={onNavigate} />
 
-        {/* Floating Alerts Button - Items requiring immediate attention */}
+        {/* Floating Alerts Button - Sleek design with urgency */}
         <button
           onClick={() => setIsAlertsOpen(true)}
-          className="fixed bottom-24 right-4 z-40 w-14 h-14 rounded-full bg-danger text-white shadow-glow-danger hover:shadow-glow-lg hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-300"
+          className="fixed bottom-24 right-3 z-40 w-14 h-14 rounded-full bg-danger backdrop-blur-glass-md text-white shadow-glow-danger hover:shadow-glow-lg hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-200"
           aria-label="Open alerts requiring immediate attention"
           title="Urgent Alerts & Info"
         >
           <AlertCircle className="h-6 w-6" />
           {urgentCount > 0 && (
-            <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-white text-danger text-xs font-semibold flex items-center justify-center animate-glow-pulse">
+            <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-white text-danger text-xs font-bold flex items-center justify-center animate-glow-pulse shadow-float-md">
               {urgentCount}
             </span>
           )}
@@ -73,13 +73,14 @@ export function ThreeColumnLayout({ children, currentView = 'insights', onNaviga
         {/* Alerts Drawer (Mobile) */}
         <AlertsPanel isOpen={isAlertsOpen} onClose={() => setIsAlertsOpen(false)} />
 
-        {/* Settings Button (Mobile - moved from Navigation) */}
+        {/* Settings Button (Mobile - Sleek floating button) */}
         <button
           onClick={() => setIsSettingsOpen(!isSettingsOpen)}
-          className="fixed top-4 right-4 z-40 w-10 h-10 rounded-full bg-primary text-white shadow-glow-primary hover:shadow-glow-lg hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center"
+          className="fixed top-3 right-3 z-40 w-11 h-11 rounded-full bg-primary backdrop-blur-glass-md text-white shadow-glow-primary hover:shadow-glow-lg hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center"
           aria-label="Open settings"
+          title="Settings"
         >
-          <Settings className="h-5 w-5" />
+          <Settings className="h-5 w-5 hover:rotate-90 transition-transform duration-200" />
         </button>
       </div>
 

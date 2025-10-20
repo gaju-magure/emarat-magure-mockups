@@ -1,9 +1,10 @@
 /**
  * CollapsibleNav Component
- * Collapsible navigation sidebar: icons only (64px) → expands on hover (256px)
+ * Premium collapsible navigation: icons only (80px) → expands on hover (280px)
+ * Futuristic glassmorphic design with smooth animations
  */
 
-import { Home, Lightbulb, Grid3x3, CheckSquare, Shield, Settings } from 'lucide-react';
+import { Home, Grid3x3, CheckSquare, Shield, Settings, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/core/hooks/useLanguage';
 import brandConfig from '@/config/brand.config';
 
@@ -26,27 +27,27 @@ export function CollapsibleNav({ currentView = 'insights', onNavigate, onSetting
     {
       id: 'insights',
       label: t('nav.insights'),
-      icon: <Lightbulb className="h-5 w-5" />,
+      icon: <Sparkles className="h-6 w-6" />,
     },
     {
       id: 'home',
       label: t('nav.home'),
-      icon: <Home className="h-5 w-5" />,
+      icon: <Home className="h-6 w-6" />,
     },
     {
       id: 'apps',
       label: t('nav.apps'),
-      icon: <Grid3x3 className="h-5 w-5" />,
+      icon: <Grid3x3 className="h-6 w-6" />,
     },
     {
       id: 'tasks',
       label: t('nav.tasks'),
-      icon: <CheckSquare className="h-5 w-5" />,
+      icon: <CheckSquare className="h-6 w-6" />,
     },
     {
       id: 'governance',
       label: t('nav.governance'),
-      icon: <Shield className="h-5 w-5" />,
+      icon: <Shield className="h-6 w-6" />,
     },
   ];
 
@@ -57,59 +58,88 @@ export function CollapsibleNav({ currentView = 'insights', onNavigate, onSetting
   };
 
   return (
-    <nav className="hidden lg:flex flex-col h-full w-16 hover:w-64 group border-r border-glow bg-background-elevated backdrop-blur-glass-sm transition-all duration-300 ease-out shadow-float-sm hover:shadow-float-lg">
-      {/* Logo Section - Shows when expanded */}
-      <div className="p-4 border-b border-glow overflow-hidden">
-        <div className="flex items-center gap-3 whitespace-nowrap">
+    <nav className="hidden lg:flex flex-col h-[80vh] max-h-[900px] w-20 hover:w-[280px] group bg-background-elevated backdrop-blur-glass-lg m-4 my-auto rounded-2xl shadow-float-lg hover:shadow-float-xl transition-all duration-300 ease-out overflow-hidden">
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl" />
+
+      {/* Logo Section */}
+      <div className="relative flex items-center p-5 border-b border-border-light min-h-[80px]">
+        {/* Logo - always visible and centered */}
+        <div className="w-full group-hover:w-auto flex justify-center group-hover:justify-start">
           <img
             src={brandConfig.logo}
             alt={brandConfig.name}
-            className="h-8 w-8 flex-shrink-0"
+            className="h-10 w-10 flex-shrink-0 drop-shadow-md"
           />
-          <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">
-            <div className="text-sm font-semibold text-text-primary">
-              {brandConfig.name === 'emarat' ? 'Emarat AI' : brandConfig.name}
-            </div>
-            <div className="text-xs text-text-tertiary">
-              AI Platform
-            </div>
+        </div>
+
+        {/* Brand text - appears on hover */}
+        <div className="ml-4 overflow-hidden w-0 group-hover:w-auto opacity-0 group-hover:opacity-100 transition-all duration-300 delay-100">
+          <div className="text-base font-bold text-text-primary whitespace-nowrap">
+            {brandConfig.name === 'emarat' ? 'Emarat AI' : brandConfig.name}
+          </div>
+          <div className="text-xs text-text-tertiary font-medium whitespace-nowrap">
+            AI Platform
           </div>
         </div>
       </div>
 
       {/* Navigation Items */}
-      <div className="flex-1 overflow-y-auto p-2">
-        <div className="flex flex-col gap-1">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden py-6 px-3">
+        <div className="space-y-3">
           {navItems.map((item) => {
             const isActive = currentView === item.id;
             const isAiFeature = item.id === 'insights';
+
             return (
               <button
-                key={item.id}
                 onClick={() => handleClick(item.id)}
-                className={`
-                  relative
-                  flex items-center gap-3 p-3 rounded-lg
-                  text-sm font-medium whitespace-nowrap
-                  transition-all duration-300
-                  ${isActive
-                    ? 'glass-medium text-text-primary shadow-glow-primary border border-glow-hover'
-                    : 'text-text-secondary hover:text-text-primary hover:glass-light hover:shadow-glow-sm hover:border hover:border-glow'
-                  }
-                `}
+                className="relative w-full flex items-center justify-start"
                 aria-label={item.label}
                 aria-current={isActive ? 'page' : undefined}
                 title={item.label}
               >
-                <span className={`relative flex-shrink-0 ${isAiFeature ? 'text-accent' : ''}`}>
-                  {isAiFeature && !isActive && (
-                    <span className="absolute -top-1 -right-1 h-1.5 w-1.5 rounded-full bg-accent shadow-glow-accent animate-glow-pulse" />
-                  )}
-                  {item.icon}
-                </span>
-                <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">
-                  {item.label}
-                </span>
+                {/* Active indicator dot */}
+                {isActive && (
+                  <div className={`absolute -left-1 top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full ${
+                    isAiFeature ? 'bg-accent shadow-glow-accent' : 'bg-primary shadow-glow-primary'
+                  }`} />
+                )}
+
+                {/* Icon with circular background */}
+                <div className={`
+                  w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0
+                  transition-all duration-200
+                  ${isActive
+                    ? isAiFeature
+                      ? 'bg-accent/10 text-accent shadow-glow-accent'
+                      : 'bg-primary/10 text-primary shadow-glow-primary'
+                    : 'text-text-secondary group-hover:text-text-primary group-hover:bg-background-tertiary/50 group-hover:shadow-float-sm'
+                  }
+                `}>
+                  <div className={`relative ${
+                    isActive
+                      ? isAiFeature ? 'text-accent' : 'text-primary'
+                      : isAiFeature ? 'text-accent' : ''
+                  }`}>
+                    {/* AI indicator */}
+                    {isAiFeature && (
+                      <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-accent shadow-glow-accent animate-glow-pulse" />
+                    )}
+                    {item.icon}
+                  </div>
+                </div>
+
+                {/* Label - appears to the right on hover with proper spacing */}
+                <div className="ml-3 overflow-hidden max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 delay-75">
+                  <span className={`text-sm font-medium whitespace-nowrap ${
+                    isActive
+                      ? isAiFeature ? 'text-accent' : 'text-primary'
+                      : 'text-text-primary'
+                  }`}>
+                    {item.label}
+                  </span>
+                </div>
               </button>
             );
           })}
@@ -117,16 +147,23 @@ export function CollapsibleNav({ currentView = 'insights', onNavigate, onSetting
       </div>
 
       {/* Settings Section */}
-      <div className="p-2 border-t border-glow">
+      <div className="relative py-5 border-t border-border-light px-3">
         <button
           onClick={onSettingsClick}
-          className="w-full flex items-center gap-3 p-3 rounded-lg glass-light border border-glow hover:glass-medium hover:shadow-glow-sm hover:-translate-y-0.5 active:scale-95 transition-all duration-300 whitespace-nowrap"
-          title="Settings"
+          className="relative w-full flex items-center justify-start group/settings"
+          title={t('nav.settings') || 'Settings'}
         >
-          <Settings className="h-5 w-5 text-text-primary flex-shrink-0" />
-          <span className="text-sm font-medium text-text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 delay-100">
-            Settings
-          </span>
+          {/* Icon with circular background */}
+          <div className="w-14 h-14 rounded-full flex items-center justify-center flex-shrink-0 text-text-secondary group-hover/settings:text-primary group-hover/settings:bg-background-tertiary/50 group-hover/settings:shadow-float-sm active:scale-95 transition-all duration-200">
+            <Settings className="h-6 w-6 transition-all duration-200 group-hover:rotate-90" />
+          </div>
+
+          {/* Label - appears to the right on hover with proper spacing */}
+          <div className="ml-3 overflow-hidden max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 delay-75">
+            <span className="text-sm font-medium whitespace-nowrap text-text-primary">
+              {t('nav.settings') || 'Settings'}
+            </span>
+          </div>
         </button>
       </div>
     </nav>
