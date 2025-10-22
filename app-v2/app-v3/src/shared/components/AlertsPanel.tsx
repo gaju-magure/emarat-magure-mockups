@@ -4,8 +4,7 @@
  * Collapsed: Shows summary | Expanded: Shows full details
  */
 
-import { useState } from 'react';
-import { AlertCircle, CheckCircle, Info, AlertTriangle, TrendingUp, TrendingDown, ChevronLeft, ChevronRight } from 'lucide-react';
+import { AlertCircle, CheckCircle, Info, AlertTriangle, TrendingUp, TrendingDown } from 'lucide-react';
 import { Alert, Activity, QuickStat } from '@/shared/types/alerts-data-models';
 import { SAMPLE_ALERTS, SAMPLE_ACTIVITIES, SAMPLE_QUICK_STATS } from '@/shared/data/alerts-sample-data';
 
@@ -114,7 +113,7 @@ function AlertsPanelContent({ onClose, isExpanded = false }: { onClose?: () => v
           {/* Live activity indicator */}
           <div className="relative w-12 h-12 rounded-full bg-accent/10 text-accent flex items-center justify-center">
             <span className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-accent shadow-glow-accent animate-glow-pulse" />
-            <Activity className="h-5 w-5" />
+            <ActivityIcon className="h-5 w-5" />
           </div>
 
           {/* Metrics indicator */}
@@ -240,7 +239,7 @@ function StatCard({ stat }: { stat: QuickStat }) {
 
 
 // Activity icon component helper
-function Activity({ className }: { className?: string }) {
+function ActivityIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
