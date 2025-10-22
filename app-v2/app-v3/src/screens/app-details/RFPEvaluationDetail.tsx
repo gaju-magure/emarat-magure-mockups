@@ -1,11 +1,12 @@
 /**
  * RFP Evaluation App Detail
  * Full-screen overlay with proposal scoring workspace
- * Refactored to use shared components (Phase 5 Second Pass)
+ * Two-tab layout: Chat with dedicated agent + Workspace
  */
 
 import { TrendingUp, Users, Award, Clock } from 'lucide-react';
-import { AppDetailHeader } from '@/shared/components/AppDetailHeader';
+import { AppTabLayout } from '@/shared/components/AppTabLayout';
+import { AgentChat } from '@/shared/components/AgentChat';
 import { StatsGrid } from '@/shared/components/StatsGrid';
 import { InsightCard } from '@/shared/components/InsightCard';
 import { ContentCard } from '@/shared/components/ContentCard';
@@ -176,16 +177,18 @@ export function RFPEvaluationDetail({ onClose }: RFPEvaluationDetailProps) {
     },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50 bg-background-primary overflow-y-auto">
-      <AppDetailHeader
-        title="RFP Evaluation"
-        subtitle="AI-powered proposal scoring and ranking"
-        status="In Development"
-        onClose={onClose}
-      />
+  // Chat tab content
+  const chatContent = (
+    <AgentChat
+      agentName="RFP Evaluation"
+      agentDescription="I can help you evaluate proposals, compare vendors, and explain scoring criteria."
+      placeholder="Ask about proposal rankings, vendor comparisons, or evaluation criteria..."
+    />
+  );
 
-      {/* Content */}
+  // Workspace tab content
+  const workspaceContent = (
+    <div className="h-full overflow-y-auto">
       <div className="container mx-auto px-4 py-6 space-y-6">
         <StatsGrid stats={STATS} />
 
@@ -210,6 +213,12 @@ export function RFPEvaluationDetail({ onClose }: RFPEvaluationDetailProps) {
           </div>
         </ContentCard>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 bg-background-primary">
+      <AppTabLayout chatContent={chatContent} workspaceContent={workspaceContent} onClose={onClose} />
     </div>
   );
 }

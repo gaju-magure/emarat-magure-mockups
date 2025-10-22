@@ -1,11 +1,12 @@
 /**
  * Invoice Reconciliation App Detail
  * Full-screen overlay with invoice matching workspace
- * Refactored to use shared components (Phase 5 Second Pass)
+ * Two-tab layout: Chat with dedicated agent + Workspace
  */
 
 import { CheckCircle, AlertCircle, FileText, TrendingUp } from 'lucide-react';
-import { AppDetailHeader } from '@/shared/components/AppDetailHeader';
+import { AppTabLayout } from '@/shared/components/AppTabLayout';
+import { AgentChat } from '@/shared/components/AgentChat';
 import { StatsGrid } from '@/shared/components/StatsGrid';
 import { InsightCard } from '@/shared/components/InsightCard';
 import { ContentCard } from '@/shared/components/ContentCard';
@@ -115,16 +116,18 @@ export function InvoiceReconciliationDetail({ onClose }: InvoiceReconciliationDe
     },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50 bg-background-primary overflow-y-auto">
-      <AppDetailHeader
-        title="Invoice Reconciliation"
-        subtitle="AI-powered invoice matching and reconciliation"
-        status="Live"
-        onClose={onClose}
-      />
+  // Chat tab content
+  const chatContent = (
+    <AgentChat
+      agentName="Invoice Reconciliation"
+      agentDescription="I can help you match invoices, resolve discrepancies, and explain reconciliation decisions."
+      placeholder="Ask about invoice matching, vendors, or reconciliation status..."
+    />
+  );
 
-      {/* Content */}
+  // Workspace tab content
+  const workspaceContent = (
+    <div className="h-full overflow-y-auto">
       <div className="container mx-auto px-4 py-6 space-y-6">
         <StatsGrid stats={STATS} />
 
@@ -146,6 +149,12 @@ export function InvoiceReconciliationDetail({ onClose }: InvoiceReconciliationDe
           </div>
         </ContentCard>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 bg-background-primary">
+      <AppTabLayout chatContent={chatContent} workspaceContent={workspaceContent} onClose={onClose} />
     </div>
   );
 }

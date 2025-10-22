@@ -1,11 +1,12 @@
 /**
  * Customer Insights App Detail
  * Full-screen overlay with customer data analysis
- * Refactored to use shared components (Phase 5 Second Pass)
+ * Two-tab layout: Chat with dedicated agent + Workspace
  */
 
 import { Users, TrendingUp, Target, DollarSign, PieChart } from 'lucide-react';
-import { AppDetailHeader } from '@/shared/components/AppDetailHeader';
+import { AppTabLayout } from '@/shared/components/AppTabLayout';
+import { AgentChat } from '@/shared/components/AgentChat';
 import { StatsGrid } from '@/shared/components/StatsGrid';
 import { InsightCard } from '@/shared/components/InsightCard';
 import { ContentCard } from '@/shared/components/ContentCard';
@@ -112,16 +113,18 @@ const BEHAVIOR_TRENDS: BehavioralTrend[] = [
 ];
 
 export function CustomerInsightsDetail({ onClose }: CustomerInsightsDetailProps) {
-  return (
-    <div className="fixed inset-0 z-50 bg-background-primary overflow-y-auto">
-      <AppDetailHeader
-        title="Customer Insights"
-        subtitle="AI-powered customer behavior analysis and segmentation"
-        status="Planned"
-        onClose={onClose}
-      />
+  // Chat tab content
+  const chatContent = (
+    <AgentChat
+      agentName="Customer Insights"
+      agentDescription="I can help you analyze customer behavior, segment audiences, and identify growth opportunities."
+      placeholder="Ask about customer segments, behavior patterns, or recommendations..."
+    />
+  );
 
-      {/* Content */}
+  // Workspace tab content
+  const workspaceContent = (
+    <div className="h-full overflow-y-auto">
       <div className="container mx-auto px-4 py-6 space-y-6">
         <StatsGrid stats={STATS} />
 
@@ -250,6 +253,12 @@ export function CustomerInsightsDetail({ onClose }: CustomerInsightsDetailProps)
           </div>
         </ContentCard>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 bg-background-primary">
+      <AppTabLayout chatContent={chatContent} workspaceContent={workspaceContent} onClose={onClose} />
     </div>
   );
 }

@@ -1,9 +1,10 @@
 /**
  * Insights Screen (AI Copilot)
- * Single-screen layout with actionable insights - no scrolling required
+ * Chat interface with conversation history and actionable insights
  */
 
-import { Send, Sparkles, AlertCircle, Clock, TrendingUp, FileText, ChevronRight, Users } from 'lucide-react';
+import { useState } from 'react';
+import { Send, Sparkles, AlertCircle, Clock, TrendingUp, FileText, ChevronRight, Users, History, Plus } from 'lucide-react';
 
 // Sample insights data
 const URGENT_INVOICES = [
@@ -18,27 +19,165 @@ const PENDING_RFPS = [
   { name: 'IT Infrastructure', score: 85, status: 'Pending' },
 ];
 
+interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+interface Conversation {
+  id: string;
+  title: string;
+  timestamp: Date;
+  preview: string;
+}
+
 export function InsightsScreen() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [showHistory, setShowHistory] = useState(false);
+
+  // Sample conversation history
+  const [conversations] = useState<Conversation[]>([
+    {
+      id: '1',
+      title: 'Q4 Revenue Analysis',
+      timestamp: new Date(Date.now() - 86400000),
+      preview: 'Can you analyze Q4 revenue trends?',
+    },
+    {
+      id: '2',
+      title: 'Invoice reconciliation help',
+      timestamp: new Date(Date.now() - 172800000),
+      preview: 'Show me all invoices with low confidence',
+    },
+    {
+      id: '3',
+      title: 'RFP evaluation insights',
+      timestamp: new Date(Date.now() - 259200000),
+      preview: 'Which RFP proposals are highest priority?',
+    },
+  ]);
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      role: 'user',
+      content: input,
+      timestamp: new Date(),
+    };
+
+    setMessages((prev) => [...prev, userMessage]);
+    setInput('');
+
+    // Simulate AI response
+    setTimeout(() => {
+      const aiMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: `I received your message: "${input}". This is a demo response. In production, I would analyze your business data and provide actionable insights.`,
+        timestamp: new Date(),
+      };
+      setMessages((prev) => [...prev, aiMessage]);
+    }, 1000);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
+
+  const handleNewChat = () => {
+    setMessages([]);
+  };
   return (
-    <div className="h-full flex flex-col bg-background-primary overflow-hidden">
-      {/* Compact Welcome Header */}
-      <div className="flex-shrink-0 px-4 md:px-6 pt-6 pb-4">
-        <div className="flex items-center justify-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 shadow-glow-accent flex items-center justify-center">
-            <Sparkles className="h-5 w-5 text-accent" />
-          </div>
-          <div className="text-center">
-            <h2 className="text-lg font-bold text-text-primary">AI Insights Assistant</h2>
-            <p className="text-xs text-text-secondary">Ask me anything about your business</p>
+    <div className="h-full flex bg-background-primary">
+      {/* Conversation History Sidebar */}
+      {showHistory && (
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setShowHistory(false)}
+          />
+          <aside className="fixed lg:relative inset-y-0 left-0 w-72 bg-background-elevated border-r border-border-light z-50 flex flex-col">
+            {/* History Header */}
+            <div className="flex-shrink-0 p-4 border-b border-border-light flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-text-primary">Conversation History</h3>
+              <button
+                onClick={() => setShowHistory(false)}
+                className="lg:hidden w-8 h-8 rounded-lg flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-background-tertiary transition-all duration-200"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* New Chat Button */}
+            <div className="flex-shrink-0 p-3">
+              <button
+                onClick={handleNewChat}
+                className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-accent/10 hover:bg-accent/20 text-accent font-medium text-sm transition-all duration-200"
+              >
+                <Plus className="h-4 w-4" />
+                <span>New Chat</span>
+              </button>
+            </div>
+
+            {/* Conversations List */}
+            <div className="flex-1 overflow-y-auto p-3 space-y-2">
+              {conversations.map((conv) => (
+                <button
+                  key={conv.id}
+                  className="w-full text-left p-3 rounded-xl bg-background-tertiary/50 hover:bg-background-tertiary border border-transparent hover:border-border-light transition-all duration-200"
+                >
+                  <div className="font-medium text-sm text-text-primary mb-1 truncate">
+                    {conv.title}
+                  </div>
+                  <div className="text-xs text-text-tertiary truncate">{conv.preview}</div>
+                  <div className="text-xs text-text-tertiary mt-1">
+                    {conv.timestamp.toLocaleDateString()}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </aside>
+        </>
+      )}
+
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Chat Header */}
+        <div className="flex-shrink-0 px-4 md:px-6 pt-4 pb-3 border-b border-border-light">
+          <div className="max-w-4xl mx-auto flex items-center gap-3">
+            <button
+              onClick={() => setShowHistory(!showHistory)}
+              className="w-10 h-10 rounded-full bg-background-elevated hover:bg-background-tertiary flex items-center justify-center transition-all duration-200"
+              title="Conversation History"
+            >
+              <History className="h-5 w-5 text-text-secondary" />
+            </button>
+            <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 shadow-glow-accent flex items-center justify-center">
+              <Sparkles className="h-5 w-5 text-accent" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold text-text-primary">AI Insights Assistant</h3>
+              <p className="text-xs text-text-secondary">Ask me anything about your business</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content - No Scroll, Compact Layout */}
-      <div className="flex-1 px-4 md:px-8 pb-32 overflow-hidden flex flex-col">
-        <div className="flex-1 max-w-6xl mx-auto w-full flex flex-col gap-4">
-          {/* Top Section: 2-Column Insight Cards */}
-          <div className="flex-shrink-0 grid grid-cols-1 lg:grid-cols-2 gap-4 max-h-[55vh]">
+        {/* Messages Area - Centered */}
+        <div className="flex-1 overflow-y-auto px-4 md:px-6 py-6">
+          <div className="max-w-4xl mx-auto">
+            {messages.length === 0 ? (
+              /* Welcome Screen with Insight Cards */
+              <div className="space-y-4">
+                {/* Top Section: 2-Column Insight Cards */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {/* Left: Invoice Review Card */}
             <div className="rounded-2xl bg-warning/5 backdrop-blur-glass-md shadow-float-lg overflow-hidden flex flex-col">
               {/* Card Header */}
@@ -121,60 +260,103 @@ export function InsightsScreen() {
                 </button>
               </div>
             </div>
-          </div>
+                </div>
 
-          {/* Bottom Section: Quick Actions Row */}
-          <div className="flex-shrink-0">
-            <div className="flex items-center gap-3 flex-wrap justify-center">
-              <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
-                <TrendingUp className="h-4 w-4 text-accent group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors duration-200">
-                  Demand Forecast
-                </span>
-              </button>
-              <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
-                <FileText className="h-4 w-4 text-primary group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm font-medium text-text-primary group-hover:text-primary transition-colors duration-200">
-                  RFP Summary
-                </span>
-              </button>
-              <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
-                <AlertCircle className="h-4 w-4 text-warning group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm font-medium text-text-primary group-hover:text-warning transition-colors duration-200">
-                  Invoice Exceptions
-                </span>
-              </button>
-              <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
-                <Users className="h-4 w-4 text-success group-hover:scale-110 transition-transform duration-200" />
-                <span className="text-sm font-medium text-text-primary group-hover:text-success transition-colors duration-200">
-                  Top Retail Sites
-                </span>
+                {/* Bottom Section: Quick Actions Row */}
+                <div className="flex items-center gap-3 flex-wrap justify-center">
+                  <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
+                    <TrendingUp className="h-4 w-4 text-accent group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors duration-200">
+                      Demand Forecast
+                    </span>
+                  </button>
+                  <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
+                    <FileText className="h-4 w-4 text-primary group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm font-medium text-text-primary group-hover:text-primary transition-colors duration-200">
+                      RFP Summary
+                    </span>
+                  </button>
+                  <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
+                    <AlertCircle className="h-4 w-4 text-warning group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm font-medium text-text-primary group-hover:text-warning transition-colors duration-200">
+                      Invoice Exceptions
+                    </span>
+                  </button>
+                  <button className="flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-background-elevated/50 backdrop-blur-glass-md hover:bg-background-elevated hover:shadow-float-md hover:-translate-y-0.5 transition-all duration-200 group">
+                    <Users className="h-4 w-4 text-success group-hover:scale-110 transition-transform duration-200" />
+                    <span className="text-sm font-medium text-text-primary group-hover:text-success transition-colors duration-200">
+                      Top Retail Sites
+                    </span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* Chat Messages */
+              <div className="space-y-4">
+                {messages.map((message) => (
+                  <div
+                    key={message.id}
+                    className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    {message.role === 'assistant' && (
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center">
+                        <Sparkles className="h-4 w-4 text-accent" />
+                      </div>
+                    )}
+                    <div
+                      className={`
+                        max-w-[75%] rounded-2xl px-4 py-3 shadow-float-sm
+                        ${message.role === 'user'
+                          ? 'bg-primary text-white'
+                          : 'bg-background-elevated backdrop-blur-glass-md text-text-primary'
+                        }
+                      `}
+                    >
+                      <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                      <span
+                        className={`text-xs mt-1 block ${
+                          message.role === 'user' ? 'text-white/70' : 'text-text-tertiary'
+                        }`}
+                      >
+                        {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                      </span>
+                    </div>
+                    {message.role === 'user' && (
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <span className="text-sm font-medium text-primary">U</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Input Area - Centered */}
+        <div className="flex-shrink-0 px-4 md:px-6 py-4 border-t border-border-light">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex gap-3 items-end">
+              <div className="flex-1 relative">
+                <textarea
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="Ask me anything..."
+                  rows={1}
+                  className="w-full px-4 py-3 pr-12 rounded-xl bg-background-elevated backdrop-blur-glass-md border border-border-light text-sm text-text-primary placeholder-text-tertiary focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent resize-none"
+                  style={{ minHeight: '48px', maxHeight: '120px' }}
+                />
+              </div>
+              <button
+                onClick={handleSend}
+                disabled={!input.trim()}
+                className="flex-shrink-0 w-12 h-12 rounded-xl bg-accent hover:bg-accent/90 disabled:bg-accent/50 disabled:cursor-not-allowed text-white flex items-center justify-center shadow-float-md hover:shadow-float-lg transition-all duration-200"
+              >
+                <Send className="h-5 w-5" />
               </button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Chat Input - Floating at bottom */}
-      <div className="fixed bottom-20 lg:bottom-4 left-0 right-0 px-4 md:px-6 pointer-events-none z-20">
-        <div className="max-w-3xl mx-auto pointer-events-auto">
-          <div className="relative rounded-2xl bg-background-elevated backdrop-blur-glass-lg shadow-float-xl border border-glow p-2">
-            <input
-              type="text"
-              placeholder="Ask me anything..."
-              className="w-full h-12 px-4 bg-transparent text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none"
-            />
-            <button
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-xl bg-accent text-white shadow-glow-accent hover:shadow-glow-lg hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-200"
-              aria-label="Send message"
-              title="Send"
-            >
-              <Send className="h-5 w-5" />
-            </button>
-          </div>
-          <p className="text-xs text-text-tertiary mt-2 text-center">
-            AI-powered insights for your business
-          </p>
         </div>
       </div>
     </div>

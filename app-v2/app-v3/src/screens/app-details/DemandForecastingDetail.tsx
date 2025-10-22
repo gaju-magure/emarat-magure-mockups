@@ -1,11 +1,12 @@
 /**
  * Demand Forecasting App Detail
  * Full-screen overlay with forecasting dashboard and charts
- * Refactored to use shared components (Phase 5 Second Pass)
+ * Two-tab layout: Chat with dedicated agent + Workspace
  */
 
 import { TrendingUp, Target, BarChart3, AlertCircle } from 'lucide-react';
-import { AppDetailHeader } from '@/shared/components/AppDetailHeader';
+import { AppTabLayout } from '@/shared/components/AppTabLayout';
+import { AgentChat } from '@/shared/components/AgentChat';
 import { StatsGrid } from '@/shared/components/StatsGrid';
 import { InsightCard } from '@/shared/components/InsightCard';
 import { ContentCard } from '@/shared/components/ContentCard';
@@ -132,16 +133,18 @@ export function DemandForecastingDetail({ onClose }: DemandForecastingDetailProp
     },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50 bg-background-primary overflow-y-auto">
-      <AppDetailHeader
-        title="Demand Forecasting"
-        subtitle="AI-powered demand prediction and inventory optimization"
-        status="Live"
-        onClose={onClose}
-      />
+  // Chat tab content
+  const chatContent = (
+    <AgentChat
+      agentName="Demand Forecasting"
+      agentDescription="I can help you analyze demand trends, predict inventory needs, and optimize stock levels."
+      placeholder="Ask about demand forecasts, inventory planning, or trend analysis..."
+    />
+  );
 
-      {/* Content */}
+  // Workspace tab content
+  const workspaceContent = (
+    <div className="h-full overflow-y-auto">
       <div className="container mx-auto px-4 py-6 space-y-6">
         <StatsGrid stats={STATS} />
 
@@ -189,6 +192,12 @@ export function DemandForecastingDetail({ onClose }: DemandForecastingDetailProp
           </div>
         </ContentCard>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 bg-background-primary">
+      <AppTabLayout chatContent={chatContent} workspaceContent={workspaceContent} onClose={onClose} />
     </div>
   );
 }

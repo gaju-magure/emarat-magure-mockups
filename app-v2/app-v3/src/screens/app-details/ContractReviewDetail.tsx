@@ -1,11 +1,12 @@
 /**
  * Contract Review App Detail
  * Full-screen overlay with contract analysis interface
- * Refactored to use shared components (Phase 5 Second Pass)
+ * Two-tab layout: Chat with dedicated agent + Workspace
  */
 
 import { FileText, AlertTriangle, CheckCircle, Shield, Clock } from 'lucide-react';
-import { AppDetailHeader } from '@/shared/components/AppDetailHeader';
+import { AppTabLayout } from '@/shared/components/AppTabLayout';
+import { AgentChat } from '@/shared/components/AgentChat';
 import { StatsGrid } from '@/shared/components/StatsGrid';
 import { InsightCard } from '@/shared/components/InsightCard';
 import { ContentCard } from '@/shared/components/ContentCard';
@@ -177,16 +178,18 @@ export function ContractReviewDetail({ onClose }: ContractReviewDetailProps) {
     },
   ];
 
-  return (
-    <div className="fixed inset-0 z-50 bg-background-primary overflow-y-auto">
-      <AppDetailHeader
-        title="Contract Review"
-        subtitle="AI-powered contract analysis and risk assessment"
-        status="Live"
-        onClose={onClose}
-      />
+  // Chat tab content
+  const chatContent = (
+    <AgentChat
+      agentName="Contract Review"
+      agentDescription="I can help you analyze contracts, identify risk clauses, and suggest revisions."
+      placeholder="Ask about contract clauses, risk assessment, or compliance..."
+    />
+  );
 
-      {/* Content */}
+  // Workspace tab content
+  const workspaceContent = (
+    <div className="h-full overflow-y-auto">
       <div className="container mx-auto px-4 py-6 space-y-6">
         <StatsGrid stats={STATS} />
 
@@ -220,6 +223,12 @@ export function ContractReviewDetail({ onClose }: ContractReviewDetailProps) {
           </div>
         </ContentCard>
       </div>
+    </div>
+  );
+
+  return (
+    <div className="fixed inset-0 z-50 bg-background-primary">
+      <AppTabLayout chatContent={chatContent} workspaceContent={workspaceContent} onClose={onClose} />
     </div>
   );
 }
