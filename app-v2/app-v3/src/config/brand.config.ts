@@ -25,7 +25,7 @@ const brandConfig: BrandConfig = {
     brandGreen: import.meta.env.VITE_BRAND_GREEN || '#47a01a',
   },
   defaults: {
-    theme: (import.meta.env.VITE_DEFAULT_THEME as 'light' | 'dark') || 'dark',
+    theme: (import.meta.env.VITE_DEFAULT_THEME as 'light' | 'dark') || 'light',
     language: (import.meta.env.VITE_DEFAULT_LANGUAGE as 'en' | 'ar') || 'en',
   },
 };
