@@ -11,11 +11,11 @@
       "icon": "/themes/mgai/magure-logo.svg"
     },
     "favicon": {
-      "ico": "/themes/mgai/favicon.ico",
-      "png16": "/themes/mgai/favicon-16x16.png",
-      "png32": "/themes/mgai/favicon-32x32.png",
-      "appleTouchIcon": "/themes/mgai/apple-touch-icon.png",
-      "safariPinned": "/themes/mgai/safari-pinned-tab.svg"
+      "ico": "/themes/mgai/favicon.png",
+      "png16": "/themes/mgai/favicon.png",
+      "png32": "/themes/mgai/favicon.png",
+      "appleTouchIcon": "/themes/mgai/favicon.png",
+      "safariPinned": "/themes/mgai/magure-logo.svg"
     }
   },
   "fonts": {
