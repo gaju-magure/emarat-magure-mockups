@@ -1,10 +1,21 @@
 import { Search, Bell, User, Menu } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 interface HeaderProps {
   onMenuClick?: () => void;
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
+  const { theme, mode } = useTheme();
+
+  // Get logo and company name from theme, with fallbacks
+  const logoUrl = theme?.branding?.logo?.[mode] || theme?.branding?.logo?.light || "/themes/emarat/emarat-logo.svg";
+  const companyName = theme?.branding?.companyName || "Emarat AI";
+  const tagline = theme?.branding?.tagline || "Your Business Copilot";
+
+  // Adjust logo size based on theme - MGAI logo needs to be smaller
+  const logoHeight = theme?.id === "mgai" ? "h-6 md:h-7" : "h-8 md:h-10";
+
   return (
     <header className="h-14 md:h-16 border-b border-border bg-card/95 backdrop-blur-md px-3 md:px-6 flex items-center justify-between sticky top-0 z-40">
       <div className="flex items-center gap-2 md:gap-3">
@@ -15,13 +26,13 @@ export function Header({ onMenuClick }: HeaderProps) {
           <Menu className="w-5 h-5 text-muted-foreground" />
         </button>
         <img
-          src="/themes/emarat/emarat-logo.svg"
-          alt="Emarat Logo"
-          className="h-8 md:h-10 w-auto"
+          src={logoUrl}
+          alt={`${companyName} Logo`}
+          className={`${logoHeight} w-auto`}
         />
         <div className="hidden sm:block">
-          <h1 className="text-foreground text-base md:text-xl font-semibold">Emarat AI</h1>
-          <p className="text-xs text-muted-foreground hidden md:block">Your Business Copilot</p>
+          <h1 className="text-foreground text-base md:text-xl font-semibold">{companyName}</h1>
+          <p className="text-xs text-muted-foreground hidden md:block">{tagline}</p>
         </div>
       </div>
 

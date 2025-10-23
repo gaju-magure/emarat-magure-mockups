@@ -12,7 +12,12 @@ const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 const STORAGE_KEY_THEME = 'emarat-theme';
 const STORAGE_KEY_MODE = 'emarat-theme-mode';
-const DEFAULT_THEME_URL = '/themes/emarat/theme.json';
+
+// Read theme configuration from environment variables
+const ENV_THEME_URL = import.meta.env.VITE_THEME_URL;
+const ENV_THEME_MODE = import.meta.env.VITE_THEME_MODE as ThemeMode | undefined;
+const DEFAULT_THEME_URL = ENV_THEME_URL || '/themes/emarat/theme.json';
+const DEFAULT_MODE: ThemeMode = ENV_THEME_MODE || 'light';
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -23,7 +28,7 @@ interface ThemeProviderProps {
 export function ThemeProvider({
   children,
   defaultThemeUrl = DEFAULT_THEME_URL,
-  defaultMode = 'light',
+  defaultMode = DEFAULT_MODE,
 }: ThemeProviderProps) {
   const [theme, setTheme] = useState<Theme | null>(null);
   const [mode, setModeState] = useState<ThemeMode>(defaultMode);
