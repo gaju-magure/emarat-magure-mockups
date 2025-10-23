@@ -4,7 +4,7 @@
  */
 
 import { createContext, useEffect, useState, type ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'node_modules/react-i18next';
 import type { Language, LanguageContextType } from '../types';
 import brandConfig from '@/config/brand.config';
 
