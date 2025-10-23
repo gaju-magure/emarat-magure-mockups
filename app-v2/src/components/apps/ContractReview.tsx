@@ -106,41 +106,41 @@ export function ContractReview({ onClose }: ContractReviewProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#08111e]/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 bg-background">
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/[0.02]">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center">
               <FileCheck className="w-5 h-5 text-indigo-400" />
             </div>
             <div>
-              <h2 className="text-white text-lg">Contract Review AI</h2>
-              <p className="text-gray-400 text-sm">Intelligent contract analysis</p>
+              <h2 className="text-foreground text-lg">Contract Review AI</h2>
+              <p className="text-muted-foreground text-sm">Intelligent contract analysis</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all"
+            className="w-8 h-8 rounded-lg bg-accent hover:bg-accent flex items-center justify-center transition-all"
           >
-            <X className="w-5 h-5 text-gray-400" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
         {/* Tab Navigation */}
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "chat" | "space")} className="flex-1 flex flex-col">
-          <div className="border-b border-white/10 bg-white/[0.02] px-4">
+          <div className="border-b border-border bg-secondary px-4">
             <TabsList className="bg-transparent border-0 h-12">
               <TabsTrigger 
                 value="space" 
-                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-gray-400"
+                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-muted-foreground"
               >
                 <LayoutGrid className="w-4 h-4 mr-2" />
                 Review Workspace
               </TabsTrigger>
               <TabsTrigger 
                 value="chat"
-                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-gray-400"
+                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-muted-foreground"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 AI Assistant
@@ -152,10 +152,10 @@ export function ContractReview({ onClose }: ContractReviewProps) {
           <TabsContent value="space" className="flex-1 overflow-hidden m-0">
             <div className="h-full flex flex-col lg:flex-row">
               {/* Left: Contract List */}
-              <div className="lg:w-80 border-r border-white/10 flex flex-col bg-white/[0.01]">
-                <div className="p-4 border-b border-white/10">
-                  <h3 className="text-white mb-3">Active Contracts</h3>
-                  <button className="w-full px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-all text-sm flex items-center justify-center gap-2">
+              <div className="lg:w-80 border-r border-border flex flex-col bg-white/[0.01]">
+                <div className="p-4 border-b border-border">
+                  <h3 className="text-foreground mb-3">Active Contracts</h3>
+                  <button className="w-full px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-foreground rounded-lg transition-all text-sm flex items-center justify-center gap-2">
                     <Upload className="w-4 h-4" />
                     Upload New Contract
                   </button>
@@ -168,11 +168,11 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                       className={`p-4 rounded-lg border cursor-pointer transition-all ${
                         selectedContract === contract.id
                           ? "bg-indigo-500/20 border-indigo-500/40"
-                          : "bg-white/[0.03] border-white/10 hover:bg-white/[0.06]"
+                          : "bg-secondary border-border hover:bg-white/[0.06]"
                       }`}
                     >
-                      <h4 className="text-white text-sm mb-2">{contract.name}</h4>
-                      <p className="text-gray-400 text-xs mb-3">{contract.vendor}</p>
+                      <h4 className="text-foreground text-sm mb-2">{contract.name}</h4>
+                      <p className="text-muted-foreground text-xs mb-3">{contract.vendor}</p>
                       <div className="flex items-center justify-between">
                         <Badge
                           className={
@@ -185,7 +185,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                         >
                           {contract.riskLevel} risk
                         </Badge>
-                        <span className="text-white text-sm">{contract.aiScore}%</span>
+                        <span className="text-foreground text-sm">{contract.aiScore}%</span>
                       </div>
                     </div>
                   ))}
@@ -198,10 +198,10 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                   <div className="space-y-6">
                     {/* Header */}
                     <div>
-                      <h2 className="text-white text-xl mb-2">{selectedContractData.name}</h2>
+                      <h2 className="text-foreground text-xl mb-2">{selectedContractData.name}</h2>
                       <div className="flex flex-wrap gap-3 text-sm">
-                        <span className="text-gray-400">Vendor: <span className="text-white">{selectedContractData.vendor}</span></span>
-                        <span className="text-gray-400">Pages: <span className="text-white">{selectedContractData.pages}</span></span>
+                        <span className="text-muted-foreground">Vendor: <span className="text-foreground">{selectedContractData.vendor}</span></span>
+                        <span className="text-muted-foreground">Pages: <span className="text-foreground">{selectedContractData.pages}</span></span>
                         <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
                           {selectedContractData.status}
                         </Badge>
@@ -212,8 +212,8 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                     <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-xl p-6">
                       <div className="flex items-center justify-between">
                         <div>
-                          <h3 className="text-white mb-1">AI Compliance Score</h3>
-                          <p className="text-gray-400 text-sm">Based on {selectedContractData.clauses.total} clauses analyzed</p>
+                          <h3 className="text-foreground mb-1">AI Compliance Score</h3>
+                          <p className="text-muted-foreground text-sm">Based on {selectedContractData.clauses.total} clauses analyzed</p>
                         </div>
                         <div className="text-4xl text-indigo-400">{selectedContractData.aiScore}%</div>
                       </div>
@@ -221,23 +221,23 @@ export function ContractReview({ onClose }: ContractReviewProps) {
 
                     {/* Clause Summary */}
                     <div className="grid grid-cols-3 gap-3">
-                      <div className="bg-white/[0.03] border border-white/10 rounded-lg p-4 text-center">
-                        <p className="text-gray-400 text-xs mb-1">Total Clauses</p>
-                        <p className="text-white text-2xl">{selectedContractData.clauses.total}</p>
+                      <div className="bg-secondary border border-border rounded-lg p-4 text-center">
+                        <p className="text-muted-foreground text-xs mb-1">Total Clauses</p>
+                        <p className="text-foreground text-2xl">{selectedContractData.clauses.total}</p>
                       </div>
                       <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 text-center">
                         <p className="text-green-400 text-xs mb-1">Reviewed</p>
-                        <p className="text-white text-2xl">{selectedContractData.clauses.reviewed}</p>
+                        <p className="text-foreground text-2xl">{selectedContractData.clauses.reviewed}</p>
                       </div>
                       <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 text-center">
                         <p className="text-yellow-400 text-xs mb-1">Flagged</p>
-                        <p className="text-white text-2xl">{selectedContractData.clauses.flagged}</p>
+                        <p className="text-foreground text-2xl">{selectedContractData.clauses.flagged}</p>
                       </div>
                     </div>
 
                     {/* Key Findings */}
-                    <div className="bg-white/[0.02] border border-white/10 rounded-xl p-4 md:p-6">
-                      <h3 className="text-white mb-4">Key Findings</h3>
+                    <div className="bg-secondary border border-border rounded-xl p-4 md:p-6">
+                      <h3 className="text-foreground mb-4">Key Findings</h3>
                       <div className="space-y-3">
                         {selectedContractData.keyFindings.map((finding, i) => (
                           <div
@@ -253,7 +253,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                             ) : (
                               <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                             )}
-                            <p className="text-gray-300 text-sm">{finding.text}</p>
+                            <p className="text-foreground text-sm">{finding.text}</p>
                           </div>
                         ))}
                       </div>
@@ -265,18 +265,18 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                         <Eye className="w-4 h-4" />
                         AI Summary
                       </h3>
-                      <p className="text-gray-300 text-sm">{selectedContractData.summary}</p>
+                      <p className="text-foreground text-sm">{selectedContractData.summary}</p>
                     </div>
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-3">
-                      <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-foreground rounded-lg transition-all text-sm">
                         Approve Contract
                       </button>
-                      <button className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-foreground rounded-lg transition-all text-sm">
                         Request Changes
                       </button>
-                      <button className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-accent hover:bg-accent text-foreground rounded-lg transition-all text-sm">
                         Download Report
                       </button>
                     </div>
@@ -285,7 +285,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                   <div className="h-full flex items-center justify-center">
                     <div className="text-center">
                       <FileCheck className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                      <p className="text-gray-400">Select a contract to review</p>
+                      <p className="text-muted-foreground">Select a contract to review</p>
                     </div>
                   </div>
                 )}
@@ -304,7 +304,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                   {message.type === "ai" && (
                     <div className="flex items-start gap-3 max-w-[85%]">
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="w-4 h-4 text-white" />
+                        <Sparkles className="w-4 h-4 text-foreground" />
                       </div>
                       <div className="flex-1">
                         <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl rounded-tl-sm p-4">
@@ -314,8 +314,8 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                     </div>
                   )}
                   {message.type === "user" && (
-                    <div className="bg-white/[0.08] border border-white/10 rounded-xl rounded-tr-sm p-4 max-w-[85%]">
-                      <p className="text-gray-200 text-sm">{message.text}</p>
+                    <div className="bg-secondary border border-border rounded-xl rounded-tr-sm p-4 max-w-[85%]">
+                      <p className="text-foreground text-sm">{message.text}</p>
                     </div>
                   )}
                 </div>
@@ -324,7 +324,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
             </div>
 
             {/* Chat Input */}
-            <div className="p-4 border-t border-white/10 bg-white/[0.02]">
+            <div className="p-4 border-t border-border bg-secondary">
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -332,11 +332,11 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask about contract clauses..."
-                  className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
                 />
                 <button
                   onClick={handleSend}
-                  className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-foreground rounded-lg transition-all flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                 </button>

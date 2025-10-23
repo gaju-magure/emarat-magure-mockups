@@ -84,8 +84,8 @@ export function Apps({ onOpenApp }: AppsProps) {
   return (
     <div className="h-full overflow-y-auto p-3 md:p-6">
       <div className="mb-4 md:mb-8">
-        <h1 className="text-white mb-2 text-xl md:text-2xl">AI Application Suite</h1>
-        <p className="text-gray-400 text-sm md:text-base">
+        <h1 className="text-foreground mb-2 text-xl md:text-2xl">AI Application Suite</h1>
+        <p className="text-muted-foreground text-sm md:text-base">
           Each app features AI Chat for intelligent assistance. Advanced apps include dedicated Workspaces or external platforms for complex operations.
         </p>
       </div>
@@ -94,7 +94,7 @@ export function Apps({ onOpenApp }: AppsProps) {
         {apps.map((app) => (
           <div
             key={app.id}
-            className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/[0.04] hover:border-white/20 transition-all group"
+            className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-6 hover:bg-white/[0.04] hover:border-border transition-all group"
           >
             {/* Header */}
             <div className="flex items-start justify-between mb-3 md:mb-4">
@@ -103,14 +103,14 @@ export function Apps({ onOpenApp }: AppsProps) {
                   <app.icon className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
                 </div>
                 <div>
-                  <h3 className="text-white mb-1 text-sm md:text-base">{app.name}</h3>
+                  <h3 className="text-foreground mb-1 text-sm md:text-base">{app.name}</h3>
                   <span
                     className={`inline-block px-2 py-0.5 md:py-1 text-xs rounded ${
                       app.statusColor === "green"
                         ? "bg-green-500/20 text-green-400"
                         : app.statusColor === "blue"
                         ? "bg-blue-500/20 text-blue-400"
-                        : "bg-gray-500/20 text-gray-400"
+                        : "bg-gray-500/20 text-muted-foreground"
                     }`}
                   >
                     {app.status}
@@ -120,7 +120,7 @@ export function Apps({ onOpenApp }: AppsProps) {
             </div>
 
             {/* Description */}
-            <p className="text-xs md:text-sm text-gray-400 mb-2 md:mb-3 leading-relaxed">
+            <p className="text-xs md:text-sm text-muted-foreground mb-2 md:mb-3 leading-relaxed">
               {app.description}
             </p>
 
@@ -150,8 +150,8 @@ export function Apps({ onOpenApp }: AppsProps) {
             <div className="grid grid-cols-3 gap-2 md:gap-3 mb-3 md:mb-4">
               {Object.entries(app.stats).map(([key, value], i) => (
                 <div key={i} className="bg-white/[0.03] rounded-lg p-2 text-center">
-                  <p className="text-xs text-gray-500 mb-1 capitalize">{key}</p>
-                  <p className="text-xs md:text-sm text-white">{value}</p>
+                  <p className="text-xs text-muted-foreground mb-1 capitalize">{key}</p>
+                  <p className="text-xs md:text-sm text-foreground">{value}</p>
                 </div>
               ))}
             </div>
@@ -163,14 +163,14 @@ export function Apps({ onOpenApp }: AppsProps) {
                 disabled={app.status === "Planned"}
                 className={`flex-1 px-3 md:px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${
                   app.status === "Planned"
-                    ? "bg-gray-500/20 text-gray-500 cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white"
+                    ? "bg-gray-500/20 text-muted-foreground cursor-not-allowed"
+                    : "bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground"
                 }`}
               >
                 <Zap className="w-4 h-4" />
                 {app.status === "Planned" ? "Coming Soon" : "Open"}
               </button>
-              <button className="px-3 md:px-4 py-2 bg-white/[0.05] hover:bg-white/[0.10] active:bg-white/[0.15] text-gray-300 hover:text-white rounded-lg transition-all">
+              <button className="px-3 md:px-4 py-2 bg-secondary hover:bg-white/[0.10] active:bg-white/[0.15] text-foreground hover:text-foreground rounded-lg transition-all">
                 <Clock className="w-4 h-4" />
               </button>
             </div>
@@ -181,20 +181,20 @@ export function Apps({ onOpenApp }: AppsProps) {
       {/* Summary Stats */}
       <div className="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
         <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-3 md:p-4">
-          <p className="text-xs md:text-sm text-gray-400 mb-1">Live Applications</p>
-          <p className="text-xl md:text-2xl text-white">4</p>
+          <p className="text-xs md:text-sm text-muted-foreground mb-1">Live Applications</p>
+          <p className="text-xl md:text-2xl text-foreground">4</p>
         </div>
         <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl p-3 md:p-4">
-          <p className="text-xs md:text-sm text-gray-400 mb-1">With AI Chat</p>
-          <p className="text-xl md:text-2xl text-white">4</p>
+          <p className="text-xs md:text-sm text-muted-foreground mb-1">With AI Chat</p>
+          <p className="text-xl md:text-2xl text-foreground">4</p>
         </div>
         <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-xl p-3 md:p-4">
-          <p className="text-xs md:text-sm text-gray-400 mb-1">Total Processed</p>
-          <p className="text-xl md:text-2xl text-white">1,379</p>
+          <p className="text-xs md:text-sm text-muted-foreground mb-1">Total Processed</p>
+          <p className="text-xl md:text-2xl text-foreground">1,379</p>
         </div>
         <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-3 md:p-4">
-          <p className="text-xs md:text-sm text-gray-400 mb-1">Time Saved</p>
-          <p className="text-xl md:text-2xl text-white">232hrs</p>
+          <p className="text-xs md:text-sm text-muted-foreground mb-1">Time Saved</p>
+          <p className="text-xl md:text-2xl text-foreground">232hrs</p>
         </div>
       </div>
     </div>

@@ -156,12 +156,12 @@ export function Insights({ onOpenApp }: InsightsProps) {
     switch (card.type) {
       case "forecast":
         return (
-          <div className="bg-white/[0.03] border border-white/10 rounded-lg p-4 mt-3">
+          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3">
             <div className="space-y-2">
               {card.data.map((item: any, i: number) => (
                 <div key={i} className="flex items-center justify-between">
-                  <span className="text-gray-300">{item.day}</span>
-                  <span className="text-white">{item.demand}</span>
+                  <span className="text-foreground">{item.day}</span>
+                  <span className="text-foreground">{item.demand}</span>
                   <span className="text-green-400 text-sm">{item.change}</span>
                 </div>
               ))}
@@ -177,23 +177,23 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "rfps":
         return (
-          <div className="bg-white/[0.03] border border-white/10 rounded-lg overflow-hidden mt-3">
+          <div className="bg-white/[0.03] border border-border rounded-lg overflow-hidden mt-3">
             <table className="w-full text-sm">
               <thead className="bg-white/[0.03]">
                 <tr>
-                  <th className="px-3 py-2 text-left text-gray-400">RFP</th>
-                  <th className="px-3 py-2 text-left text-gray-400">AI Score</th>
-                  <th className="px-3 py-2 text-left text-gray-400">Status</th>
+                  <th className="px-3 py-2 text-left text-muted-foreground">RFP</th>
+                  <th className="px-3 py-2 text-left text-muted-foreground">AI Score</th>
+                  <th className="px-3 py-2 text-left text-muted-foreground">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {card.data.map((item: any, i: number) => (
                   <tr key={i} className="border-t border-white/5">
-                    <td className="px-3 py-2 text-white">{item.name}</td>
+                    <td className="px-3 py-2 text-foreground">{item.name}</td>
                     <td className="px-3 py-2">
                       <span className="text-green-400">{item.score}</span>
                     </td>
-                    <td className="px-3 py-2 text-gray-400">{item.status}</td>
+                    <td className="px-3 py-2 text-muted-foreground">{item.status}</td>
                   </tr>
                 ))}
               </tbody>
@@ -209,15 +209,15 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "invoices":
         return (
-          <div className="bg-white/[0.03] border border-white/10 rounded-lg p-4 mt-3 space-y-2">
+          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3 space-y-2">
             {card.data.map((item: any, i: number) => (
               <div key={i} className="flex items-center justify-between text-sm">
                 <div>
-                  <span className="text-white">{item.id}</span>
-                  <span className="text-gray-400 ml-2">{item.vendor}</span>
+                  <span className="text-foreground">{item.id}</span>
+                  <span className="text-muted-foreground ml-2">{item.vendor}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-white">{item.amount}</span>
+                  <span className="text-foreground">{item.amount}</span>
                   <span className="text-yellow-400">{item.confidence}</span>
                 </div>
               </div>
@@ -233,12 +233,12 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "sites":
         return (
-          <div className="bg-white/[0.03] border border-white/10 rounded-lg p-4 mt-3 space-y-2">
+          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3 space-y-2">
             {card.data.map((item: any, i: number) => (
               <div key={i} className="flex items-center justify-between">
-                <span className="text-white">{item.name}</span>
+                <span className="text-foreground">{item.name}</span>
                 <div className="flex items-center gap-3">
-                  <span className="text-gray-300">{item.revenue}</span>
+                  <span className="text-foreground">{item.revenue}</span>
                   <span className="text-green-400 text-sm">{item.growth}</span>
                 </div>
               </div>
@@ -278,7 +278,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
   };
 
   return (
-    <div className="h-full flex flex-col bg-white/[0.02] backdrop-blur-md rounded-xl">
+    <div className="h-full flex flex-col bg-secondary backdrop-blur-md rounded-xl">
       <div className="flex-1 overflow-y-auto p-3 md:p-6 space-y-3 md:space-y-4">
         {messages.map((message, i) => (
           <div
@@ -292,7 +292,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
                     <div className="flex-shrink-0 mt-0.5">
                       {getAlertIcon(message.alertType)}
                     </div>
-                    <p className="text-white text-xs md:text-sm flex-1">{message.text}</p>
+                    <p className="text-foreground text-xs md:text-sm flex-1">{message.text}</p>
                   </div>
                   {renderCard(message.card)}
                 </div>
@@ -300,20 +300,20 @@ export function Insights({ onOpenApp }: InsightsProps) {
             )}
             {message.type === "ai" && (
               <div className="flex items-start gap-2 md:gap-3 max-w-[95%] md:max-w-[85%]">
-                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-white" />
+                <div className="w-7 h-7 md:w-8 md:h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-3 h-3 md:w-4 md:h-4 text-primary-foreground" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl rounded-tl-sm p-3 md:p-4">
-                    <p className="text-blue-100 text-xs md:text-sm leading-relaxed">{message.text}</p>
+                  <div className="bg-primary/10 border border-primary/20 rounded-xl rounded-tl-sm p-3 md:p-4">
+                    <p className="text-foreground text-xs md:text-sm leading-relaxed">{message.text}</p>
                   </div>
                   {renderCard(message.card)}
                 </div>
               </div>
             )}
             {message.type === "user" && (
-              <div className="bg-white/[0.08] border border-white/10 rounded-xl rounded-tr-sm p-3 md:p-4 max-w-[95%] md:max-w-[85%]">
-                <p className="text-gray-200 text-xs md:text-sm leading-relaxed">{message.text}</p>
+              <div className="bg-secondary border border-border rounded-xl rounded-tr-sm p-3 md:p-4 max-w-[95%] md:max-w-[85%]">
+                <p className="text-foreground text-xs md:text-sm leading-relaxed">{message.text}</p>
               </div>
             )}
           </div>
@@ -328,7 +328,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
             <button
               key={i}
               onClick={() => handleSend(prompt.text)}
-              className="flex items-center gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-white/[0.05] hover:bg-white/[0.10] active:bg-white/[0.15] border border-white/10 rounded-lg text-xs md:text-sm text-gray-300 hover:text-white transition-all whitespace-nowrap flex-shrink-0"
+              className="flex items-center gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-secondary hover:bg-white/[0.10] active:bg-white/[0.15] border border-border rounded-lg text-xs md:text-sm text-foreground hover:text-foreground transition-all whitespace-nowrap flex-shrink-0"
             >
               <prompt.icon className="w-3 h-3 md:w-4 md:h-4" />
               <span className="hidden sm:inline">{prompt.text}</span>
@@ -339,7 +339,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
       </div>
 
       {/* Input */}
-      <div className="p-3 md:p-4 border-t border-white/10">
+      <div className="p-3 md:p-4 border-t border-border">
         <div className="flex gap-2 md:gap-3">
           <input
             type="text"
@@ -347,11 +347,11 @@ export function Insights({ onOpenApp }: InsightsProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything..."
-            className="flex-1 px-3 md:px-4 py-2 md:py-3 bg-white/5 border border-white/10 rounded-lg text-white text-sm md:text-base placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
+            className="flex-1 px-3 md:px-4 py-2 md:py-3 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
           />
           <button
             onClick={() => handleSend()}
-            className="px-4 md:px-6 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20"
+            className="px-4 md:px-6 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20"
           >
             <Send className="w-4 h-4" />
             <span className="hidden sm:inline">Send</span>

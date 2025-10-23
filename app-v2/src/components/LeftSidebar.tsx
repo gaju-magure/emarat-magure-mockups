@@ -16,9 +16,9 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
   ];
 
   return (
-    <aside className="bg-white/[0.02] backdrop-blur-md rounded-xl p-4 overflow-y-auto">
+    <aside className="bg-secondary backdrop-blur-md rounded-xl p-4 overflow-y-auto">
       <nav>
-        <h3 className="text-gray-400 text-sm mb-3 px-2">Navigation</h3>
+        <h3 className="text-muted-foreground text-sm mb-3 px-2">Navigation</h3>
         <ul className="space-y-1 mb-6">
           {navItems.map((item) => (
             <li
@@ -27,7 +27,7 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
               className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all ${
                 currentView === item.id
                   ? "bg-blue-500/20 text-blue-400"
-                  : "text-gray-400 hover:bg-white/5 hover:text-white"
+                  : "text-muted-foreground hover:bg-accent hover:text-foreground"
               }`}
             >
               <item.icon className="w-4 h-4" />
@@ -36,25 +36,25 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
           ))}
         </ul>
 
-        <h4 className="text-gray-400 text-sm mb-3 px-2">Quick Actions</h4>
+        <h4 className="text-muted-foreground text-sm mb-3 px-2">Quick Actions</h4>
         <div className="space-y-2">
           <button
             onClick={() => onOpenApp("invoice")}
-            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-gray-300 hover:text-white rounded-lg transition-all text-left"
+            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-foreground hover:text-foreground rounded-lg transition-all text-left"
           >
             <FileText className="w-4 h-4" />
             <span>Review Invoices</span>
           </button>
           <button
             onClick={() => onOpenApp("rfp")}
-            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-gray-300 hover:text-white rounded-lg transition-all text-left"
+            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-foreground hover:text-foreground rounded-lg transition-all text-left"
           >
             <Briefcase className="w-4 h-4" />
             <span>Open RFPs</span>
           </button>
           <button
             onClick={() => onOpenApp("forecast")}
-            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-gray-300 hover:text-white rounded-lg transition-all text-left"
+            className="w-full flex items-center gap-2 px-3 py-2 bg-white/[0.08] hover:bg-white/[0.12] text-foreground hover:text-foreground rounded-lg transition-all text-left"
           >
             <TrendingUp className="w-4 h-4" />
             <span>View Forecast</span>

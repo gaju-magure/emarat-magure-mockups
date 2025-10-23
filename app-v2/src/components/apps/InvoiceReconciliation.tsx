@@ -129,41 +129,41 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#08111e]/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 bg-background">
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/[0.02]">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
               <FileText className="w-5 h-5 text-blue-400" />
             </div>
             <div>
-              <h2 className="text-white text-lg">Invoice Reconciliation</h2>
-              <p className="text-gray-400 text-sm">AI-powered invoice processing</p>
+              <h2 className="text-foreground text-lg">Invoice Reconciliation</h2>
+              <p className="text-muted-foreground text-sm">AI-powered invoice processing</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all"
+            className="w-8 h-8 rounded-lg bg-accent hover:bg-accent flex items-center justify-center transition-all"
           >
-            <X className="w-5 h-5 text-gray-400" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
         {/* Tab Navigation */}
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "chat" | "space")} className="flex-1 flex flex-col">
-          <div className="border-b border-white/10 bg-white/[0.02] px-4">
+          <div className="border-b border-border bg-secondary px-4">
             <TabsList className="bg-transparent border-0 h-12">
               <TabsTrigger 
                 value="space" 
-                className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 text-gray-400"
+                className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 text-muted-foreground"
               >
                 <LayoutGrid className="w-4 h-4 mr-2" />
                 Workspace
               </TabsTrigger>
               <TabsTrigger 
                 value="chat"
-                className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 text-gray-400"
+                className="data-[state=active]:bg-blue-500/20 data-[state=active]:text-blue-400 text-muted-foreground"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 AI Chat
@@ -176,64 +176,64 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
             <div className="h-full flex flex-col gap-4">
               {/* Stats Cards */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                <div className="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                  <p className="text-gray-400 text-xs mb-1">Total Invoices</p>
-                  <p className="text-white text-xl">{stats.totalInvoices}</p>
+                <div className="bg-secondary border border-border rounded-lg p-3">
+                  <p className="text-muted-foreground text-xs mb-1">Total Invoices</p>
+                  <p className="text-foreground text-xl">{stats.totalInvoices}</p>
                 </div>
                 <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3">
                   <p className="text-yellow-400 text-xs mb-1">Flagged</p>
-                  <p className="text-white text-xl">{stats.flagged}</p>
+                  <p className="text-foreground text-xl">{stats.flagged}</p>
                 </div>
                 <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
                   <p className="text-green-400 text-xs mb-1">Approved</p>
-                  <p className="text-white text-xl">{stats.approved}</p>
+                  <p className="text-foreground text-xl">{stats.approved}</p>
                 </div>
-                <div className="bg-white/[0.03] border border-white/10 rounded-lg p-3">
-                  <p className="text-gray-400 text-xs mb-1">Avg Confidence</p>
-                  <p className="text-white text-xl">{stats.avgConfidence}%</p>
+                <div className="bg-secondary border border-border rounded-lg p-3">
+                  <p className="text-muted-foreground text-xs mb-1">Avg Confidence</p>
+                  <p className="text-foreground text-xl">{stats.avgConfidence}%</p>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="flex gap-2 flex-wrap">
-                <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all text-sm flex items-center gap-2">
+                <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all text-sm flex items-center gap-2">
                   <Upload className="w-4 h-4" />
                   Upload Invoices
                 </button>
-                <button className="px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 rounded-lg transition-all text-sm flex items-center gap-2">
+                <button className="px-4 py-2 bg-accent hover:bg-accent text-foreground rounded-lg transition-all text-sm flex items-center gap-2">
                   <Download className="w-4 h-4" />
                   Export Report
                 </button>
               </div>
 
               {/* Invoice List */}
-              <div className="flex-1 bg-white/[0.02] border border-white/10 rounded-lg overflow-hidden flex flex-col">
-                <div className="p-3 border-b border-white/10 bg-white/[0.03]">
-                  <h3 className="text-white">Invoice Queue</h3>
+              <div className="flex-1 bg-secondary border border-border rounded-lg overflow-hidden flex flex-col">
+                <div className="p-3 border-b border-border bg-secondary">
+                  <h3 className="text-foreground">Invoice Queue</h3>
                 </div>
                 <div className="flex-1 overflow-y-auto">
                   <table className="w-full">
-                    <thead className="sticky top-0 bg-white/[0.05] backdrop-blur-sm">
-                      <tr className="border-b border-white/10">
-                        <th className="text-left p-3 text-gray-400 text-sm">Invoice</th>
-                        <th className="text-left p-3 text-gray-400 text-sm hidden md:table-cell">Vendor</th>
-                        <th className="text-left p-3 text-gray-400 text-sm">Amount</th>
-                        <th className="text-left p-3 text-gray-400 text-sm hidden sm:table-cell">Status</th>
-                        <th className="text-left p-3 text-gray-400 text-sm">Action</th>
+                    <thead className="sticky top-0 bg-secondary backdrop-blur-sm">
+                      <tr className="border-b border-border">
+                        <th className="text-left p-3 text-muted-foreground text-sm">Invoice</th>
+                        <th className="text-left p-3 text-muted-foreground text-sm hidden md:table-cell">Vendor</th>
+                        <th className="text-left p-3 text-muted-foreground text-sm">Amount</th>
+                        <th className="text-left p-3 text-muted-foreground text-sm hidden sm:table-cell">Status</th>
+                        <th className="text-left p-3 text-muted-foreground text-sm">Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       {invoices.map((invoice) => (
-                        <tr key={invoice.id} className="border-b border-white/5 hover:bg-white/[0.03]">
+                        <tr key={invoice.id} className="border-b border-white/5 hover:bg-secondary">
                           <td className="p-3">
                             <div>
-                              <p className="text-white text-sm">{invoice.id}</p>
-                              <p className="text-gray-500 text-xs md:hidden">{invoice.vendor}</p>
+                              <p className="text-foreground text-sm">{invoice.id}</p>
+                              <p className="text-muted-foreground text-xs md:hidden">{invoice.vendor}</p>
                             </div>
                           </td>
-                          <td className="p-3 text-gray-300 text-sm hidden md:table-cell">{invoice.vendor}</td>
+                          <td className="p-3 text-foreground text-sm hidden md:table-cell">{invoice.vendor}</td>
                           <td className="p-3">
-                            <p className="text-white text-sm">${invoice.amount.toLocaleString()}</p>
+                            <p className="text-foreground text-sm">${invoice.amount.toLocaleString()}</p>
                             {invoice.variance > 0 && (
                               <p className="text-yellow-400 text-xs">+${invoice.variance}</p>
                             )}
@@ -277,18 +277,18 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
                   {message.type === "ai" && (
                     <div className="flex items-start gap-3 max-w-[85%]">
                       <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="w-4 h-4 text-white" />
+                        <Sparkles className="w-4 h-4 text-foreground" />
                       </div>
                       <div className="flex-1">
                         <div className="bg-blue-500/10 border border-blue-500/20 rounded-xl rounded-tl-sm p-4">
-                          <p className="text-blue-100 text-sm">{message.text}</p>
+                          <p className="text-foreground text-sm">{message.text}</p>
                         </div>
                       </div>
                     </div>
                   )}
                   {message.type === "user" && (
-                    <div className="bg-white/[0.08] border border-white/10 rounded-xl rounded-tr-sm p-4 max-w-[85%]">
-                      <p className="text-gray-200 text-sm">{message.text}</p>
+                    <div className="bg-secondary border border-border rounded-xl rounded-tr-sm p-4 max-w-[85%]">
+                      <p className="text-foreground text-sm">{message.text}</p>
                     </div>
                   )}
                 </div>
@@ -297,7 +297,7 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
             </div>
 
             {/* Chat Input */}
-            <div className="p-4 border-t border-white/10 bg-white/[0.02]">
+            <div className="p-4 border-t border-border bg-secondary">
               <div className="flex gap-3">
                 <input
                   type="text"
@@ -305,11 +305,11 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask about invoices..."
-                  className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50"
                 />
                 <button
                   onClick={handleSend}
-                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                 </button>

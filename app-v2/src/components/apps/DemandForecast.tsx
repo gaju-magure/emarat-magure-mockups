@@ -64,33 +64,33 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#08111e]/95 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 bg-background">
       <div className="h-full flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/[0.02]">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
               <TrendingUp className="w-5 h-5 text-purple-400" />
             </div>
             <div>
-              <h2 className="text-white text-lg">Demand Forecast AI</h2>
-              <p className="text-gray-400 text-sm">Predictive analytics assistant</p>
+              <h2 className="text-foreground text-lg">Demand Forecast AI</h2>
+              <p className="text-muted-foreground text-sm">Predictive analytics assistant</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all"
+            className="w-8 h-8 rounded-lg bg-accent hover:bg-accent flex items-center justify-center transition-all"
           >
-            <X className="w-5 h-5 text-gray-400" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 
         {/* Quick Insights Banner */}
-        <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-green-500/10 border-b border-white/10 p-4">
+        <div className="bg-gradient-to-r from-purple-500/10 via-blue-500/10 to-green-500/10 border-b border-border p-4">
           <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
             {quickInsights.map((insight, i) => (
               <div key={i} className="text-center">
-                <p className="text-gray-400 text-xs mb-1">{insight.label}</p>
+                <p className="text-muted-foreground text-xs mb-1">{insight.label}</p>
                 <p className={`text-${insight.color}-400 text-lg`}>{insight.value}</p>
               </div>
             ))}
@@ -103,13 +103,13 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
             <div className="flex items-start gap-3">
               <BarChart3 className="w-5 h-5 text-purple-400 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
-                <h3 className="text-white text-sm mb-1">Advanced Forecast Analytics Available</h3>
-                <p className="text-gray-400 text-xs mb-3">
+                <h3 className="text-foreground text-sm mb-1">Advanced Forecast Analytics Available</h3>
+                <p className="text-muted-foreground text-xs mb-3">
                   For complex scenario modeling, Monte Carlo simulations, and custom forecasting models, launch the full Analytics Platform.
                 </p>
                 <button
                   onClick={handleLaunchExternal}
-                  className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-all text-sm flex items-center gap-2"
+                  className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-foreground rounded-lg transition-all text-sm flex items-center gap-2"
                 >
                   <ExternalLink className="w-4 h-4" />
                   Launch Advanced Analytics
@@ -129,7 +129,7 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
               {message.type === "ai" && (
                 <div className="flex items-start gap-3 max-w-[85%]">
                   <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center flex-shrink-0">
-                    <Sparkles className="w-4 h-4 text-white" />
+                    <Sparkles className="w-4 h-4 text-foreground" />
                   </div>
                   <div className="flex-1">
                     <div className="bg-purple-500/10 border border-purple-500/20 rounded-xl rounded-tl-sm p-4">
@@ -139,8 +139,8 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
                 </div>
               )}
               {message.type === "user" && (
-                <div className="bg-white/[0.08] border border-white/10 rounded-xl rounded-tr-sm p-4 max-w-[85%]">
-                  <p className="text-gray-200 text-sm">{message.text}</p>
+                <div className="bg-secondary border border-border rounded-xl rounded-tr-sm p-4 max-w-[85%]">
+                  <p className="text-foreground text-sm">{message.text}</p>
                 </div>
               )}
             </div>
@@ -159,7 +159,7 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
                 ]);
                 handleSend();
               }}
-              className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 transition-all flex items-center gap-2"
+              className="px-3 py-1.5 bg-accent hover:bg-accent border border-border rounded-lg text-xs text-foreground transition-all flex items-center gap-2"
             >
               <Calendar className="w-3 h-3" />
               Next Week
@@ -172,7 +172,7 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
                 ]);
                 handleSend();
               }}
-              className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 transition-all"
+              className="px-3 py-1.5 bg-accent hover:bg-accent border border-border rounded-lg text-xs text-foreground transition-all"
             >
               Risk Analysis
             </button>
@@ -184,7 +184,7 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
                 ]);
                 handleSend();
               }}
-              className="px-3 py-1.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg text-xs text-gray-300 transition-all"
+              className="px-3 py-1.5 bg-accent hover:bg-accent border border-border rounded-lg text-xs text-foreground transition-all"
             >
               Compare Trends
             </button>
@@ -192,7 +192,7 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
         </div>
 
         {/* Chat Input */}
-        <div className="p-4 border-t border-white/10 bg-white/[0.02]">
+        <div className="p-4 border-t border-border bg-secondary">
           <div className="flex gap-3">
             <input
               type="text"
@@ -200,11 +200,11 @@ export function DemandForecast({ onClose }: DemandForecastProps) {
               onChange={(e) => setInput(e.target.value)}
               onKeyPress={(e) => e.key === "Enter" && handleSend()}
               placeholder="Ask about demand forecasts..."
-              className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-purple-500/50"
             />
             <button
               onClick={handleSend}
-              className="px-6 py-3 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-all flex items-center gap-2"
+              className="px-6 py-3 bg-purple-500 hover:bg-purple-600 text-foreground rounded-lg transition-all flex items-center gap-2"
             >
               <Send className="w-4 h-4" />
             </button>

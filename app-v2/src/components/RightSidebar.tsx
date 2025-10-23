@@ -14,10 +14,10 @@ export function RightSidebar() {
   ];
 
   return (
-    <aside className="bg-white/[0.02] backdrop-blur-md rounded-xl p-4 overflow-y-auto">
+    <aside className="bg-secondary backdrop-blur-md rounded-xl p-4 overflow-y-auto">
       <div className="space-y-6">
         <div>
-          <h3 className="text-gray-300 mb-3 flex items-center gap-2">
+          <h3 className="text-foreground mb-3 flex items-center gap-2">
             <AlertCircle className="w-4 h-4" />
             AI Alerts
           </h3>
@@ -33,7 +33,7 @@ export function RightSidebar() {
                     : "bg-green-500/10 border-green-500/30 hover:bg-green-500/15"
                 }`}
               >
-                <p className="text-sm text-gray-300">{update.text}</p>
+                <p className="text-sm text-foreground">{update.text}</p>
                 {update.confidence && (
                   <span className="inline-block mt-1 text-xs text-yellow-400">
                     Min confidence: {update.confidence}
@@ -44,8 +44,8 @@ export function RightSidebar() {
           </ul>
         </div>
 
-        <div className="border-t border-white/10 pt-4">
-          <h4 className="text-gray-300 mb-3 flex items-center gap-2">
+        <div className="border-t border-border pt-4">
+          <h4 className="text-foreground mb-3 flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4" />
             My Tasks
           </h4>
@@ -61,7 +61,7 @@ export function RightSidebar() {
                     className="mt-0.5 rounded border-gray-600 bg-transparent"
                   />
                   <div className="flex-1">
-                    <p className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                    <p className="text-sm text-foreground group-hover:text-foreground transition-colors">
                       {task.text}
                     </p>
                     <span
@@ -82,12 +82,12 @@ export function RightSidebar() {
           </ul>
         </div>
 
-        <div className="border-t border-white/10 pt-4">
-          <h4 className="text-gray-300 mb-3 flex items-center gap-2">
+        <div className="border-t border-border pt-4">
+          <h4 className="text-foreground mb-3 flex items-center gap-2">
             <Clock className="w-4 h-4" />
             Recent Activity
           </h4>
-          <div className="space-y-2 text-xs text-gray-500">
+          <div className="space-y-2 text-xs text-muted-foreground">
             <p>• Document uploaded 2h ago</p>
             <p>• Workflow approved 4h ago</p>
             <p>• Meeting scheduled 1d ago</p>

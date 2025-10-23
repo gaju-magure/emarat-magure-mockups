@@ -57,12 +57,12 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#08111e] via-[#0b1a2b] to-[#08111e]">
+    <div className="min-h-screen bg-background">
       <Header onMenuClick={() => setLeftSidebarOpen(true)} />
-      
+
       {/* Mobile Left Sidebar */}
       <Sheet open={leftSidebarOpen} onOpenChange={setLeftSidebarOpen}>
-        <SheetContent side="left" className="w-[280px] p-0 bg-[#08111e] border-white/10">
+        <SheetContent side="left" className="w-[280px] p-0 bg-sidebar border-border">
           <LeftSidebar
             currentView={currentView}
             onNavigate={handleNavigate}
@@ -81,9 +81,9 @@ export default function App() {
             onOpenApp={handleOpenApp}
           />
         </aside>
-        
+
         {/* Main Content */}
-        <main className="h-full overflow-hidden bg-white/[0.02] backdrop-blur-md rounded-xl">
+        <main className="h-full overflow-hidden bg-card rounded-xl border border-border">
           {renderMainContent()}
         </main>
         

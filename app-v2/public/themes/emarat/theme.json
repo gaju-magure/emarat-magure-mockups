@@ -1,0 +1,183 @@
+{
+  "id": "emarat-default",
+  "name": "Emarat AI",
+  "version": "1.0.0",
+  "branding": {
+    "companyName": "Emarat AI",
+    "tagline": "Your Business Copilot",
+    "logo": {
+      "light": "/themes/emarat/emarat-logo.svg",
+      "dark": "/themes/emarat/emarat-logo.svg",
+      "icon": "/themes/emarat/favicon-32x32.png"
+    },
+    "favicon": {
+      "ico": "/themes/emarat/favicon.ico",
+      "png16": "/themes/emarat/favicon-16x16.png",
+      "png32": "/themes/emarat/favicon-32x32.png",
+      "appleTouchIcon": "/themes/emarat/apple-touch-icon.png",
+      "safariPinned": "/themes/emarat/safari-pinned-tab.svg"
+    }
+  },
+  "fonts": {
+    "primary": {
+      "name": "Karbon",
+      "fallback": "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif",
+      "files": [
+        {
+          "weight": 400,
+          "style": "normal",
+          "format": "woff2",
+          "url": "/themes/emarat/fonts/Karbon-Regular.woff2"
+        },
+        {
+          "weight": 400,
+          "style": "normal",
+          "format": "woff",
+          "url": "/themes/emarat/fonts/Karbon-Regular.woff"
+        },
+        {
+          "weight": 500,
+          "style": "normal",
+          "format": "woff2",
+          "url": "/themes/emarat/fonts/Karbon-Medium.woff2"
+        },
+        {
+          "weight": 500,
+          "style": "normal",
+          "format": "woff",
+          "url": "/themes/emarat/fonts/Karbon-Medium.woff"
+        }
+      ]
+    },
+    "arabic": {
+      "name": "TheSansArabic",
+      "fallback": "Arial, sans-serif",
+      "files": [
+        {
+          "weight": 300,
+          "style": "normal",
+          "format": "woff2",
+          "url": "/themes/emarat/fonts/TheSansArabic-Light.woff2"
+        },
+        {
+          "weight": 300,
+          "style": "normal",
+          "format": "woff",
+          "url": "/themes/emarat/fonts/TheSansArabic-Light.woff"
+        }
+      ]
+    },
+    "mono": {
+      "name": "Consolas",
+      "fallback": "Monaco, 'Courier New', monospace",
+      "files": []
+    }
+  },
+  "colors": {
+    "light": {
+      "background": "#ffffff",
+      "foreground": "#030213",
+      "card": "#ffffff",
+      "cardForeground": "#030213",
+      "popover": "#ffffff",
+      "popoverForeground": "#030213",
+      "primary": "#003a85",
+      "primaryForeground": "#ffffff",
+      "secondary": "#f3f3f5",
+      "secondaryForeground": "#030213",
+      "muted": "#ececf0",
+      "mutedForeground": "#717182",
+      "accent": "#e9ebef",
+      "accentForeground": "#030213",
+      "destructive": "#d4183d",
+      "destructiveForeground": "#ffffff",
+      "border": "rgba(0, 0, 0, 0.1)",
+      "input": "transparent",
+      "inputBackground": "#f3f3f5",
+      "ring": "#b3b3b3",
+      "sidebar": "#f9f9f9",
+      "sidebarForeground": "#030213",
+      "sidebarPrimary": "#003a85",
+      "sidebarPrimaryForeground": "#ffffff",
+      "sidebarAccent": "#f3f3f5",
+      "sidebarAccentForeground": "#030213",
+      "sidebarBorder": "#e5e5e5",
+      "sidebarRing": "#b3b3b3",
+      "chart1": "#ff6b35",
+      "chart2": "#00a6a6",
+      "chart3": "#6366f1",
+      "chart4": "#fbbf24",
+      "chart5": "#f43f5e",
+      "success": "#50aa1b",
+      "successBg": "#f0fdf4",
+      "successBorder": "#86efac",
+      "successText": "#166534",
+      "warning": "#d97706",
+      "warningBg": "#fffbeb",
+      "warningBorder": "#fcd34d",
+      "warningText": "#92400e",
+      "danger": "#dc2626",
+      "dangerBg": "#fef2f2",
+      "dangerBorder": "#fca5a5",
+      "dangerText": "#991b1b",
+      "info": "#0369a1",
+      "infoBg": "#f0f9ff",
+      "infoBorder": "#7dd3fc",
+      "infoText": "#075985"
+    },
+    "dark": {
+      "background": "#08111e",
+      "foreground": "#ffffff",
+      "card": "#0f1824",
+      "cardForeground": "#ffffff",
+      "popover": "#0f1824",
+      "popoverForeground": "#ffffff",
+      "primary": "#3b82f6",
+      "primaryForeground": "#ffffff",
+      "secondary": "#1e293b",
+      "secondaryForeground": "#ffffff",
+      "muted": "#1e293b",
+      "mutedForeground": "#94a3b8",
+      "accent": "#1e293b",
+      "accentForeground": "#ffffff",
+      "destructive": "#dc2626",
+      "destructiveForeground": "#ffffff",
+      "border": "rgba(255, 255, 255, 0.1)",
+      "input": "#1e293b",
+      "inputBackground": "#1e293b",
+      "ring": "#475569",
+      "sidebar": "#0a0f1a",
+      "sidebarForeground": "#ffffff",
+      "sidebarPrimary": "#3b82f6",
+      "sidebarPrimaryForeground": "#ffffff",
+      "sidebarAccent": "#1e293b",
+      "sidebarAccentForeground": "#ffffff",
+      "sidebarBorder": "#1e293b",
+      "sidebarRing": "#475569",
+      "chart1": "#3b82f6",
+      "chart2": "#10b981",
+      "chart3": "#f59e0b",
+      "chart4": "#8b5cf6",
+      "chart5": "#ef4444",
+      "success": "#10b981",
+      "successBg": "rgba(16, 185, 129, 0.1)",
+      "successBorder": "rgba(16, 185, 129, 0.3)",
+      "successText": "#6ee7b7",
+      "warning": "#f59e0b",
+      "warningBg": "rgba(245, 158, 11, 0.1)",
+      "warningBorder": "rgba(245, 158, 11, 0.3)",
+      "warningText": "#fcd34d",
+      "danger": "#ef4444",
+      "dangerBg": "rgba(239, 68, 68, 0.1)",
+      "dangerBorder": "rgba(239, 68, 68, 0.3)",
+      "dangerText": "#fca5a5",
+      "info": "#3b82f6",
+      "infoBg": "rgba(59, 130, 246, 0.1)",
+      "infoBorder": "rgba(59, 130, 246, 0.3)",
+      "infoText": "#93c5fd"
+    }
+  },
+  "spacing": {
+    "radius": "0.625rem"
+  }
+}

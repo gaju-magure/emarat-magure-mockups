@@ -15,7 +15,7 @@ export function MobileNav({ currentView, onNavigate }: MobileNavProps) {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-[#08111e]/95 backdrop-blur-lg border-t border-white/10 md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-t border-border md:hidden">
       <div className="grid grid-cols-5 h-16">
         {navItems.map((item) => (
           <button
@@ -24,7 +24,7 @@ export function MobileNav({ currentView, onNavigate }: MobileNavProps) {
             className={`flex flex-col items-center justify-center gap-1 transition-all ${
               currentView === item.id
                 ? "text-blue-400"
-                : "text-gray-400 active:text-white"
+                : "text-muted-foreground active:text-foreground"
             }`}
           >
             <item.icon className="w-5 h-5" />

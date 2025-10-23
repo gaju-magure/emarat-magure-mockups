@@ -24,7 +24,7 @@ export function AppModal({ isOpen, onClose, appType }: AppModalProps) {
       case "contract":
         return <ContractReview />;
       default:
-        return <div className="text-white p-6">App not found</div>;
+        return <div className="text-foreground p-6">App not found</div>;
     }
   };
 
@@ -45,16 +45,16 @@ export function AppModal({ isOpen, onClose, appType }: AppModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-2 md:p-4">
-      <div className="bg-[#08111e] border border-white/10 rounded-xl w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl">
+      <div className="bg-background border border-border rounded-xl w-full max-w-6xl max-h-[90vh] flex flex-col shadow-2xl">
         {/* Header */}
-        <div className="flex items-center justify-between p-4 md:p-6 border-b border-white/10">
-          <h2 className="text-white text-lg md:text-xl">{getAppTitle()}</h2>
+        <div className="flex items-center justify-between p-4 md:p-6 border-b border-border">
+          <h2 className="text-foreground text-lg md:text-xl">{getAppTitle()}</h2>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+            className="p-2 hover:bg-accent rounded-lg transition-colors"
             aria-label="Close"
           >
-            <X className="w-5 h-5 text-gray-400" />
+            <X className="w-5 h-5 text-muted-foreground" />
           </button>
         </div>
 

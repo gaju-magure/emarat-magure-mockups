@@ -35,8 +35,8 @@ export function Home({ onOpenApp }: HomeProps) {
     <div className="h-full overflow-y-auto p-3 md:p-6 space-y-4 md:space-y-6">
       {/* Header */}
       <div className="mb-4 md:mb-8">
-        <h1 className="text-white mb-2 text-xl md:text-2xl">Dashboard Overview</h1>
-        <p className="text-gray-400 text-sm md:text-base">Monitor your key metrics and operations at a glance.</p>
+        <h1 className="text-foreground mb-2 text-xl md:text-2xl">Dashboard Overview</h1>
+        <p className="text-muted-foreground text-sm md:text-base">Monitor your key metrics and operations at a glance.</p>
       </div>
 
       {/* KPI Cards */}
@@ -44,7 +44,7 @@ export function Home({ onOpenApp }: HomeProps) {
         {kpis.map((kpi, i) => (
           <div
             key={i}
-            className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-xl p-3 md:p-5 hover:bg-white/[0.04] transition-all"
+            className="bg-secondary backdrop-blur-md border border-border rounded-xl p-3 md:p-5 hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-start justify-between mb-2 md:mb-3">
               <kpi.icon className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
@@ -56,8 +56,8 @@ export function Home({ onOpenApp }: HomeProps) {
                 {kpi.change}
               </span>
             </div>
-            <p className="text-lg md:text-2xl text-white mb-1">{kpi.value}</p>
-            <p className="text-xs md:text-sm text-gray-400">{kpi.label}</p>
+            <p className="text-lg md:text-2xl text-foreground mb-1">{kpi.value}</p>
+            <p className="text-xs md:text-sm text-muted-foreground">{kpi.label}</p>
           </div>
         ))}
       </div>
@@ -65,8 +65,8 @@ export function Home({ onOpenApp }: HomeProps) {
       {/* Three Column Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
         {/* Active Pilots */}
-        <div className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-5">
-          <h3 className="text-white mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
+        <div className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-5">
+          <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
             <Target className="w-4 h-4 md:w-5 md:h-5 text-purple-400" />
             Active Pilots
           </h3>
@@ -77,7 +77,7 @@ export function Home({ onOpenApp }: HomeProps) {
                 className="bg-white/[0.03] rounded-lg p-2 md:p-3 border border-white/5 hover:bg-white/[0.06] transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-1 md:mb-2">
-                  <p className="text-xs md:text-sm text-white">{pilot.name}</p>
+                  <p className="text-xs md:text-sm text-foreground">{pilot.name}</p>
                   <span
                     className={`text-xs px-2 py-0.5 rounded flex-shrink-0 ${
                       pilot.color === "green"
@@ -90,15 +90,15 @@ export function Home({ onOpenApp }: HomeProps) {
                     {pilot.status}
                   </span>
                 </div>
-                <p className="text-xs text-gray-400">ROI: {pilot.roi}</p>
+                <p className="text-xs text-muted-foreground">ROI: {pilot.roi}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* My Tasks */}
-        <div className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-5">
-          <h3 className="text-white mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
+        <div className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-5">
+          <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
             <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
             My Tasks
           </h3>
@@ -113,12 +113,12 @@ export function Home({ onOpenApp }: HomeProps) {
                     type="checkbox"
                     className="mt-0.5 rounded border-gray-600 bg-transparent"
                   />
-                  <p className="text-xs md:text-sm text-white flex-1 group-hover:text-blue-400 transition-colors">
+                  <p className="text-xs md:text-sm text-foreground flex-1 group-hover:text-blue-400 transition-colors">
                     {task.text}
                   </p>
                 </div>
                 <div className="flex items-center justify-between pl-6">
-                  <span className="text-xs text-gray-500">{task.department}</span>
+                  <span className="text-xs text-muted-foreground">{task.department}</span>
                   <span
                     className={`text-xs px-2 py-0.5 rounded ${
                       task.priority === "high"
@@ -138,16 +138,16 @@ export function Home({ onOpenApp }: HomeProps) {
 
         {/* Copilot Quick Access */}
         <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-xl p-4 md:p-5">
-          <h3 className="text-white mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
+          <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
             <MessageSquare className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
             Emarat AI
           </h3>
-          <p className="text-xs md:text-sm text-gray-300 mb-3 md:mb-4">
+          <p className="text-xs md:text-sm text-foreground mb-3 md:mb-4">
             Your AI copilot for operations, insights, and process automation.
           </p>
           <button
             onClick={() => onOpenApp("insights")}
-            className="w-full px-4 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-white rounded-lg transition-all text-sm md:text-base"
+            className="w-full px-4 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all text-sm md:text-base"
           >
             Open Emarat AI
           </button>
@@ -156,20 +156,20 @@ export function Home({ onOpenApp }: HomeProps) {
 
       {/* App Shortcuts Grid */}
       <div>
-        <h3 className="text-white mb-3 md:mb-4 text-base md:text-lg">Quick Actions</h3>
+        <h3 className="text-foreground mb-3 md:mb-4 text-base md:text-lg">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {appShortcuts.map((shortcut, i) => (
             <button
               key={i}
               onClick={() => onOpenApp(shortcut.app)}
-              className="bg-white/[0.02] backdrop-blur-md border border-white/10 rounded-xl p-4 md:p-6 hover:bg-white/[0.04] hover:border-white/20 active:bg-white/[0.06] transition-all group text-center"
+              className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-6 hover:bg-white/[0.04] hover:border-border active:bg-white/[0.06] transition-all group text-center"
             >
               <div
                 className={`w-10 h-10 md:w-12 md:h-12 rounded-lg bg-${shortcut.color}-500/20 flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform`}
               >
                 <shortcut.icon className={`w-5 h-5 md:w-6 md:h-6 text-${shortcut.color}-400`} />
               </div>
-              <p className="text-xs md:text-sm text-white group-hover:text-blue-400 transition-colors">
+              <p className="text-xs md:text-sm text-foreground group-hover:text-blue-400 transition-colors">
                 {shortcut.name}
               </p>
             </button>
