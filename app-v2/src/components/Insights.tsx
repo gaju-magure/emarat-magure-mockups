@@ -351,7 +351,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
           />
           <button
             onClick={() => handleSend()}
-            className="px-4 md:px-6 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-blue-500/20"
+            className="px-4 md:px-6 py-2 md:py-3 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center gap-2 shadow-theme-md"
           >
             <Send className="w-4 h-4" />
             <span className="hidden sm:inline">Send</span>

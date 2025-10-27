@@ -196,7 +196,7 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
 
               {/* Action Buttons */}
               <div className="flex gap-2 flex-wrap">
-                <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all text-sm flex items-center gap-2">
+                <button className="px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm flex items-center gap-2">
                   <Upload className="w-4 h-4" />
                   Upload Invoices
                 </button>
@@ -253,7 +253,7 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
                             </Badge>
                           </td>
                           <td className="p-3">
-                            <button className="px-3 py-1 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded text-xs transition-all">
+                            <button className="px-3 py-1 bg-primary/20 hover:bg-primary/30 text-primary rounded text-xs transition-all">
                               Review
                             </button>
                           </td>

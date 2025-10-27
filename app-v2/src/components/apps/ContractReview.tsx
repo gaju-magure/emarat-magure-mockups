@@ -155,7 +155,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
               <div className="lg:w-80 border-r border-border flex flex-col bg-white/[0.01]">
                 <div className="p-4 border-b border-border">
                   <h3 className="text-foreground mb-3">Active Contracts</h3>
-                  <button className="w-full px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-foreground rounded-lg transition-all text-sm flex items-center justify-center gap-2">
+                  <button className="w-full px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm flex items-center justify-center gap-2">
                     <Upload className="w-4 h-4" />
                     Upload New Contract
                   </button>
@@ -270,10 +270,10 @@ export function ContractReview({ onClose }: ContractReviewProps) {
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-3">
-                      <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-foreground rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-success hover:bg-success/90 text-white rounded-lg transition-all text-sm">
                         Approve Contract
                       </button>
-                      <button className="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-foreground rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-warning hover:bg-warning/90 text-white rounded-lg transition-all text-sm">
                         Request Changes
                       </button>
                       <button className="px-4 py-2 bg-accent hover:bg-accent text-foreground rounded-lg transition-all text-sm">

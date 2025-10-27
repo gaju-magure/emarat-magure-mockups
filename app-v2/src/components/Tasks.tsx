@@ -179,7 +179,7 @@ export function Tasks({ onOpenApp }: TasksProps) {
                 </div>
                 <button
                   onClick={() => onOpenApp(task.type === "Invoice" ? "invoice" : "rfp")}
-                  className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  className="w-full px-3 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
                 >
                   <Eye className="w-4 h-4" />
                   Review
@@ -244,7 +244,7 @@ export function Tasks({ onOpenApp }: TasksProps) {
                         onClick={() =>
                           onOpenApp(task.type === "Invoice" ? "invoice" : "rfp")
                         }
-                        className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all flex items-center gap-2 text-sm"
+                        className="px-3 py-1.5 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center gap-2 text-sm"
                       >
                         <Eye className="w-4 h-4" />
                         Review
@@ -356,7 +356,7 @@ export function Tasks({ onOpenApp }: TasksProps) {
                 </div>
                 <button
                   onClick={() => onOpenApp(task.type === "Invoice" ? "invoice" : "rfp")}
-                  className="w-full px-3 py-2 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
+                  className="w-full px-3 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center justify-center gap-2 text-sm"
                 >
                   <Eye className="w-4 h-4" />
                   Review
@@ -409,7 +409,7 @@ export function Tasks({ onOpenApp }: TasksProps) {
                         onClick={() =>
                           onOpenApp(task.type === "Invoice" ? "invoice" : "rfp")
                         }
-                        className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all flex items-center gap-2 text-sm"
+                        className="px-3 py-1.5 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center gap-2 text-sm"
                       >
                         <Eye className="w-4 h-4" />
                         Review

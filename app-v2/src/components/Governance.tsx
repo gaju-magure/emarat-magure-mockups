@@ -302,7 +302,7 @@ export function Governance() {
                       <span className="text-sm text-green-400">87%</span>
                     </div>
                   </div>
-                  <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all text-sm">
+                  <button className="px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm">
                     View Document
                   </button>
                 </div>
@@ -326,7 +326,7 @@ export function Governance() {
                       <span className="text-sm text-green-400">94%</span>
                     </div>
                   </div>
-                  <button className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-foreground rounded-lg transition-all text-sm">
+                  <button className="px-4 py-2 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm">
                     View Document
                   </button>
                 </div>

@@ -147,7 +147,7 @@ export function Home({ onOpenApp }: HomeProps) {
           </p>
           <button
             onClick={() => onOpenApp("insights")}
-            className="w-full px-4 py-2 md:py-3 bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground rounded-lg transition-all text-sm md:text-base"
+            className="w-full px-4 py-2 md:py-3 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm md:text-base"
           >
             Open Emarat AI
           </button>

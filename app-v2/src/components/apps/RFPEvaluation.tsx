@@ -292,7 +292,7 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-3">
-                      <button className="px-4 py-2 bg-green-500 hover:bg-green-600 text-foreground rounded-lg transition-all text-sm">
+                      <button className="px-4 py-2 bg-success hover:bg-success/90 text-white rounded-lg transition-all text-sm">
                         Approve Proposal
                       </button>
                       <button className="px-4 py-2 bg-accent hover:bg-accent text-foreground rounded-lg transition-all text-sm flex items-center gap-2">

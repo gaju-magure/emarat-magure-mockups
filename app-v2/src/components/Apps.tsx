@@ -164,7 +164,7 @@ export function Apps({ onOpenApp }: AppsProps) {
                 className={`flex-1 px-3 md:px-4 py-2 rounded-lg transition-all flex items-center justify-center gap-2 text-sm ${
                   app.status === "Planned"
                     ? "bg-gray-500/20 text-muted-foreground cursor-not-allowed"
-                    : "bg-blue-500 hover:bg-blue-600 active:bg-blue-700 text-foreground"
+                    : "bg-primary hover:bg-primary-hover text-primary-foreground"
                 }`}
               >
                 <Zap className="w-4 h-4" />
