@@ -132,8 +132,8 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-green-500/20 flex items-center justify-center">
-              <Briefcase className="w-5 h-5 text-green-400" />
+            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+              <Briefcase className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h2 className="text-foreground text-lg">RFP Evaluation</h2>
@@ -152,16 +152,16 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "chat" | "space")} className="flex-1 flex flex-col">
           <div className="border-b border-border bg-secondary px-4">
             <TabsList className="bg-transparent border-0 h-12">
-              <TabsTrigger 
-                value="space" 
-                className="data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400 text-muted-foreground"
+              <TabsTrigger
+                value="space"
+                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-muted-foreground"
               >
                 <LayoutGrid className="w-4 h-4 mr-2" />
                 Evaluation Workspace
               </TabsTrigger>
-              <TabsTrigger 
+              <TabsTrigger
                 value="chat"
-                className="data-[state=active]:bg-green-500/20 data-[state=active]:text-green-400 text-muted-foreground"
+                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-muted-foreground"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 AI Analysis
@@ -198,7 +198,7 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                       onClick={() => setSelectedRFP(rfp.id)}
                       className={`p-4 rounded-lg border cursor-pointer transition-all ${
                         selectedRFP === rfp.id
-                          ? "bg-green-500/20 border-green-500/40"
+                          ? "bg-primary/20 border-primary/40"
                           : "bg-secondary border-border hover:bg-white/[0.06]"
                       }`}
                     >
@@ -234,10 +234,10 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                     </div>
 
                     {/* Overall Score */}
-                    <div className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6">
+                    <div className="bg-primary/10 border border-primary/30 rounded-xl p-6">
                       <div className="flex items-center justify-between mb-3">
                         <h3 className="text-foreground">Overall AI Score</h3>
-                        <span className="text-3xl text-green-400">{selectedRFPData.score}%</span>
+                        <span className="text-3xl text-primary">{selectedRFPData.score}%</span>
                       </div>
                       <Progress value={selectedRFPData.score} className="h-3" />
                     </div>
@@ -326,12 +326,12 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                 >
                   {message.type === "ai" && (
                     <div className="flex items-start gap-3 max-w-[85%]">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="w-4 h-4 text-foreground" />
+                      <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="w-4 h-4 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
-                        <div className="bg-green-500/10 border border-green-500/20 rounded-xl rounded-tl-sm p-4">
-                          <p className="text-green-100 text-sm">{message.text}</p>
+                        <div className="bg-primary/10 border border-primary/20 rounded-xl rounded-tl-sm p-4">
+                          <p className="text-foreground text-sm">{message.text}</p>
                         </div>
                       </div>
                     </div>
@@ -355,11 +355,11 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask about RFP proposals..."
-                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-green-500/50"
+                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 <button
                   onClick={handleSend}
-                  className="px-6 py-3 bg-green-500 hover:bg-green-600 text-foreground rounded-lg transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                 </button>

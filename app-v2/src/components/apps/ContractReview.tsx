@@ -111,8 +111,8 @@ export function ContractReview({ onClose }: ContractReviewProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-border bg-secondary">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center">
-              <FileCheck className="w-5 h-5 text-indigo-400" />
+            <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center">
+              <FileCheck className="w-5 h-5 text-primary" />
             </div>
             <div>
               <h2 className="text-foreground text-lg">Contract Review AI</h2>
@@ -131,16 +131,16 @@ export function ContractReview({ onClose }: ContractReviewProps) {
         <Tabs value={activeTab} onValueChange={(v) => setActiveTab(v as "chat" | "space")} className="flex-1 flex flex-col">
           <div className="border-b border-border bg-secondary px-4">
             <TabsList className="bg-transparent border-0 h-12">
-              <TabsTrigger 
-                value="space" 
-                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-muted-foreground"
+              <TabsTrigger
+                value="space"
+                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-muted-foreground"
               >
                 <LayoutGrid className="w-4 h-4 mr-2" />
                 Review Workspace
               </TabsTrigger>
-              <TabsTrigger 
+              <TabsTrigger
                 value="chat"
-                className="data-[state=active]:bg-indigo-500/20 data-[state=active]:text-indigo-400 text-muted-foreground"
+                className="data-[state=active]:bg-primary/20 data-[state=active]:text-primary text-muted-foreground"
               >
                 <MessageSquare className="w-4 h-4 mr-2" />
                 AI Assistant
@@ -167,7 +167,7 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                       onClick={() => setSelectedContract(contract.id)}
                       className={`p-4 rounded-lg border cursor-pointer transition-all ${
                         selectedContract === contract.id
-                          ? "bg-indigo-500/20 border-indigo-500/40"
+                          ? "bg-primary/20 border-primary/40"
                           : "bg-secondary border-border hover:bg-white/[0.06]"
                       }`}
                     >
@@ -209,13 +209,13 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                     </div>
 
                     {/* AI Analysis Score */}
-                    <div className="bg-gradient-to-br from-indigo-500/10 to-purple-500/10 border border-indigo-500/30 rounded-xl p-6">
+                    <div className="bg-primary/10 border border-primary/30 rounded-xl p-6">
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="text-foreground mb-1">AI Compliance Score</h3>
                           <p className="text-muted-foreground text-sm">Based on {selectedContractData.clauses.total} clauses analyzed</p>
                         </div>
-                        <div className="text-4xl text-indigo-400">{selectedContractData.aiScore}%</div>
+                        <div className="text-4xl text-primary">{selectedContractData.aiScore}%</div>
                       </div>
                     </div>
 
@@ -303,12 +303,12 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                 >
                   {message.type === "ai" && (
                     <div className="flex items-start gap-3 max-w-[85%]">
-                      <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center flex-shrink-0">
-                        <Sparkles className="w-4 h-4 text-foreground" />
+                      <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+                        <Sparkles className="w-4 h-4 text-primary-foreground" />
                       </div>
                       <div className="flex-1">
-                        <div className="bg-indigo-500/10 border border-indigo-500/20 rounded-xl rounded-tl-sm p-4">
-                          <p className="text-indigo-100 text-sm">{message.text}</p>
+                        <div className="bg-primary/10 border border-primary/20 rounded-xl rounded-tl-sm p-4">
+                          <p className="text-foreground text-sm">{message.text}</p>
                         </div>
                       </div>
                     </div>
@@ -332,11 +332,11 @@ export function ContractReview({ onClose }: ContractReviewProps) {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === "Enter" && handleSend()}
                   placeholder="Ask about contract clauses..."
-                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  className="flex-1 px-4 py-3 bg-accent border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 <button
                   onClick={handleSend}
-                  className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 text-foreground rounded-lg transition-all flex items-center gap-2"
+                  className="px-6 py-3 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                 </button>
