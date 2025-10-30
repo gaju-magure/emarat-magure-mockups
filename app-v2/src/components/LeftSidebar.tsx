@@ -12,7 +12,7 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
     { icon: Home, label: "Dashboard", id: "home" },
     { icon: Grid3x3, label: "Apps", id: "apps" },
     { icon: CheckSquare, label: "Tasks", id: "tasks" },
-    { icon: Shield, label: "Governance", id: "governance" },
+    // { icon: Shield, label: "Governance", id: "governance" },
   ];
 
   return (

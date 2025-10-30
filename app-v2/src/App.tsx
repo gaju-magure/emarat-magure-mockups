@@ -7,7 +7,7 @@ import { Home } from "./components/Home";
 import { Insights } from "./components/Insights";
 import { Apps } from "./components/Apps";
 import { Tasks } from "./components/Tasks";
-import { Governance } from "./components/Governance";
+// import { Governance } from "./components/Governance";
 import { Sheet, SheetContent } from "./components/ui/sheet";
 
 // Import dedicated app components
@@ -49,8 +49,8 @@ export default function App() {
         return <Apps onOpenApp={handleOpenApp} />;
       case "tasks":
         return <Tasks onOpenApp={handleOpenApp} />;
-      case "governance":
-        return <Governance />;
+      // case "governance":
+      //   return <Governance />;
       default:
         return <Home onOpenApp={handleOpenApp} />;
     }

@@ -11,12 +11,12 @@ export function MobileNav({ currentView, onNavigate }: MobileNavProps) {
     { icon: Home, label: "Home", id: "home" },
     { icon: Grid3x3, label: "Apps", id: "apps" },
     { icon: CheckSquare, label: "Tasks", id: "tasks" },
-    { icon: Shield, label: "Gov", id: "governance" },
+    // { icon: Shield, label: "Gov", id: "governance" },
   ];
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-lg border-t border-border md:hidden">
-      <div className="grid grid-cols-5 h-16">
+      <div className="grid grid-cols-4 h-16">
         {navItems.map((item) => (
           <button
             key={item.id}
