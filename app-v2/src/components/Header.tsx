@@ -13,8 +13,12 @@ export function Header({ onMenuClick }: HeaderProps) {
   const companyName = theme?.branding?.companyName || "Emarat AI";
   const tagline = theme?.branding?.tagline || "Your Business Copilot";
 
-  // Adjust logo size based on theme - MGAI logo needs to be smaller
-  const logoHeight = theme?.id === "mgai" ? "h-6 md:h-7" : "h-8 md:h-10";
+  // Adjust logo size based on theme - smaller logos for better appearance
+  const logoHeight = theme?.id === "mgai"
+    ? "h-5 md:h-6"
+    : theme?.id === "arada-corporate"
+    ? "h-6 md:h-7"
+    : "h-6 md:h-8";
 
   return (
     <header className="h-14 md:h-16 border-b border-border bg-card/95 backdrop-blur-md px-3 md:px-6 flex items-center justify-between sticky top-0 z-40">
