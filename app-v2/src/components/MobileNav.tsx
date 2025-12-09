@@ -1,4 +1,5 @@
 import { Home, TrendingUp, Grid3x3, CheckSquare, Shield } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 interface MobileNavProps {
   currentView: string;
@@ -6,6 +7,8 @@ interface MobileNavProps {
 }
 
 export function MobileNav({ currentView, onNavigate }: MobileNavProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const navItems = [
     { icon: TrendingUp, label: "AI", id: "insights" },
     { icon: Home, label: "Home", id: "home" },
@@ -23,7 +26,9 @@ export function MobileNav({ currentView, onNavigate }: MobileNavProps) {
             onClick={() => onNavigate(item.id)}
             className={`flex flex-col items-center justify-center gap-1 transition-all ${
               currentView === item.id
-                ? "text-blue-400"
+                ? isAradaTheme
+                  ? "bg-primary text-primary-foreground"
+                  : "text-blue-400"
                 : "text-muted-foreground active:text-foreground"
             }`}
           >

@@ -4,10 +4,11 @@ This theme is based on the design system from [Arada.com](https://www.arada.com/
 
 ## Design Characteristics
 
-- **Style**: Minimalist, monochrome, high-contrast
+- **Style**: Minimalist, monochrome, high-contrast - **basically white and black**
 - **Primary Color**: Black (#000000) in light mode, White (#ffffff) in dark mode
-- **Secondary Color**: Dark Blue (#1d428a, #082244)
-- **Background**: Light Gray (#f1f1f1) in light mode, Pure Black (#000000) in dark mode
+- **Accent Color**: Black/White - no color accents
+- **Background**: Pure White (#ffffff) in light mode, Pure Black (#000000) in dark mode
+- **Charts**: Greyscale palette (5 shades from black to light grey)
 - **Border Radius**: Minimal (0.25rem / 4px) - sharp, corporate aesthetic
 - **Typography**: Clean, bold headings with lighter body text
 
@@ -61,25 +62,27 @@ Currently, the theme uses system fonts as fallback.
 
 ## Color Palette
 
-### Light Mode
+### Light Mode (White & Black Theme)
 - Background: `#ffffff` (Pure White)
 - Foreground: `#000000` (Black)
 - Primary: `#000000` (Black)
-- Card: `#fafafa` (Very Light White)
-- Secondary: `#fafafa` (Very Light White)
-- Muted: `#f9f9f9` (Near White)
-- Accent: `#1d428a` (Dark Blue)
-- Border: `#d4d4d4` (Subtle Grey)
-- Sidebar Border: `#d4d4d4` (Greyish Lines)
+- Card: `#ffffff` (Pure White)
+- Secondary: `#f5f5f5` (Very Light Grey)
+- Muted: `#fafafa` (Near White)
+- Accent: `#000000` (Black - no color)
+- Border: `#e5e5e5` (Light Grey)
+- Charts: Greyscale (`#000000` → `#404040` → `#737373` → `#a3a3a3` → `#d4d4d4`)
 
-### Dark Mode
-- Background: `#0a0a0a` (Near Black)
+### Dark Mode (Black & White Theme)
+- Background: `#000000` (Pure Black)
 - Foreground: `#ffffff` (White)
 - Primary: `#ffffff` (White)
-- Secondary: `#2a2a2a` (Dark Gray)
-- Accent: `#1d428a` (Blue)
-- Card: `#141414` (Dark Gray)
-- Border: `#2a2a2a` (Dark Gray)
+- Card: `#0a0a0a` (Near Black)
+- Secondary: `#1a1a1a` (Dark Grey)
+- Muted: `#141414` (Very Dark Grey)
+- Accent: `#ffffff` (White - no color)
+- Border: `#262626` (Dark Grey)
+- Charts: Greyscale Reversed (`#ffffff` → `#d4d4d4` → `#a3a3a3` → `#737373` → `#404040`)
 
 ## Usage
 
@@ -117,16 +120,20 @@ window.EmaratAI.setMode('light');
 
 ### Improving Favicons
 
-For production use, replace placeholder favicons with proper image files:
+⚠️ **Current Status**: The theme uses the SVG logo for all favicon references (temporary workaround).
 
-1. Create a 512x512px PNG of the Arada logo with transparent background
-2. Use a favicon generator to create multiple sizes:
-   - 16x16 PNG
-   - 32x32 PNG
-   - 180x180 PNG (Apple Touch Icon)
-   - ICO file containing multiple sizes
-3. Create a simplified single-color SVG for Safari Pinned Tab
-4. Replace files in `/themes/arada/`
+For production use, create proper PNG/ICO favicon files:
+
+1. See detailed instructions in `HOW_TO_CREATE_FAVICONS.md`
+2. Use a favicon generator: https://realfavicongenerator.net/
+3. Create these files:
+   - `favicon.ico` (16x16, 32x32, 48x48 multi-size)
+   - `favicon-16x16.png`
+   - `favicon-32x32.png`
+   - `apple-touch-icon.png` (180x180)
+   - `safari-pinned-tab.svg` (single color)
+4. Place files in `/themes/arada/`
+5. Update `theme.json` favicon paths
 
 ## Best Practices
 

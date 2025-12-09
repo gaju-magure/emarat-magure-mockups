@@ -1,4 +1,5 @@
 import { Home, TrendingUp, Grid3x3, CheckSquare, Shield, FileText, Briefcase } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 interface LeftSidebarProps {
   currentView: string;
@@ -7,6 +8,8 @@ interface LeftSidebarProps {
 }
 
 export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const navItems = [
     { icon: TrendingUp, label: "Emarat AI", id: "insights" },
     { icon: Home, label: "Dashboard", id: "home" },
@@ -26,7 +29,9 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
               onClick={() => onNavigate(item.id)}
               className={`flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all ${
                 currentView === item.id
-                  ? "bg-blue-500/20 text-blue-400"
+                  ? isAradaTheme
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-blue-500/20 text-blue-400"
                   : "text-muted-foreground hover:bg-accent hover:text-foreground"
               }`}
             >
