@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Sparkles, TrendingUp, FileText, Users, DollarSign, AlertCircle, CheckCircle2, Clock } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 interface Message {
   type: "ai" | "user" | "alert";
@@ -13,7 +14,9 @@ interface InsightsProps {
 }
 
 export function Insights({ onOpenApp }: InsightsProps) {
-  const [messages, setMessages] = useState<Message[]>([
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
+  const initialMessages: Message[] = [
     {
       type: "alert",
       text: "5 invoices require your review - AI confidence below 75%",
@@ -57,9 +60,11 @@ export function Insights({ onOpenApp }: InsightsProps) {
     },
     {
       type: "ai",
-      text: "Hello Gajanand! I'm your Emarat AI Copilot. I've gathered the most important alerts for you today. How can I help you with your operations?",
+      text: `Hello Gajanand! I'm your ${isAradaTheme ? "Arada" : "Emarat"} AI Copilot. I've gathered the most important alerts for you today. How can I help you with your operations?`,
     },
-  ]);
+  ];
+
+  const [messages, setMessages] = useState<Message[]>(initialMessages);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -70,6 +75,22 @@ export function Insights({ onOpenApp }: InsightsProps) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Update welcome message when theme changes
+  useEffect(() => {
+    setMessages((prevMessages) => {
+      return prevMessages.map((msg, index) => {
+        // Update the AI welcome message (last initial message)
+        if (index === 3 && msg.type === "ai" && msg.text.includes("AI Copilot")) {
+          return {
+            ...msg,
+            text: `Hello Gajanand! I'm your ${isAradaTheme ? "Arada" : "Emarat"} AI Copilot. I've gathered the most important alerts for you today. How can I help you with your operations?`,
+          };
+        }
+        return msg;
+      });
+    });
+  }, [isAradaTheme]);
 
   const quickPrompts = [
     { text: "Show next week's demand forecast", icon: TrendingUp },
@@ -156,19 +177,23 @@ export function Insights({ onOpenApp }: InsightsProps) {
     switch (card.type) {
       case "forecast":
         return (
-          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3">
+          <div className="bg-accent border border-border rounded-lg p-4 mt-3">
             <div className="space-y-2">
               {card.data.map((item: any, i: number) => (
                 <div key={i} className="flex items-center justify-between">
                   <span className="text-foreground">{item.day}</span>
                   <span className="text-foreground">{item.demand}</span>
-                  <span className="text-green-400 text-sm">{item.change}</span>
+                  <span className={`text-sm ${isAradaTheme ? "text-primary" : "text-green-400"}`}>{item.change}</span>
                 </div>
               ))}
             </div>
             <button
               onClick={() => onOpenApp("forecast")}
-              className="w-full mt-3 px-3 py-2 bg-blue-500/20 hover:bg-blue-500/30 text-blue-400 rounded-lg transition-all text-sm"
+              className={`w-full mt-3 px-3 py-2 rounded-lg transition-all text-sm ${
+                isAradaTheme
+                  ? "bg-primary text-primary-foreground border-2 border-primary hover:bg-background hover:text-foreground hover:border-foreground"
+                  : "bg-blue-500/20 hover:bg-blue-500/30 text-blue-400"
+              }`}
             >
               View Full Forecast Dashboard
             </button>
@@ -177,9 +202,9 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "rfps":
         return (
-          <div className="bg-white/[0.03] border border-border rounded-lg overflow-hidden mt-3">
+          <div className="bg-accent border border-border rounded-lg overflow-hidden mt-3">
             <table className="w-full text-sm">
-              <thead className="bg-white/[0.03]">
+              <thead className="bg-muted">
                 <tr>
                   <th className="px-3 py-2 text-left text-muted-foreground">RFP</th>
                   <th className="px-3 py-2 text-left text-muted-foreground">AI Score</th>
@@ -188,10 +213,10 @@ export function Insights({ onOpenApp }: InsightsProps) {
               </thead>
               <tbody>
                 {card.data.map((item: any, i: number) => (
-                  <tr key={i} className="border-t border-white/5">
+                  <tr key={i} className="border-t border-border">
                     <td className="px-3 py-2 text-foreground">{item.name}</td>
                     <td className="px-3 py-2">
-                      <span className="text-green-400">{item.score}</span>
+                      <span className={isAradaTheme ? "text-primary" : "text-green-400"}>{item.score}</span>
                     </td>
                     <td className="px-3 py-2 text-muted-foreground">{item.status}</td>
                   </tr>
@@ -200,7 +225,11 @@ export function Insights({ onOpenApp }: InsightsProps) {
             </table>
             <button
               onClick={() => onOpenApp("rfp")}
-              className="w-full px-3 py-2 bg-green-500/20 hover:bg-green-500/30 text-green-400 transition-all text-sm"
+              className={`w-full px-3 py-2 transition-all text-sm ${
+                isAradaTheme
+                  ? "bg-primary text-primary-foreground border-2 border-primary hover:bg-background hover:text-foreground hover:border-foreground"
+                  : "bg-green-500/20 hover:bg-green-500/30 text-green-400"
+              }`}
             >
               Open RFP Evaluation Tool
             </button>
@@ -209,7 +238,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "invoices":
         return (
-          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3 space-y-2">
+          <div className="bg-accent border border-border rounded-lg p-4 mt-3 space-y-2">
             {card.data.map((item: any, i: number) => (
               <div key={i} className="flex items-center justify-between text-sm">
                 <div>
@@ -218,13 +247,17 @@ export function Insights({ onOpenApp }: InsightsProps) {
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-foreground">{item.amount}</span>
-                  <span className="text-yellow-400">{item.confidence}</span>
+                  <span className={isAradaTheme ? "text-muted-foreground" : "text-yellow-400"}>{item.confidence}</span>
                 </div>
               </div>
             ))}
             <button
               onClick={() => onOpenApp("invoice")}
-              className="w-full mt-2 px-3 py-2 bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400 rounded-lg transition-all text-sm"
+              className={`w-full mt-2 px-3 py-2 rounded-lg transition-all text-sm ${
+                isAradaTheme
+                  ? "bg-primary text-primary-foreground border-2 border-primary hover:bg-background hover:text-foreground hover:border-foreground"
+                  : "bg-yellow-500/20 hover:bg-yellow-500/30 text-yellow-400"
+              }`}
             >
               Review All Invoices
             </button>
@@ -233,13 +266,13 @@ export function Insights({ onOpenApp }: InsightsProps) {
 
       case "sites":
         return (
-          <div className="bg-white/[0.03] border border-border rounded-lg p-4 mt-3 space-y-2">
+          <div className="bg-accent border border-border rounded-lg p-4 mt-3 space-y-2">
             {card.data.map((item: any, i: number) => (
               <div key={i} className="flex items-center justify-between">
                 <span className="text-foreground">{item.name}</span>
                 <div className="flex items-center gap-3">
                   <span className="text-foreground">{item.revenue}</span>
-                  <span className="text-green-400 text-sm">{item.growth}</span>
+                  <span className={`text-sm ${isAradaTheme ? "text-primary" : "text-green-400"}`}>{item.growth}</span>
                 </div>
               </div>
             ))}
@@ -252,19 +285,26 @@ export function Insights({ onOpenApp }: InsightsProps) {
   };
 
   const getAlertIcon = (alertType?: string) => {
+    const iconClass = `w-3 h-3 md:w-4 md:h-4 ${isAradaTheme ? "text-primary" :
+      alertType === "warning" ? "text-yellow-400" :
+      alertType === "success" ? "text-green-400" : "text-blue-400"}`;
+
     switch (alertType) {
       case "warning":
-        return <AlertCircle className="w-3 h-3 md:w-4 md:h-4 text-yellow-400" />;
+        return <AlertCircle className={iconClass} />;
       case "success":
-        return <CheckCircle2 className="w-3 h-3 md:w-4 md:h-4 text-green-400" />;
+        return <CheckCircle2 className={iconClass} />;
       case "info":
-        return <Clock className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />;
+        return <Clock className={iconClass} />;
       default:
-        return <AlertCircle className="w-3 h-3 md:w-4 md:h-4 text-blue-400" />;
+        return <AlertCircle className={iconClass} />;
     }
   };
 
   const getAlertStyle = (alertType?: string) => {
+    if (isAradaTheme) {
+      return "bg-secondary border border-border";
+    }
     switch (alertType) {
       case "warning":
         return "bg-yellow-500/10 border-yellow-500/30";
@@ -328,7 +368,7 @@ export function Insights({ onOpenApp }: InsightsProps) {
             <button
               key={i}
               onClick={() => handleSend(prompt.text)}
-              className="flex items-center gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-secondary hover:bg-white/[0.10] active:bg-white/[0.15] border border-border rounded-lg text-xs md:text-sm text-foreground hover:text-foreground transition-all whitespace-nowrap flex-shrink-0"
+              className="flex items-center gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-secondary hover:bg-accent active:bg-accent border border-border rounded-lg text-xs md:text-sm text-foreground hover:text-foreground transition-all whitespace-nowrap flex-shrink-0"
             >
               <prompt.icon className="w-3 h-3 md:w-4 md:h-4" />
               <span className="hidden sm:inline">{prompt.text}</span>
@@ -347,7 +387,9 @@ export function Insights({ onOpenApp }: InsightsProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Ask me anything..."
-            className="flex-1 px-3 md:px-4 py-2 md:py-3 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-transparent"
+            className={`flex-1 px-3 md:px-4 py-2 md:py-3 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:border-transparent ${
+              isAradaTheme ? "focus:ring-ring" : "focus:ring-blue-500/50"
+            }`}
           />
           <button
             onClick={() => handleSend()}

@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { FileText, Briefcase, Filter, Search, Eye } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { useTheme } from "../lib/theme";
 
 interface TasksProps {
   onOpenApp: (app: string) => void;
 }
 
 export function Tasks({ onOpenApp }: TasksProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const [searchQuery, setSearchQuery] = useState("");
   const [departmentFilter, setDepartmentFilter] = useState("all");
 
@@ -98,6 +101,11 @@ export function Tasks({ onOpenApp }: TasksProps) {
   const myTasks = pendingTasks.filter((task) => task.assignee === "You");
 
   const getConfidenceColor = (confidence: number) => {
+    if (isAradaTheme) {
+      if (confidence >= 85) return "text-primary-foreground bg-primary";
+      if (confidence >= 70) return "text-foreground bg-muted border border-border";
+      return "text-background bg-foreground";
+    }
     if (confidence >= 85) return "text-green-400 bg-green-500/20";
     if (confidence >= 70) return "text-yellow-400 bg-yellow-500/20";
     return "text-red-400 bg-red-500/20";
@@ -123,7 +131,9 @@ export function Tasks({ onOpenApp }: TasksProps) {
             placeholder="Search tasks..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className={`w-full pl-10 pr-4 py-2 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base placeholder:text-muted-foreground focus:outline-none focus:ring-2 ${
+              isAradaTheme ? "focus:ring-ring" : "focus:ring-blue-500/50"
+            }`}
           />
         </div>
         <div className="flex items-center gap-2 sm:w-auto w-full">
@@ -131,7 +141,9 @@ export function Tasks({ onOpenApp }: TasksProps) {
           <select
             value={departmentFilter}
             onChange={(e) => setDepartmentFilter(e.target.value)}
-            className="flex-1 sm:flex-initial px-3 md:px-4 py-2 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+            className={`flex-1 sm:flex-initial px-3 md:px-4 py-2 bg-accent border border-border rounded-lg text-foreground text-sm md:text-base focus:outline-none focus:ring-2 ${
+              isAradaTheme ? "focus:ring-ring" : "focus:ring-blue-500/50"
+            }`}
           >
             {departments.map((dept) => (
               <option key={dept} value={dept} className="bg-background">
@@ -159,8 +171,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                 className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <task.typeIcon className="w-5 h-5 text-blue-400" />
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    isAradaTheme ? "bg-primary/10 border border-primary/20" : "bg-blue-500/20"
+                  }`}>
+                    <task.typeIcon className={`w-5 h-5 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-foreground text-sm mb-1">{task.description}</p>
@@ -206,8 +220,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                   <tr key={task.id} className="hover:bg-white/[0.03] transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                          <task.typeIcon className="w-4 h-4 text-blue-400" />
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          isAradaTheme ? "bg-primary/10 border border-primary/20" : "bg-blue-500/20"
+                        }`}>
+                          <task.typeIcon className={`w-4 h-4 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
                         </div>
                         <span className="text-foreground">{task.type}</span>
                       </div>
@@ -231,7 +247,11 @@ export function Tasks({ onOpenApp }: TasksProps) {
                     <td className="px-4 py-4">
                       <span
                         className={`inline-block px-2 py-1 rounded text-xs ${
-                          task.status === "Pending"
+                          isAradaTheme
+                            ? task.status === "Pending"
+                              ? "bg-muted text-foreground border border-border"
+                              : "bg-foreground text-background"
+                            : task.status === "Pending"
                             ? "bg-yellow-500/20 text-yellow-400"
                             : "bg-blue-500/20 text-blue-400"
                         }`}
@@ -267,8 +287,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                 className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <task.typeIcon className="w-5 h-5 text-green-400" />
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    isAradaTheme ? "bg-primary text-primary-foreground" : "bg-green-500/20"
+                  }`}>
+                    <task.typeIcon className={`w-5 h-5 ${isAradaTheme ? "text-primary-foreground" : "text-green-400"}`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-foreground text-sm mb-1">{task.description}</p>
@@ -300,8 +322,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                   <tr key={task.id} className="hover:bg-white/[0.03] transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-                          <task.typeIcon className="w-4 h-4 text-green-400" />
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          isAradaTheme ? "bg-primary" : "bg-green-500/20"
+                        }`}>
+                          <task.typeIcon className={`w-4 h-4 ${isAradaTheme ? "text-primary-foreground" : "text-green-400"}`} />
                         </div>
                         <span className="text-foreground">{task.type}</span>
                       </div>
@@ -315,7 +339,9 @@ export function Tasks({ onOpenApp }: TasksProps) {
                     <td className="px-4 py-4 text-foreground">{task.completedBy}</td>
                     <td className="px-4 py-4 text-muted-foreground text-sm">{task.completedDate}</td>
                     <td className="px-4 py-4">
-                      <span className="inline-block px-2 py-1 rounded text-xs bg-green-500/20 text-green-400">
+                      <span className={`inline-block px-2 py-1 rounded text-xs ${
+                        isAradaTheme ? "bg-primary text-primary-foreground" : "bg-green-500/20 text-green-400"
+                      }`}>
                         {task.status}
                       </span>
                     </td>
@@ -336,8 +362,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                 className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4"
               >
                 <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <task.typeIcon className="w-5 h-5 text-blue-400" />
+                  <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                    isAradaTheme ? "bg-primary/10 border border-primary/20" : "bg-blue-500/20"
+                  }`}>
+                    <task.typeIcon className={`w-5 h-5 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-foreground text-sm mb-1">{task.description}</p>
@@ -382,8 +410,10 @@ export function Tasks({ onOpenApp }: TasksProps) {
                   <tr key={task.id} className="hover:bg-white/[0.03] transition-colors">
                     <td className="px-4 py-4">
                       <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-blue-500/20 rounded-lg flex items-center justify-center">
-                          <task.typeIcon className="w-4 h-4 text-blue-400" />
+                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          isAradaTheme ? "bg-primary/10 border border-primary/20" : "bg-blue-500/20"
+                        }`}>
+                          <task.typeIcon className={`w-4 h-4 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
                         </div>
                         <span className="text-foreground">{task.type}</span>
                       </div>

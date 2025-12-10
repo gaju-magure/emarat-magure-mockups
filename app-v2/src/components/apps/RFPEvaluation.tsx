@@ -3,6 +3,7 @@ import { X, MessageSquare, LayoutGrid, Send, Sparkles, Briefcase, TrendingUp, Do
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Badge } from "../ui/badge";
 import { Progress } from "../ui/progress";
+import { useTheme } from "../../lib/theme";
 
 interface Message {
   type: "ai" | "user";
@@ -14,6 +15,8 @@ interface RFPEvaluationProps {
 }
 
 export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const [activeTab, setActiveTab] = useState<"chat" | "space">("space");
   const [selectedRFP, setSelectedRFP] = useState<string | null>(null);
   const [messages, setMessages] = useState<Message[]>([
@@ -181,13 +184,17 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                       <p className="text-muted-foreground text-xs">Total</p>
                       <p className="text-foreground">{stats.totalRFPs}</p>
                     </div>
-                    <div className="bg-yellow-500/10 rounded-lg p-2">
-                      <p className="text-yellow-400 text-xs">Pending</p>
+                    <div className={`rounded-lg p-2 ${
+                      isAradaTheme ? "bg-muted border border-border" : "bg-yellow-500/10"
+                    }`}>
+                      <p className={`text-xs ${isAradaTheme ? "text-foreground" : "text-yellow-400"}`}>Pending</p>
                       <p className="text-foreground">{stats.pending}</p>
                     </div>
-                    <div className="bg-green-500/10 rounded-lg p-2">
-                      <p className="text-green-400 text-xs">Avg Score</p>
-                      <p className="text-foreground">{stats.avgScore}%</p>
+                    <div className={`rounded-lg p-2 ${
+                      isAradaTheme ? "bg-primary" : "bg-green-500/10"
+                    }`}>
+                      <p className={`text-xs ${isAradaTheme ? "text-primary-foreground" : "text-green-400"}`}>Avg Score</p>
+                      <p className={`text-foreground ${isAradaTheme ? "text-primary-foreground" : ""}`}>{stats.avgScore}%</p>
                     </div>
                   </div>
                 </div>
@@ -204,7 +211,11 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                     >
                       <div className="flex items-start justify-between mb-2">
                         <h4 className="text-foreground text-sm flex-1">{rfp.name}</h4>
-                        <Badge className="bg-green-500/20 text-green-400 border-green-500/30 ml-2">
+                        <Badge className={`ml-2 ${
+                          isAradaTheme
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-green-500/20 text-green-400 border-green-500/30"
+                        }`}>
                           {rfp.score}%
                         </Badge>
                       </div>
@@ -227,17 +238,24 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                       <div className="flex flex-wrap gap-3 text-sm">
                         <span className="text-muted-foreground">Vendor: <span className="text-foreground">{selectedRFPData.vendor}</span></span>
                         <span className="text-muted-foreground">Amount: <span className="text-foreground">${selectedRFPData.amount.toLocaleString()}</span></span>
-                        <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30">
+                        <Badge className={isAradaTheme
+                          ? "bg-muted text-foreground border-border"
+                          : "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+                        }>
                           {selectedRFPData.status}
                         </Badge>
                       </div>
                     </div>
 
                     {/* Overall Score */}
-                    <div className="bg-primary/10 border border-primary/30 rounded-xl p-6">
+                    <div className={`rounded-xl p-6 ${
+                      isAradaTheme
+                        ? "bg-primary border border-primary"
+                        : "bg-primary/10 border border-primary/30"
+                    }`}>
                       <div className="flex items-center justify-between mb-3">
-                        <h3 className="text-foreground">Overall AI Score</h3>
-                        <span className="text-3xl text-primary">{selectedRFPData.score}%</span>
+                        <h3 className={isAradaTheme ? "text-primary-foreground" : "text-foreground"}>Overall AI Score</h3>
+                        <span className={`text-3xl ${isAradaTheme ? "text-primary-foreground" : "text-primary"}`}>{selectedRFPData.score}%</span>
                       </div>
                       <Progress value={selectedRFPData.score} className="h-3" />
                     </div>
@@ -260,29 +278,43 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
 
                     {/* Strengths & Weaknesses */}
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
-                        <h4 className="text-green-400 mb-3 flex items-center gap-2">
+                      <div className={`rounded-xl p-4 ${
+                        isAradaTheme
+                          ? "bg-primary border border-primary"
+                          : "bg-green-500/10 border border-green-500/30"
+                      }`}>
+                        <h4 className={`mb-3 flex items-center gap-2 ${
+                          isAradaTheme ? "text-primary-foreground" : "text-green-400"
+                        }`}>
                           <TrendingUp className="w-4 h-4" />
                           Strengths
                         </h4>
                         <ul className="space-y-2">
                           {selectedRFPData.strengths.map((s, i) => (
-                            <li key={i} className="text-foreground text-sm flex items-start gap-2">
-                              <span className="text-green-400 mt-1">•</span>
+                            <li key={i} className={`text-sm flex items-start gap-2 ${
+                              isAradaTheme ? "text-primary-foreground" : "text-foreground"
+                            }`}>
+                              <span className={`mt-1 ${isAradaTheme ? "text-primary-foreground" : "text-green-400"}`}>•</span>
                               <span>{s}</span>
                             </li>
                           ))}
                         </ul>
                       </div>
-                      <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4">
-                        <h4 className="text-red-400 mb-3 flex items-center gap-2">
+                      <div className={`rounded-xl p-4 ${
+                        isAradaTheme
+                          ? "bg-muted border border-border"
+                          : "bg-red-500/10 border border-red-500/30"
+                      }`}>
+                        <h4 className={`mb-3 flex items-center gap-2 ${
+                          isAradaTheme ? "text-foreground" : "text-red-400"
+                        }`}>
                           <Filter className="w-4 h-4" />
                           Concerns
                         </h4>
                         <ul className="space-y-2">
                           {selectedRFPData.weaknesses.map((w, i) => (
                             <li key={i} className="text-foreground text-sm flex items-start gap-2">
-                              <span className="text-red-400 mt-1">•</span>
+                              <span className={`mt-1 ${isAradaTheme ? "text-foreground" : "text-red-400"}`}>•</span>
                               <span>{w}</span>
                             </li>
                           ))}
@@ -292,7 +324,11 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
 
                     {/* Actions */}
                     <div className="flex flex-wrap gap-3">
-                      <button className="px-4 py-2 bg-success hover:bg-success/90 text-white rounded-lg transition-all text-sm">
+                      <button className={`px-4 py-2 rounded-lg transition-all text-sm ${
+                        isAradaTheme
+                          ? "bg-primary hover:bg-primary/90 text-primary-foreground"
+                          : "bg-success hover:bg-success/90 text-white"
+                      }`}>
                         Approve Proposal
                       </button>
                       <button className="px-4 py-2 bg-accent hover:bg-accent text-foreground rounded-lg transition-all text-sm flex items-center gap-2">
@@ -307,7 +343,7 @@ export function RFPEvaluation({ onClose }: RFPEvaluationProps) {
                 ) : (
                   <div className="h-full flex items-center justify-center">
                     <div className="text-center">
-                      <Briefcase className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                      <Briefcase className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
                       <p className="text-muted-foreground">Select a proposal to view details</p>
                     </div>
                   </div>

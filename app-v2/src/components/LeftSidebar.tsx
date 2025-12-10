@@ -36,7 +36,7 @@ export function LeftSidebar({ currentView, onNavigate, onOpenApp }: LeftSidebarP
               }`}
             >
               <item.icon className="w-4 h-4" />
-              <span>{item.label}</span>
+              <span>{item.label === "Emarat AI" && isAradaTheme ? "Arada AI" : item.label}</span>
             </li>
           ))}
         </ul>

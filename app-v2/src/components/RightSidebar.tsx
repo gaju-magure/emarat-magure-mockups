@@ -1,6 +1,10 @@
 import { AlertCircle, Clock, CheckCircle2 } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 export function RightSidebar() {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
+
   const updates = [
     { text: "5 invoices need review (AI <75%)", confidence: "72%", type: "alert" },
     { text: "3 RFP proposals pending evaluation", type: "info" },
@@ -22,25 +26,32 @@ export function RightSidebar() {
             AI Alerts
           </h3>
           <ul className="space-y-2">
-            {updates.map((update, i) => (
+            {updates.map((update, i) => {
+              const getAlertStyle = () => {
+                if (isAradaTheme) {
+                  if (update.type === "alert") return "bg-muted border-border hover:bg-muted/80";
+                  if (update.type === "success") return "bg-primary border-primary hover:bg-primary/90";
+                  return "bg-secondary border-border hover:bg-accent";
+                }
+                if (update.type === "alert") return "bg-yellow-500/10 border-yellow-500/30 hover:bg-yellow-500/15";
+                if (update.type === "info") return "bg-blue-500/10 border-blue-500/30 hover:bg-blue-500/15";
+                return "bg-green-500/10 border-green-500/30 hover:bg-green-500/15";
+              };
+
+              return (
               <li
                 key={i}
-                className={`p-3 rounded-lg border transition-all cursor-pointer ${
-                  update.type === "alert"
-                    ? "bg-yellow-500/10 border-yellow-500/30 hover:bg-yellow-500/15"
-                    : update.type === "info"
-                    ? "bg-blue-500/10 border-blue-500/30 hover:bg-blue-500/15"
-                    : "bg-green-500/10 border-green-500/30 hover:bg-green-500/15"
-                }`}
+                className={`p-3 rounded-lg border transition-all cursor-pointer ${getAlertStyle()}`}
               >
-                <p className="text-sm text-foreground">{update.text}</p>
+                <p className={`text-sm ${isAradaTheme && update.type === "success" ? "text-primary-foreground" : "text-foreground"}`}>{update.text}</p>
                 {update.confidence && (
-                  <span className="inline-block mt-1 text-xs text-yellow-400">
+                  <span className={`inline-block mt-1 text-xs ${isAradaTheme ? "text-foreground" : "text-yellow-400"}`}>
                     Min confidence: {update.confidence}
                   </span>
                 )}
               </li>
-            ))}
+              );
+            })}
           </ul>
         </div>
 
@@ -53,20 +64,22 @@ export function RightSidebar() {
             {tasks.map((task, i) => (
               <li
                 key={i}
-                className="p-3 bg-white/[0.03] hover:bg-white/[0.06] rounded-lg border border-white/5 transition-all cursor-pointer group"
+                className="p-3 bg-accent hover:bg-muted rounded-lg border border-border transition-all cursor-pointer group"
               >
                 <div className="flex items-start gap-2">
                   <input
                     type="checkbox"
-                    className="mt-0.5 rounded border-gray-600 bg-transparent"
+                    className="mt-0.5 rounded border-border bg-transparent"
                   />
                   <div className="flex-1">
                     <p className="text-sm text-foreground group-hover:text-foreground transition-colors">
                       {task.text}
                     </p>
                     <span
-                      className={`inline-block mt-1 text-xs px-2 py-0.5 rounded ${
-                        task.priority === "high"
+                      className={`inline-block mt-1 text-xs px-2 py-0.5 rounded capitalize ${
+                        isAradaTheme
+                          ? "bg-primary text-primary-foreground"
+                          : task.priority === "high"
                           ? "bg-red-500/20 text-red-400"
                           : task.priority === "medium"
                           ? "bg-yellow-500/20 text-yellow-400"

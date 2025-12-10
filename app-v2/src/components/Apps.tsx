@@ -1,11 +1,14 @@
 import { FileText, Briefcase, TrendingUp, Users, Camera, Shield, Zap, Clock, MessageSquare, LayoutGrid, ExternalLink, FileCheck } from "lucide-react";
 import { Badge } from "./ui/badge";
+import { useTheme } from "../lib/theme";
 
 interface AppsProps {
   onOpenApp: (app: string) => void;
 }
 
 export function Apps({ onOpenApp }: AppsProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const apps = [
     {
       id: "invoice",
@@ -99,14 +102,20 @@ export function Apps({ onOpenApp }: AppsProps) {
             {/* Header */}
             <div className="flex items-start justify-between mb-3 md:mb-4">
               <div className="flex items-start gap-2 md:gap-3">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
-                  <app.icon className="w-5 h-5 md:w-6 md:h-6 text-blue-400" />
+                <div className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0 ${
+                  isAradaTheme ? "bg-primary/10 border border-primary/20" : "bg-blue-500/20"
+                }`}>
+                  <app.icon className={`w-5 h-5 md:w-6 md:h-6 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
                 </div>
                 <div>
                   <h3 className="text-foreground mb-1 text-sm md:text-base">{app.name}</h3>
                   <span
                     className={`inline-block px-2 py-0.5 md:py-1 text-xs rounded ${
-                      app.statusColor === "green"
+                      isAradaTheme
+                        ? app.status === "Planned"
+                          ? "bg-muted text-muted-foreground border border-border"
+                          : "bg-primary text-primary-foreground"
+                        : app.statusColor === "green"
                         ? "bg-green-500/20 text-green-400"
                         : app.statusColor === "blue"
                         ? "bg-blue-500/20 text-blue-400"
@@ -127,19 +136,25 @@ export function Apps({ onOpenApp }: AppsProps) {
             {/* Features */}
             <div className="flex gap-2 mb-3 md:mb-4 flex-wrap">
               {app.hasChat && (
-                <Badge variant="secondary" className="bg-blue-500/10 text-blue-400 border-blue-500/30 text-xs">
+                <Badge variant="secondary" className={`text-xs ${
+                  isAradaTheme ? "bg-primary text-primary-foreground border-primary" : "bg-blue-500/10 text-blue-400 border-blue-500/30"
+                }`}>
                   <MessageSquare className="w-3 h-3 mr-1" />
                   AI Chat
                 </Badge>
               )}
               {app.hasWorkspace && (
-                <Badge variant="secondary" className="bg-green-500/10 text-green-400 border-green-500/30 text-xs">
+                <Badge variant="secondary" className={`text-xs ${
+                  isAradaTheme ? "bg-foreground text-background border-foreground" : "bg-green-500/10 text-green-400 border-green-500/30"
+                }`}>
                   <LayoutGrid className="w-3 h-3 mr-1" />
                   Workspace
                 </Badge>
               )}
               {app.isExternal && (
-                <Badge variant="secondary" className="bg-purple-500/10 text-purple-400 border-purple-500/30 text-xs">
+                <Badge variant="secondary" className={`text-xs ${
+                  isAradaTheme ? "bg-muted text-foreground border-border" : "bg-purple-500/10 text-purple-400 border-purple-500/30"
+                }`}>
                   <ExternalLink className="w-3 h-3 mr-1" />
                   Advanced Platform
                 </Badge>
@@ -180,19 +195,27 @@ export function Apps({ onOpenApp }: AppsProps) {
 
       {/* Summary Stats */}
       <div className="mt-4 md:mt-8 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-        <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30 rounded-xl p-3 md:p-4">
+        <div className={`rounded-xl p-3 md:p-4 ${
+          isAradaTheme ? "bg-secondary border border-border" : "bg-gradient-to-br from-green-500/10 to-emerald-500/10 border border-green-500/30"
+        }`}>
           <p className="text-xs md:text-sm text-muted-foreground mb-1">Live Applications</p>
           <p className="text-xl md:text-2xl text-foreground">4</p>
         </div>
-        <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30 rounded-xl p-3 md:p-4">
+        <div className={`rounded-xl p-3 md:p-4 ${
+          isAradaTheme ? "bg-secondary border border-border" : "bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-blue-500/30"
+        }`}>
           <p className="text-xs md:text-sm text-muted-foreground mb-1">With AI Chat</p>
           <p className="text-xl md:text-2xl text-foreground">4</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-xl p-3 md:p-4">
+        <div className={`rounded-xl p-3 md:p-4 ${
+          isAradaTheme ? "bg-secondary border border-border" : "bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/30"
+        }`}>
           <p className="text-xs md:text-sm text-muted-foreground mb-1">Total Processed</p>
           <p className="text-xl md:text-2xl text-foreground">1,379</p>
         </div>
-        <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-xl p-3 md:p-4">
+        <div className={`rounded-xl p-3 md:p-4 ${
+          isAradaTheme ? "bg-secondary border border-border" : "bg-gradient-to-br from-yellow-500/10 to-orange-500/10 border border-yellow-500/30"
+        }`}>
           <p className="text-xs md:text-sm text-muted-foreground mb-1">Time Saved</p>
           <p className="text-xl md:text-2xl text-foreground">232hrs</p>
         </div>

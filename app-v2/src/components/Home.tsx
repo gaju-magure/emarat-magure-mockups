@@ -1,10 +1,13 @@
 import { TrendingUp, AlertCircle, CheckCircle2, Target, FileText, Briefcase, MessageSquare } from "lucide-react";
+import { useTheme } from "../lib/theme";
 
 interface HomeProps {
   onOpenApp: (app: string) => void;
 }
 
 export function Home({ onOpenApp }: HomeProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const kpis = [
     { label: "Fuel Sales (MTD)", value: "12.4M L", change: "+5.2%", positive: true, icon: TrendingUp },
     { label: "AP Aging", value: "48 hrs", change: "-12%", positive: true, icon: AlertCircle },
@@ -47,10 +50,12 @@ export function Home({ onOpenApp }: HomeProps) {
             className="bg-secondary backdrop-blur-md border border-border rounded-xl p-3 md:p-5 hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-start justify-between mb-2 md:mb-3">
-              <kpi.icon className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
+              <kpi.icon className={`w-4 h-4 md:w-5 md:h-5 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
               <span
                 className={`text-xs px-2 py-0.5 md:py-1 rounded ${
-                  kpi.positive ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
+                  isAradaTheme
+                    ? kpi.positive ? "bg-primary text-primary-foreground" : "bg-foreground text-background"
+                    : kpi.positive ? "bg-green-500/20 text-green-400" : "bg-red-500/20 text-red-400"
                 }`}
               >
                 {kpi.change}
@@ -67,7 +72,7 @@ export function Home({ onOpenApp }: HomeProps) {
         {/* Active Pilots */}
         <div className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-5">
           <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
-            <Target className="w-4 h-4 md:w-5 md:h-5 text-purple-400" />
+            <Target className={`w-4 h-4 md:w-5 md:h-5 ${isAradaTheme ? "text-primary" : "text-purple-400"}`} />
             Active Pilots
           </h3>
           <div className="space-y-2 md:space-y-3">
@@ -80,7 +85,13 @@ export function Home({ onOpenApp }: HomeProps) {
                   <p className="text-xs md:text-sm text-foreground">{pilot.name}</p>
                   <span
                     className={`text-xs px-2 py-0.5 rounded flex-shrink-0 ${
-                      pilot.color === "green"
+                      isAradaTheme
+                        ? pilot.color === "green"
+                          ? "bg-primary text-primary-foreground"
+                          : pilot.color === "yellow"
+                          ? "bg-muted text-foreground border border-border"
+                          : "bg-foreground text-background"
+                        : pilot.color === "green"
                         ? "bg-green-500/20 text-green-400"
                         : pilot.color === "yellow"
                         ? "bg-yellow-500/20 text-yellow-400"
@@ -99,7 +110,7 @@ export function Home({ onOpenApp }: HomeProps) {
         {/* My Tasks */}
         <div className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-5">
           <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
-            <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
+            <CheckCircle2 className={`w-4 h-4 md:w-5 md:h-5 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
             My Tasks
           </h3>
           <div className="space-y-2 md:space-y-3">
@@ -113,15 +124,19 @@ export function Home({ onOpenApp }: HomeProps) {
                     type="checkbox"
                     className="mt-0.5 rounded border-gray-600 bg-transparent"
                   />
-                  <p className="text-xs md:text-sm text-foreground flex-1 group-hover:text-blue-400 transition-colors">
+                  <p className={`text-xs md:text-sm text-foreground flex-1 transition-colors ${
+                    isAradaTheme ? "group-hover:text-primary" : "group-hover:text-blue-400"
+                  }`}>
                     {task.text}
                   </p>
                 </div>
                 <div className="flex items-center justify-between pl-6">
                   <span className="text-xs text-muted-foreground">{task.department}</span>
                   <span
-                    className={`text-xs px-2 py-0.5 rounded ${
-                      task.priority === "high"
+                    className={`text-xs px-2 py-0.5 rounded capitalize ${
+                      isAradaTheme
+                        ? "bg-primary text-primary-foreground"
+                        : task.priority === "high"
                         ? "bg-red-500/20 text-red-400"
                         : task.priority === "medium"
                         ? "bg-yellow-500/20 text-yellow-400"
@@ -137,19 +152,25 @@ export function Home({ onOpenApp }: HomeProps) {
         </div>
 
         {/* Copilot Quick Access */}
-        <div className="bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/30 rounded-xl p-4 md:p-5">
+        <div className={`rounded-xl p-4 md:p-5 ${
+          isAradaTheme ? "bg-secondary border border-border" : "bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-blue-500/30"
+        }`}>
           <h3 className="text-foreground mb-3 md:mb-4 flex items-center gap-2 text-base md:text-lg">
-            <MessageSquare className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
-            Emarat AI
+            <MessageSquare className={`w-4 h-4 md:w-5 md:h-5 ${isAradaTheme ? "text-primary" : "text-blue-400"}`} />
+            {isAradaTheme ? "Arada AI" : "Emarat AI"}
           </h3>
           <p className="text-xs md:text-sm text-foreground mb-3 md:mb-4">
             Your AI copilot for operations, insights, and process automation.
           </p>
           <button
             onClick={() => onOpenApp("insights")}
-            className="w-full px-4 py-2 md:py-3 bg-primary hover:bg-primary-hover text-primary-foreground rounded-lg transition-all text-sm md:text-base"
+            className={`w-full px-4 py-2 md:py-3 rounded-lg transition-all text-sm md:text-base ${
+              isAradaTheme
+                ? "bg-secondary border border-border text-foreground hover:bg-primary hover:text-primary-foreground"
+                : "bg-primary hover:bg-primary-hover text-primary-foreground"
+            }`}
           >
-            Open Emarat AI
+            {isAradaTheme ? "Open Arada AI" : "Open Emarat AI"}
           </button>
         </div>
       </div>
@@ -158,22 +179,42 @@ export function Home({ onOpenApp }: HomeProps) {
       <div>
         <h3 className="text-foreground mb-3 md:mb-4 text-base md:text-lg">Quick Actions</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-          {appShortcuts.map((shortcut, i) => (
+          {appShortcuts.map((shortcut, i) => {
+            const getIconBgColor = () => {
+              if (isAradaTheme) return "bg-primary/10 border border-primary/20";
+              if (shortcut.color === "indigo") return "bg-indigo-500/20";
+              if (shortcut.color === "blue") return "bg-blue-500/20";
+              if (shortcut.color === "green") return "bg-green-500/20";
+              if (shortcut.color === "purple") return "bg-purple-500/20";
+              return "bg-blue-500/20";
+            };
+            const getIconColor = () => {
+              if (isAradaTheme) return "text-primary";
+              if (shortcut.color === "indigo") return "text-indigo-400";
+              if (shortcut.color === "blue") return "text-blue-400";
+              if (shortcut.color === "green") return "text-green-400";
+              if (shortcut.color === "purple") return "text-purple-400";
+              return "text-blue-400";
+            };
+            return (
             <button
               key={i}
               onClick={() => onOpenApp(shortcut.app)}
               className="bg-secondary backdrop-blur-md border border-border rounded-xl p-4 md:p-6 hover:bg-white/[0.04] hover:border-border active:bg-white/[0.06] transition-all group text-center"
             >
               <div
-                className={`w-10 h-10 md:w-12 md:h-12 rounded-lg bg-${shortcut.color}-500/20 flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform`}
+                className={`w-10 h-10 md:w-12 md:h-12 rounded-lg flex items-center justify-center mx-auto mb-2 md:mb-3 group-hover:scale-110 transition-transform ${getIconBgColor()}`}
               >
-                <shortcut.icon className={`w-5 h-5 md:w-6 md:h-6 text-${shortcut.color}-400`} />
+                <shortcut.icon className={`w-5 h-5 md:w-6 md:h-6 ${getIconColor()}`} />
               </div>
-              <p className="text-xs md:text-sm text-foreground group-hover:text-blue-400 transition-colors">
-                {shortcut.name}
+              <p className={`text-xs md:text-sm text-foreground transition-colors ${
+                isAradaTheme ? "group-hover:text-primary" : "group-hover:text-blue-400"
+              }`}>
+                {shortcut.name === "Emarat AI Chat" && isAradaTheme ? "Arada AI Chat" : shortcut.name}
               </p>
             </button>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>

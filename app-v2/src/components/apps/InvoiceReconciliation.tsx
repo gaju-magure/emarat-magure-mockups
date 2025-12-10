@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { X, MessageSquare, LayoutGrid, Send, Sparkles, FileText, AlertCircle, CheckCircle2, DollarSign, Upload, Download } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { Badge } from "../ui/badge";
+import { useTheme } from "../../lib/theme";
 
 interface Message {
   type: "ai" | "user";
@@ -14,6 +15,8 @@ interface InvoiceReconciliationProps {
 }
 
 export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
+  const { theme } = useTheme();
+  const isAradaTheme = theme?.id === "arada-corporate";
   const [activeTab, setActiveTab] = useState<"chat" | "space">("space");
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -180,13 +183,17 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
                   <p className="text-muted-foreground text-xs mb-1">Total Invoices</p>
                   <p className="text-foreground text-xl">{stats.totalInvoices}</p>
                 </div>
-                <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-3">
-                  <p className="text-yellow-400 text-xs mb-1">Flagged</p>
+                <div className={`rounded-lg p-3 ${
+                  isAradaTheme ? "bg-muted border border-border" : "bg-yellow-500/10 border border-yellow-500/30"
+                }`}>
+                  <p className={`text-xs mb-1 ${isAradaTheme ? "text-foreground" : "text-yellow-400"}`}>Flagged</p>
                   <p className="text-foreground text-xl">{stats.flagged}</p>
                 </div>
-                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
-                  <p className="text-green-400 text-xs mb-1">Approved</p>
-                  <p className="text-foreground text-xl">{stats.approved}</p>
+                <div className={`rounded-lg p-3 ${
+                  isAradaTheme ? "bg-primary" : "bg-green-500/10 border border-green-500/30"
+                }`}>
+                  <p className={`text-xs mb-1 ${isAradaTheme ? "text-primary-foreground" : "text-green-400"}`}>Approved</p>
+                  <p className={`text-xl ${isAradaTheme ? "text-primary-foreground" : "text-foreground"}`}>{stats.approved}</p>
                 </div>
                 <div className="bg-secondary border border-border rounded-lg p-3">
                   <p className="text-muted-foreground text-xs mb-1">Avg Confidence</p>
@@ -235,14 +242,19 @@ export function InvoiceReconciliation({ onClose }: InvoiceReconciliationProps) {
                           <td className="p-3">
                             <p className="text-foreground text-sm">${invoice.amount.toLocaleString()}</p>
                             {invoice.variance > 0 && (
-                              <p className="text-yellow-400 text-xs">+${invoice.variance}</p>
+                              <p className={`text-xs ${isAradaTheme ? "text-muted-foreground" : "text-yellow-400"}`}>+${invoice.variance}</p>
                             )}
                           </td>
                           <td className="p-3 hidden sm:table-cell">
                             <Badge
                               variant={invoice.status === "approved" ? "default" : invoice.status === "flagged" ? "destructive" : "secondary"}
-                              className={
-                                invoice.status === "approved"
+                              className={isAradaTheme
+                                ? invoice.status === "approved"
+                                  ? "bg-primary text-primary-foreground border-primary"
+                                  : invoice.status === "flagged"
+                                  ? "bg-muted text-foreground border-border"
+                                  : "bg-foreground text-background border-foreground"
+                                : invoice.status === "approved"
                                   ? "bg-green-500/20 text-green-400 border-green-500/30"
                                   : invoice.status === "flagged"
                                   ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
